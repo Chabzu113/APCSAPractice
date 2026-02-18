@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Bank — AP CS A Practice</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">AP CS A Practice</a>
+    <div class="navbar-links">
+      <a href="question-bank.html" class="nav-link active">Question Bank</a>
+      <a href="practice-test.html" class="nav-link">Practice Tests</a>
+      <a href="results.html" class="nav-link">Progress</a>
+    </div>
+    <div class="navbar-actions">
+      <button class="btn btn-secondary btn-sm dark-mode-toggle" id="darkModeBtn" aria-label="Toggle dark mode">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+  <div class="nav-mobile hidden" id="mobileNav">
+    <a href="question-bank.html">Question Bank</a>
+    <a href="practice-test.html">Practice Tests</a>
+    <a href="results.html">Progress</a>
+  </div>
+
+  <!-- Page Header -->
+  <div style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:20px 0">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div>
+        <h1 style="font-size:1.6rem;font-weight:800;margin-bottom:4px">Question Bank</h1>
+        <p style="color:var(--text-muted);font-size:0.9rem">225+ questions · 4 units · Easy, Medium, Hard</p>
+      </div>
+      <button class="btn btn-secondary btn-sm" id="mobileFilterToggle">⚙ Filters</button>
+    </div>
+  </div>
+
+  <!-- Page Layout -->
+  <div class="page-layout">
+
+    <!-- Filters Sidebar -->
+    <aside class="filters-sidebar" id="filtersSidebar">
+      <div class="filters-header">
+        <h3>Filters</h3>
+        <button class="btn btn-secondary btn-sm" id="clearFilters">Clear all</button>
+      </div>
+
+      <!-- Unit -->
+      <div class="filter-group">
+        <span class="filter-label">Unit</span>
+        <div class="filter-chips" id="unitChips"></div>
+      </div>
+
+      <!-- Topic -->
+      <div class="filter-group">
+        <span class="filter-label">Topic</span>
+        <select class="filter-select" id="topicSelect" disabled>
+          <option value="all">All Topics</option>
+        </select>
+      </div>
+
+      <!-- Difficulty -->
+      <div class="filter-group">
+        <span class="filter-label">Difficulty</span>
+        <div class="filter-chips" id="diffChips">
+          <button class="filter-chip active" data-filter="difficulty" data-value="all">All</button>
+          <button class="filter-chip" data-filter="difficulty" data-value="easy">🟢 Easy</button>
+          <button class="filter-chip" data-filter="difficulty" data-value="medium">🟡 Medium</button>
+          <button class="filter-chip" data-filter="difficulty" data-value="hard">🔴 Hard</button>
+        </div>
+      </div>
+
+      <!-- Type -->
+      <div class="filter-group">
+        <span class="filter-label">Question Type</span>
+        <div class="filter-chips" id="typeChips">
+          <button class="filter-chip active" data-filter="type" data-value="all">All</button>
+          <button class="filter-chip" data-filter="type" data-value="MCQ">MCQ</button>
+          <button class="filter-chip" data-filter="type" data-value="FRQ">FRQ</button>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="filter-group">
+        <span class="filter-label">Status</span>
+        <div class="filter-chips" id="statusChips">
+          <button class="filter-chip active" data-filter="status" data-value="all">All</button>
+          <button class="filter-chip" data-filter="status" data-value="unseen">Unseen</button>
+          <button class="filter-chip" data-filter="status" data-value="correct">✅ Correct</button>
+          <button class="filter-chip" data-filter="status" data-value="incorrect">❌ Incorrect</button>
+        </div>
+      </div>
+
+      <!-- Sort -->
+      <div class="filter-group">
+        <span class="filter-label">Sort By</span>
+        <select class="filter-select" id="sortSelect">
+          <option value="unit-order">Unit Order</option>
+          <option value="difficulty-asc">Easiest First</option>
+          <option value="difficulty-desc">Hardest First</option>
+          <option value="random">Random</option>
+        </select>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="results-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <span id="resultsCount" style="color:var(--text-muted);font-size:0.95rem"></span>
+      </div>
+
+      <!-- Questions -->
+      <div id="questionsContainer"></div>
+
+      <!-- Pagination -->
+      <div id="pagination" class="pagination"></div>
+    </main>
+  </div>
+
+  <!-- Mobile filter overlay -->
+  <div class="modal-overlay hidden" id="filterOverlay" onclick="document.getElementById('filtersSidebar').classList.remove('open');this.classList.add('hidden')"></div>
+
+  <script src="js/data/mcq_u1u2.js"></script>
+  <script src="js/data/mcq_u3u4.js"></script>
+  <script src="js/data/frq.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/questionBank.js"></script>
+</body>
+</html>

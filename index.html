@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AP CS A Practice — Master AP Computer Science A</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .hero { text-align: center; padding: 80px 20px 60px; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .hero h1 span { color: var(--accent-blue); }
+    .hero p { font-size: 1.15rem; color: var(--text-secondary); max-width: 580px; margin: 0 auto 32px; }
+    .hero-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .stats-banner { background: var(--accent-blue); color: white; padding: 36px 40px; border-radius: 16px; margin: 40px 0; }
+    .stats-banner-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 24px; text-align: center; }
+    .stat-num-lg { font-size: 2.4rem; font-weight: 800; line-height: 1; }
+    .stat-lbl-sm { opacity: 0.85; font-size: 0.88rem; margin-top: 6px; }
+    .section-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; }
+    .section-sub { color: var(--text-secondary); margin-bottom: 28px; }
+    .units-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .feature-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .feature-title { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .feature-desc { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; }
+    .tests-list { display: flex; flex-direction: column; gap: 14px; }
+    .test-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .test-info h3 { font-weight: 700; margin-bottom: 3px; }
+    .test-info p { color: var(--text-secondary); font-size: 0.88rem; }
+    .section-pad { padding: 48px 0; }
+    .cta-section { text-align: center; padding: 72px 20px; background: var(--bg-secondary); border-radius: 16px; margin: 40px 0; }
+    @media (max-width: 600px) { .hero { padding: 48px 16px 40px; } .stats-banner { padding: 24px 20px; } }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">AP CS A Practice</a>
+    <div class="navbar-links">
+      <a href="question-bank.html" class="nav-link">Question Bank</a>
+      <a href="practice-test.html" class="nav-link">Practice Tests</a>
+      <a href="results.html" class="nav-link">Progress</a>
+    </div>
+    <div class="navbar-actions">
+      <button class="btn btn-secondary btn-sm" id="darkModeBtn" aria-label="Toggle dark mode">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+  <div class="nav-mobile hidden" id="mobileNav">
+    <a href="question-bank.html">Question Bank</a>
+    <a href="practice-test.html">Practice Tests</a>
+    <a href="results.html">Progress</a>
+  </div>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Ace AP <span>Computer Science A</span></h1>
+      <p>225+ practice questions, full-length tests mirroring the real exam, and detailed analytics — all free, no account needed.</p>
+      <div class="hero-buttons">
+        <a href="question-bank.html" class="btn btn-primary btn-lg">Start Question Bank →</a>
+        <a href="practice-test.html?testId=test_1" class="btn btn-secondary btn-lg">Take Practice Test</a>
+      </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <div class="stats-banner">
+      <div class="stats-banner-grid">
+        <div><div class="stat-num-lg">225+</div><div class="stat-lbl-sm">Practice Questions</div></div>
+        <div><div class="stat-num-lg">4</div><div class="stat-lbl-sm">Official AP CS A Units</div></div>
+        <div><div class="stat-num-lg">5</div><div class="stat-lbl-sm">Full-Length Tests</div></div>
+        <div><div class="stat-num-lg">20</div><div class="stat-lbl-sm">FRQ Prompts</div></div>
+      </div>
+    </div>
+
+    <!-- User Progress (shown if data) -->
+    <section id="progressSection" style="display:none;padding-bottom:20px">
+      <h2 class="section-title">Your Progress</h2>
+      <div class="units-grid" id="progressUnitsGrid"></div>
+    </section>
+
+    <!-- Units -->
+    <section class="section-pad">
+      <h2 class="section-title">Study by Unit</h2>
+      <p class="section-sub">All 4 official College Board AP CS A units (2024–2025 CED).</p>
+      <div class="units-grid" id="unitsGrid"></div>
+    </section>
+
+    <!-- Features -->
+    <section class="section-pad">
+      <h2 class="section-title" style="text-align:center;margin-bottom:8px">Everything you need to score a 5</h2>
+      <p class="section-sub" style="text-align:center">Built around the real exam structure.</p>
+      <div class="features-grid">
+        <div class="card">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">Filterable Question Bank</div>
+          <div class="feature-desc">Filter by unit, topic, difficulty, and your history. Focus on exactly what needs work.</div>
+        </div>
+        <div class="card">
+          <div class="feature-icon">📝</div>
+          <div class="feature-title">Real AP Exam Format</div>
+          <div class="feature-desc">42 MCQ + 4 FRQ, just like the real test. Timed sections, official question types, self-grading rubrics.</div>
+        </div>
+        <div class="card">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Detailed Analytics</div>
+          <div class="feature-desc">See accuracy by unit, difficulty, and topic. Surfaces your weakest areas automatically.</div>
+        </div>
+        <div class="card">
+          <div class="feature-icon">☕</div>
+          <div class="feature-title">Java Code Tracing</div>
+          <div class="feature-desc">Practice tracing through Java code — the most common AP CS A exam skill.</div>
+        </div>
+        <div class="card">
+          <div class="feature-icon">📋</div>
+          <div class="feature-title">FRQ with Rubrics</div>
+          <div class="feature-desc">All 4 FRQ types with real CB prompts from 2022–2024 and point-by-point scoring rubrics.</div>
+        </div>
+        <div class="card">
+          <div class="feature-icon">🌙</div>
+          <div class="feature-title">Dark Mode + Offline</div>
+          <div class="feature-desc">Works offline, saves all progress locally, dark mode for late-night studying.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practice Tests -->
+    <section class="section-pad">
+      <h2 class="section-title">Practice Tests</h2>
+      <p class="section-sub">Full-length: 42 MCQ (90 min) + 4 FRQ (90 min). Grade yourself with official rubrics.</p>
+      <div class="tests-list" id="testsList"></div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2 style="font-size:1.8rem;font-weight:800;margin-bottom:12px">Ready to start?</h2>
+      <p style="color:var(--text-secondary);margin-bottom:28px">Jump into the question bank or take a full practice test.</p>
+      <div class="hero-buttons">
+        <a href="question-bank.html" class="btn btn-primary btn-lg">Question Bank →</a>
+        <a href="results.html" class="btn btn-secondary btn-lg">View Progress</a>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <footer>
+    <p>AP® is a trademark of College Board. This site is not affiliated with or endorsed by College Board.</p>
+    <p style="margin-top:6px"><a href="question-bank.html">Question Bank</a> · <a href="practice-test.html">Practice Tests</a> · <a href="results.html">Progress</a></p>
+  </footer>
+
+  <script src="js/data/mcq_u1u2.js"></script>
+  <script src="js/data/mcq_u3u4.js"></script>
+  <script src="js/data/frq.js"></script>
+  <script src="js/data/tests.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    const UNITS_META = [
+      { num: 1, title: 'Using Objects and Methods', weight: '15–25%', color: '#3B82F6', topics: 15, icon: '☕' },
+      { num: 2, title: 'Selection and Iteration',   weight: '25–35%', color: '#10B981', topics: 12, icon: '🔁' },
+      { num: 3, title: 'Class Creation',             weight: '10–18%', color: '#8B5CF6', topics: 9,  icon: '🏗️' },
+      { num: 4, title: 'Data Collections',           weight: '30–40%', color: '#F59E0B', topics: 17, icon: '🗂️' }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const state = App.getState();
+      const totalAnswered = Object.keys(state.questionHistory || {}).length;
+
+      // Unit cards
+      document.getElementById('unitsGrid').innerHTML = UNITS_META.map(u => {
+        const stats = App.getUnitStats(u.num);
+        const pct = stats.seen > 0 ? Math.round((stats.correct / stats.seen) * 100) : 0;
+        return `
+          <a href="question-bank.html?unit=${u.num}" class="card unit-card" style="border-left:4px solid ${u.color}">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+              <span style="font-size:1.4rem">${u.icon}</span>
+              <span class="badge badge-unit">Unit ${u.num}</span>
+            </div>
+            <div class="unit-card-title" style="margin-bottom:4px">${u.title}</div>
+            <div style="color:var(--text-muted);font-size:0.82rem;margin-bottom:14px">${u.weight} exam weight · ${u.topics} topics</div>
+            <div class="progress-bar-container" style="margin-bottom:6px">
+              <div class="progress-bar-fill" style="width:${pct}%;background:${u.color}"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-muted)">
+              <span>${stats.correct}/${stats.seen} correct</span><span>${pct}%</span>
+            </div>
+          </a>`;
+      }).join('');
+
+      // Tests list
+      const tests = typeof PRACTICE_TESTS !== 'undefined' ? PRACTICE_TESTS : [];
+      document.getElementById('testsList').innerHTML = tests.map(t => {
+        const hist = (state.testHistory || []).find(h => h.testId === t.id);
+        const scoreStr = hist
+          ? `Last: ${hist.mcqScore}/${hist.mcqTotal || 42} MCQ · Est. AP ${hist.estimatedScore}`
+          : 'Not taken yet';
+        return `
+          <div class="card test-row">
+            <div class="test-info">
+              <h3>${t.title}</h3>
+              <p>${t.description}</p>
+              <p style="margin-top:4px;color:var(--text-muted);font-size:0.8rem">${scoreStr}</p>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+              ${hist ? `<span class="badge badge-unit">AP ${hist.estimatedScore}</span>` : '<span class="badge badge-unseen">New</span>'}
+              <a href="practice-test.html?testId=${t.id}" class="btn btn-primary btn-sm">Start →</a>
+            </div>
+          </div>`;
+      }).join('');
+
+      // Show progress section
+      if (totalAnswered > 0) {
+        document.getElementById('progressSection').style.display = 'block';
+        document.getElementById('progressUnitsGrid').innerHTML = UNITS_META.map(u => {
+          const stats = App.getUnitStats(u.num);
+          const pct = stats.seen > 0 ? Math.round((stats.correct / stats.seen) * 100) : 0;
+          return `
+            <div class="card" style="border-left:4px solid ${u.color}">
+              <div style="font-weight:700;margin-bottom:4px">Unit ${u.num}: ${u.title}</div>
+              <div class="progress-bar-container" style="margin:8px 0 4px">
+                <div class="progress-bar-fill" style="width:${pct}%;background:${u.color}"></div>
+              </div>
+              <div style="font-size:0.82rem;color:var(--text-muted)">${stats.correct}/${stats.seen} correct (${pct}%)</div>
+            </div>`;
+        }).join('');
+      }
+    });
+  </script>
+</body>
+</html>

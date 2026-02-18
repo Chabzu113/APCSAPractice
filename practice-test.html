@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Test — AP CS A Practice</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    body { overflow-x: hidden; }
+    .test-navbar { display:flex; align-items:center; justify-content:space-between; padding:0 20px; height:60px; background:var(--bg-card); border-bottom:1px solid var(--border-color); position:sticky; top:0; z-index:100; }
+    .test-layout, .frq-layout { display:flex; height:calc(100vh - 60px); }
+    .test-main, .frq-main { flex:1; padding:28px; overflow-y:auto; max-width:800px; }
+    .test-nav { width:200px; min-width:200px; border-left:1px solid var(--border-color); padding:16px; background:var(--bg-card); overflow-y:auto; flex-shrink:0; }
+    .test-nav-header { font-weight:700; font-size:0.8rem; color:var(--text-muted); margin-bottom:12px; text-transform:uppercase; letter-spacing:0.05em; }
+    .test-nav-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:4px; }
+    .q-num { width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:6px; font-size:0.75rem; font-weight:600; cursor:pointer; border:2px solid var(--border-color); background:var(--bg-secondary); color:var(--text-secondary); }
+    .q-num.answered { background:var(--accent-blue); color:white; border-color:var(--accent-blue); }
+    .q-num.flagged { background:var(--accent-yellow); color:white; border-color:var(--accent-yellow); }
+    .q-num.current { outline:2px solid var(--accent-blue); outline-offset:2px; }
+    .flag-btn { background:none; border:1px solid var(--border-color); padding:6px 12px; border-radius:6px; cursor:pointer; color:var(--text-secondary); font-size:0.9rem; }
+    .flag-btn.flagged { background:var(--accent-yellow); color:white; border-color:var(--accent-yellow); }
+    .test-question-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+    .test-progress-bar { height:4px; background:var(--bg-secondary); border-radius:99px; margin-bottom:20px; overflow:hidden; }
+    .test-nav-buttons { display:flex; justify-content:space-between; margin-top:24px; padding-top:20px; border-top:1px solid var(--border-color); }
+    .frq-part { margin-bottom:20px; padding:20px; background:var(--bg-secondary); border-radius:10px; }
+    .frq-part-label { font-weight:700; font-size:1rem; margin-bottom:6px; }
+    .frq-part-instruction { color:var(--text-secondary); margin-bottom:10px; line-height:1.6; }
+    .frq-points { color:var(--text-muted); font-weight:400; font-size:0.9rem; }
+    .frq-textarea { width:100%; min-height:180px; padding:12px; font-family:monospace; font-size:0.9rem; border:1px solid var(--border-color); border-radius:8px; background:var(--bg-primary); color:var(--text-primary); resize:vertical; line-height:1.6; box-sizing:border-box; }
+    #frqNavGrid { display:flex; flex-direction:column; gap:6px; }
+    #frqNavGrid .q-num { width:auto; padding:6px 10px; font-size:0.8rem; }
+    .screen-container { animation: fadeIn 0.2s; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+    @media (max-width:768px) { .test-nav { display:none; } .test-main, .frq-main { padding:16px; } }
+  </style>
+</head>
+<body>
+  <!-- Test Navbar -->
+  <nav class="test-navbar" id="testNavbar">
+    <a href="index.html" class="navbar-brand" style="text-decoration:none">AP CS A</a>
+    <div class="timer" id="timerDisplay" style="font-family:monospace;font-size:1.2rem;font-weight:700">1:30:00</div>
+    <button class="btn btn-danger btn-sm" id="submitSectionBtn">Submit Section</button>
+  </nav>
+
+  <!-- Intro Screen -->
+  <div id="introScreen" class="screen-container"></div>
+
+  <!-- MCQ Screen -->
+  <div id="mcqScreen" class="screen-container hidden">
+    <div class="test-layout">
+      <div class="test-main">
+        <div class="test-progress-bar"><div id="mcqProgressFill" style="height:100%;background:var(--accent-blue);border-radius:99px;width:0%;transition:width 0.3s"></div></div>
+        <div class="test-question-header">
+          <span id="mcqQuestionNum" style="font-weight:600;color:var(--text-secondary)"></span>
+          <button class="flag-btn" id="flagBtn">⚑ Flag</button>
+        </div>
+        <div id="mcqQuestionContent"></div>
+        <div class="test-nav-buttons">
+          <button class="btn btn-secondary" id="prevMCQ">← Previous</button>
+          <button class="btn btn-primary" id="nextMCQ">Next →</button>
+        </div>
+      </div>
+      <aside class="test-nav">
+        <div class="test-nav-header">Questions</div>
+        <div class="test-nav-grid" id="navGrid"></div>
+        <div style="margin-top:16px;font-size:0.8rem;color:var(--text-muted)">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="width:14px;height:14px;background:var(--accent-blue);border-radius:3px;display:inline-block"></span> Answered</div>
+          <div style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;background:var(--accent-yellow);border-radius:3px;display:inline-block"></span> Flagged</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Break Screen -->
+  <div id="breakScreen" class="screen-container hidden"></div>
+
+  <!-- FRQ Screen -->
+  <div id="frqScreen" class="screen-container hidden">
+    <div class="frq-layout">
+      <div class="frq-main">
+        <div class="test-question-header">
+          <span id="frqQuestionNum" style="font-weight:600;color:var(--text-secondary)"></span>
+          <button class="flag-btn" id="frqFlagBtn">⚑ Flag</button>
+        </div>
+        <div id="frqQuestionContent"></div>
+        <div class="test-nav-buttons">
+          <button class="btn btn-secondary" id="prevFRQ">← Previous</button>
+          <button class="btn btn-primary" id="nextFRQ">Next →</button>
+        </div>
+      </div>
+      <aside class="test-nav">
+        <div class="test-nav-header">FRQ Questions</div>
+        <div id="frqNavGrid"></div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Done Screen -->
+  <div id="doneScreen" class="screen-container hidden"></div>
+
+  <!-- Submit Modal -->
+  <div class="modal-overlay hidden" id="submitModal">
+    <div class="modal">
+      <div class="modal-header"><h3 id="submitModalTitle">Submit Section?</h3></div>
+      <div class="modal-body" id="submitModalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancelSubmit">Continue Test</button>
+        <button class="btn btn-primary" id="confirmSubmit">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data/mcq_u1u2.js"></script>
+  <script src="js/data/mcq_u3u4.js"></script>
+  <script src="js/data/frq.js"></script>
+  <script src="js/data/tests.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/testRunner.js"></script>
+</body>
+</html>

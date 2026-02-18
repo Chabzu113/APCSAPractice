@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results & Progress — AP CS A Practice</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">AP CS A Practice</a>
+    <div class="navbar-links">
+      <a href="question-bank.html" class="nav-link">Question Bank</a>
+      <a href="practice-test.html" class="nav-link">Practice Tests</a>
+      <a href="results.html" class="nav-link active">Progress</a>
+    </div>
+    <div class="navbar-actions">
+      <button class="btn btn-secondary btn-sm dark-mode-toggle" id="darkModeBtn" aria-label="Toggle dark mode">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+  <div class="nav-mobile hidden" id="mobileNav">
+    <a href="question-bank.html">Question Bank</a>
+    <a href="practice-test.html">Practice Tests</a>
+    <a href="results.html">Progress</a>
+  </div>
+
+  <div class="container" style="padding-top:32px;padding-bottom:64px">
+    <h1 style="font-size:2rem;font-weight:800;margin-bottom:8px">Your Progress</h1>
+    <p style="color:var(--text-muted);margin-bottom:32px">Track your accuracy across all units, difficulties, and topics.</p>
+
+    <!-- Overall Stats -->
+    <div class="stats-row" id="overallStats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:40px"></div>
+
+    <!-- Unit Mastery -->
+    <section class="results-section" style="margin-bottom:40px">
+      <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:16px">Unit Mastery</h2>
+      <div class="card" style="padding:24px">
+        <div id="unitMastery"></div>
+      </div>
+    </section>
+
+    <!-- Difficulty Breakdown -->
+    <section class="results-section" style="margin-bottom:40px">
+      <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:16px">Difficulty Breakdown</h2>
+      <div class="card" style="padding:24px">
+        <div id="difficultyBreakdown"></div>
+      </div>
+    </section>
+
+    <!-- Weakest Topics -->
+    <section class="results-section" style="margin-bottom:40px">
+      <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:16px">Areas to Improve</h2>
+      <div class="card" style="padding:24px">
+        <div id="weakTopics"></div>
+      </div>
+    </section>
+
+    <!-- Test History -->
+    <section class="results-section" style="margin-bottom:40px">
+      <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:16px">Test History</h2>
+      <div class="card" style="padding:24px">
+        <div id="testHistory"></div>
+      </div>
+    </section>
+
+    <!-- Reset -->
+    <section style="margin-bottom:40px">
+      <button class="btn btn-danger" id="resetProgressBtn">🗑 Reset All Progress</button>
+    </section>
+  </div>
+
+  <script src="js/data/mcq_u1u2.js"></script>
+  <script src="js/data/mcq_u3u4.js"></script>
+  <script src="js/data/frq.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/scoring.js"></script>
+  <script src="js/results.js"></script>
+</body>
+</html>

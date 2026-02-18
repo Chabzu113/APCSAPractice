@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Review — AP CS A Practice</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .review-card { margin-bottom: 20px; }
+    .rubric-row { display:flex; justify-content:space-between; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--border-color); gap:16px; flex-wrap:wrap; }
+    .rubric-controls { display:flex; gap:8px; flex-shrink:0; }
+    .frq-grade-card { margin-bottom:24px; }
+    .frq-grade-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+    .frq-part-review { margin-bottom:16px; }
+    .frq-total { font-size:1.1rem; font-weight:700; margin-top:16px; text-align:right; }
+    .unit-breakdown-row, .diff-breakdown-row, .weak-topic-row { margin-bottom:16px; }
+    .unit-breakdown-label, .weak-topic-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; flex-wrap:wrap; gap:8px; }
+    .unit-breakdown-stats { display:flex; justify-content:space-between; font-size:0.85rem; color:var(--text-muted); margin-top:4px; }
+    .history-table { width:100%; border-collapse:collapse; font-size:0.95rem; }
+    .history-table th, .history-table td { padding:10px 12px; text-align:left; border-bottom:1px solid var(--border-color); }
+    .history-table th { font-weight:600; color:var(--text-muted); }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">AP CS A Practice</a>
+    <div class="navbar-links">
+      <a href="question-bank.html" class="nav-link">Question Bank</a>
+      <a href="practice-test.html" class="nav-link">Practice Tests</a>
+      <a href="results.html" class="nav-link">Progress</a>
+    </div>
+    <div class="navbar-actions">
+      <button class="btn btn-secondary btn-sm dark-mode-toggle" id="darkModeBtn" aria-label="Toggle dark mode">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+  <div class="nav-mobile hidden" id="mobileNav">
+    <a href="question-bank.html">Question Bank</a>
+    <a href="practice-test.html">Practice Tests</a>
+    <a href="results.html">Progress</a>
+  </div>
+
+  <div class="container" style="padding-top:32px;padding-bottom:64px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+      <h1 style="font-size:2rem;font-weight:800">Test Review</h1>
+      <div style="display:flex;gap:12px">
+        <a href="results.html" class="btn btn-secondary">View Full Analytics</a>
+        <a href="index.html" class="btn btn-primary">Dashboard →</a>
+      </div>
+    </div>
+
+    <!-- Score Summary -->
+    <div class="card" id="reviewSummary" style="padding:24px;margin-bottom:24px"></div>
+
+    <!-- Filter Tabs -->
+    <div class="tabs" id="reviewTabs" style="margin-bottom:24px">
+      <button class="tab active" data-filter="all">All</button>
+      <button class="tab" data-filter="correct">Correct</button>
+      <button class="tab" data-filter="incorrect">Incorrect</button>
+      <button class="tab" data-filter="flagged">Flagged</button>
+    </div>
+
+    <!-- MCQ Section -->
+    <section id="mcqReviewSection">
+      <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:16px">Section I — Multiple Choice</h2>
+      <div id="mcqReviewList"></div>
+    </section>
+
+    <!-- FRQ Section -->
+    <section id="frqReviewSection" style="margin-top:40px">
+      <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:8px">Section II — Free Response</h2>
+      <p style="color:var(--text-muted);margin-bottom:20px">
+        Grade yourself using the rubric. Click ✓ to award points, ✗ to remove them. Your score is saved automatically.
+      </p>
+      <div id="frqReviewList"></div>
+    </section>
+  </div>
+
+  <script src="js/data/mcq_u1u2.js"></script>
+  <script src="js/data/mcq_u3u4.js"></script>
+  <script src="js/data/frq.js"></script>
+  <script src="js/data/tests.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/scoring.js"></script>
+  <script src="js/review.js"></script>
+</body>
+</html>
