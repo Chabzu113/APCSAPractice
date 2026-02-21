@@ -55,25 +55,146 @@ function loadAllQuestionsForActiveSubject() {
   ];
 }
 
-// ─── Init ─────────────────────────────────────────────────────────────────────
-function initTestRunner() {
-  const tests = loadTestsForActiveSubject();
-  const testId = App.getUrlParam('testId') || (tests[0] && tests[0].id) || 'test_1';
-  currentTest = tests.find(t => t.id === testId);
+// ─── Hub Navbar toggle ────────────────────────────────────────────────────────
+function setTestMode(isTest) {
+  const hub = document.getElementById('hubNavbar');
+  const test = document.getElementById('testNavbar');
+  if (hub)  hub.classList.toggle('hidden', isTest);
+  if (test) test.classList.toggle('hidden', !isTest);
+}
 
-  if (!currentTest) {
-    document.getElementById('introScreen').innerHTML =
-      `<div style="text-align:center;padding:60px"><h2>No practice tests available yet</h2><p style="color:var(--text-muted);margin-top:8px">Practice tests for this subject are coming soon.</p><a href="index.html" class="btn btn-primary" style="margin-top:16px">Back to Dashboard</a></div>`;
-    showScreen('introScreen');
-    return;
+function goBackToHub() {
+  if (currentSection === 'mcq' || currentSection === 'frq') {
+    if (!confirm('Leave this test? Your progress is auto-saved.')) return;
+    stopTimer(); clearInterval(autoSaveInterval);
   }
+  currentTest = null; currentSection = 'intro';
+  mcqAnswers = {}; frqAnswers = {}; flagged = new Set();
+  renderHubScreen();
+}
+
+// ─── Hub Screen — all practice tests across all subjects ──────────────────────
+function renderHubScreen() {
+  setTestMode(false);
+  showScreen('introScreen');
+  const screen = document.getElementById('introScreen');
+  if (!screen) return;
+
+  const allSubjects = (window.SubjectRegistry && window.SubjectRegistry.SUBJECTS) || [];
+  const state = App.getState();
+
+  let inProgress = null;
+  try { inProgress = JSON.parse(localStorage.getItem('apcsa_active_test')); } catch(e) {}
+
+  const subjectsWithTests = allSubjects.filter(s =>
+    s.hasContent && (s.testFiles || []).some(v => Array.isArray(window[v]) && window[v].length > 0)
+  );
+
+  let html = `<div style="max-width:940px;margin:0 auto;padding:36px 24px">
+    <div style="margin-bottom:36px">
+      <h1 style="font-size:2rem;font-weight:800;margin-bottom:4px">Practice Tests</h1>
+      <p style="color:var(--text-muted)">Full-length timed exams with self-graded FRQs. Progress is auto-saved.</p>
+    </div>`;
+
+  if (!subjectsWithTests.length) {
+    html += `<div style="text-align:center;padding:60px;color:var(--text-muted)">No practice tests available yet.</div>`;
+  }
+
+  for (const subject of subjectsWithTests) {
+    const tests = [];
+    (subject.testFiles || []).forEach(v => { const a = window[v]; if (Array.isArray(a)) tests.push(...a); });
+    if (!tests.length) continue;
+
+    const subjHist = ((state.subjects || {})[subject.id] || {}).testHistory || [];
+    const accent = subject.color || '#3B82F6';
+
+    html += `<div style="margin-bottom:40px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--border-color)">
+        <span style="font-size:1.3rem">${subject.emoji}</span>
+        <span style="font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-secondary)">${subject.name}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px">`;
+
+    for (const test of tests) {
+      const mcqCnt = (test.mcqIds || []).length;
+      const frqCnt = (test.frqIds || []).length;
+      const results = subjHist.filter(r => r.testId === test.id).sort((a,b) => b.date - a.date);
+      const latest = results[0];
+      const isProg = inProgress && inProgress.testId === test.id;
+
+      let badgeHtml = '', barHtml = '', actionsHtml = '';
+
+      if (latest) {
+        const pct = Math.round((latest.mcqCorrect / latest.mcqTotal) * 100);
+        const scoreColor = pct >= 70 ? '#10B981' : pct >= 50 ? '#F59E0B' : '#EF4444';
+        badgeHtml = `<span style="background:rgba(16,185,129,0.12);color:#10B981;padding:2px 9px;border-radius:99px;font-size:0.7rem;font-weight:700;white-space:nowrap">✓ Done</span>`;
+        barHtml = `<div style="margin-top:12px">
+          <div style="display:flex;justify-content:space-between;font-size:0.75rem;margin-bottom:5px">
+            <span style="color:var(--text-muted)">MCQ Score</span>
+            <span style="font-weight:700;color:${scoreColor}">${latest.mcqCorrect}/${latest.mcqTotal} &nbsp; ${pct}%</span>
+          </div>
+          <div style="height:6px;background:var(--bg-secondary);border-radius:99px;overflow:hidden">
+            <div style="height:100%;width:${pct}%;background:${scoreColor};border-radius:99px;transition:width 0.6s"></div>
+          </div></div>`;
+        actionsHtml = `<div style="display:flex;gap:8px;margin-top:14px">
+          <button onclick="selectTest('${test.id}','${subject.id}')" style="flex:1" class="btn btn-secondary btn-sm">Retake</button>
+          <a href="review.html" onclick="App.setActiveSubject('${subject.id}')" style="flex:1;text-align:center" class="btn btn-primary btn-sm">Results →</a>
+        </div>`;
+      } else if (isProg) {
+        const answeredCnt = inProgress.mcqAnswers ? Object.keys(inProgress.mcqAnswers).length : 0;
+        const pct = mcqCnt > 0 ? Math.round((answeredCnt / mcqCnt) * 100) : 0;
+        badgeHtml = `<span style="background:rgba(245,158,11,0.12);color:#F59E0B;padding:2px 9px;border-radius:99px;font-size:0.7rem;font-weight:700;white-space:nowrap">⏱ In Progress</span>`;
+        barHtml = `<div style="margin-top:12px">
+          <div style="display:flex;justify-content:space-between;font-size:0.75rem;margin-bottom:5px">
+            <span style="color:var(--text-muted)">MCQ Answered</span>
+            <span style="font-weight:700;color:#F59E0B">${answeredCnt} / ${mcqCnt}</span>
+          </div>
+          <div style="height:6px;background:var(--bg-secondary);border-radius:99px;overflow:hidden">
+            <div style="height:100%;width:${pct}%;background:#F59E0B;border-radius:99px"></div>
+          </div></div>`;
+        actionsHtml = `<button onclick="selectTest('${test.id}','${subject.id}')" style="width:100%;margin-top:14px" class="btn btn-primary">Resume Test →</button>`;
+      } else {
+        barHtml = `<div style="margin-top:12px;height:6px;background:var(--bg-secondary);border-radius:99px"></div>`;
+        actionsHtml = `<button onclick="selectTest('${test.id}','${subject.id}')" style="width:100%;margin-top:14px" class="btn btn-primary">Start Test →</button>`;
+      }
+
+      // Shorten title — strip subject name prefix
+      const shortTitle = test.title.replace(/^AP (Computer Science A|Biology|Calculus|Physics|Statistics|Government|History|Economics)\s*/i, '');
+
+      html += `<div class="card" style="padding:18px;border-left:3px solid ${accent}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px">
+          <div style="font-weight:700;font-size:0.97rem;line-height:1.3">${shortTitle}</div>
+          ${badgeHtml}
+        </div>
+        <div style="font-size:0.78rem;color:var(--text-muted)">${mcqCnt} MCQ &nbsp;·&nbsp; ${frqCnt} FRQ &nbsp;·&nbsp; 3 hrs</div>
+        ${barHtml}
+        ${actionsHtml}
+      </div>`;
+    }
+    html += `</div></div>`;
+  }
+  html += `</div>`;
+  screen.innerHTML = html;
+}
+
+// ─── Select and load a specific test ─────────────────────────────────────────
+function selectTest(testId, subjectId) {
+  App.setActiveSubject(subjectId);
+
+  const subject = window.SubjectRegistry ? window.SubjectRegistry.getSubjectById(subjectId) : null;
+  if (!subject) return;
+
+  const tests = [];
+  (subject.testFiles || []).forEach(v => { const a = window[v]; if (Array.isArray(a)) tests.push(...a); });
+  currentTest = tests.find(t => t.id === testId);
+  if (!currentTest) return;
 
   const allQ = loadAllQuestionsForActiveSubject();
   const allMCQ = allQ.filter(q => q.choices || !Array.isArray(q.units));
-  const frqBank = allQ.filter(q => Array.isArray(q.units) || q.parts);
+  const frqPool = allQ.filter(q => Array.isArray(q.units) || q.parts);
 
   mcqQuestions = (currentTest.mcqIds || []).map(id => allMCQ.find(q => q.id === id)).filter(Boolean);
-  frqQuestions = (currentTest.frqIds || []).map(id => frqBank.find(f => f.id === id)).filter(Boolean);
+  frqQuestions = (currentTest.frqIds || []).map(id => frqPool.find(f => f.id === id)).filter(Boolean);
 
   try {
     const saved = localStorage.getItem('apcsa_active_test');
@@ -84,6 +205,7 @@ function initTestRunner() {
         frqAnswers = data.frqAnswers || {};
         flagged = new Set(data.flagged || []);
         timeRemaining = data.timeRemaining || 5400;
+        setTestMode(true);
         if (data.section === 'mcq') { startSection('mcq'); return; }
         if (data.section === 'frq') { startSection('frq'); return; }
       } else {
@@ -92,9 +214,23 @@ function initTestRunner() {
     }
   } catch(e) {}
 
+  setTestMode(true);
   renderIntroScreen();
   showScreen('introScreen');
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+function initTestRunner() {
   wireButtons();
+  const testId = App.getUrlParam('testId');
+  if (testId) {
+    // Deep link to a specific test
+    const subjectId = App.getUrlParam('subject') || App.getActiveSubject();
+    selectTest(testId, subjectId);
+  } else {
+    // Default: show the hub
+    renderHubScreen();
+  }
 }
 
 function showScreen(screenId) {
@@ -126,7 +262,7 @@ function renderIntroScreen() {
         </div>
       </div>
       <button class="btn btn-primary btn-lg" id="startTestBtn">Start Test →</button>
-      <br><a href="index.html" style="display:inline-block;margin-top:16px;color:var(--text-muted);font-size:0.9rem">← Back</a>
+      <br><a href="#" onclick="goBackToHub();return false;" style="display:inline-block;margin-top:16px;color:var(--text-muted);font-size:0.9rem">← All Tests</a>
     </div>`;
 }
 
@@ -310,21 +446,26 @@ function renderFRQQuestion(index) {
   content.innerHTML = `
     <div style="margin-bottom:20px">
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <span class="badge badge-frq">${frq.type}</span>
+        <span class="badge badge-frq">${frq.type || frq.frqType || 'FRQ'}</span>
         <span class="badge badge-unit">${frq.source || 'Original'}</span>
       </div>
       <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:12px">${frq.title}</h3>
       <div style="white-space:pre-wrap;line-height:1.7;color:var(--text-primary);margin-bottom:16px">${App.escapeHtml(frq.prompt || '')}</div>
       ${frq.starterCode ? `<p style="font-weight:600;margin-bottom:6px">Given code:</p>${App.renderCode(frq.starterCode)}` : ''}
     </div>
-    ${(frq.parts || []).map(p => `
+    ${(frq.parts || []).map(p => {
+      const instruction = p.instruction || ((p.command ? p.command + ': ' : '') + (p.question || ''));
+      const pointsHtml = p.points !== undefined ? `<span class="frq-points">· ${p.points} pt${p.points!==1?'s':''}</span>` : '';
+      const placeholder = frq.starterCode ? 'Write your Java code here...' : 'Write your answer here...';
+      return `
       <div class="frq-part">
-        <div class="frq-part-label">Part (${p.label}) <span class="frq-points">· ${p.points} pt${p.points!==1?'s':''}</span></div>
-        <div class="frq-part-instruction">${App.escapeHtml(p.instruction)}</div>
-        <textarea class="frq-textarea" placeholder="Write your Java code here..."
+        <div class="frq-part-label">Part (${p.label}) ${pointsHtml}</div>
+        <div class="frq-part-instruction">${App.escapeHtml(instruction)}</div>
+        <textarea class="frq-textarea" placeholder="${placeholder}"
           onchange="saveFRQInput('${frq.id}','${p.label}',this.value)"
           oninput="saveFRQInput('${frq.id}','${p.label}',this.value)">${App.escapeHtml(saved[p.label] || '')}</textarea>
-      </div>`).join('')}`;
+      </div>`;
+    }).join('')}`;
 
   const prevBtn = document.getElementById('prevFRQ');
   const nextBtn = document.getElementById('nextFRQ');
