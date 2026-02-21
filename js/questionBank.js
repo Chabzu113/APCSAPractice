@@ -143,7 +143,16 @@ function initQuestionBank() {
   renderUnitTabs();
   renderAccordion();
   renderFilters();
-  applyFilters();
+
+  // If a unit was passed in the URL (e.g. ?unit=2 from the dashboard unit cards),
+  // pre-filter to that unit. setActiveUnitTab calls applyFilters internally.
+  const urlUnit = App.getUrlParam('unit');
+  if (urlUnit) {
+    setActiveUnitTab(String(urlUnit));
+  } else {
+    applyFilters();
+  }
+
   wireSetupListeners();
 }
 
