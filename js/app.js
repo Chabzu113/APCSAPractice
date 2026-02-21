@@ -1,8 +1,65 @@
 // AP Practice Platform — Global App State & Utilities
 // Handles: localStorage persistence, dark mode, shared state, helper functions
 
-const APP_VERSION = '2.0.0';
-const STORAGE_KEY = 'apcsa_state';
+const APP_VERSION = '1.2.0';   // keep in sync with GitHub release tags
+const GITHUB_REPO  = 'Chabzu113/APCSAPractice';
+const STORAGE_KEY  = 'apcsa_state';
+
+// ─── Update Check ──────────────────────────────────────────────────────────
+async function checkForUpdate() {
+  if (sessionStorage.getItem('update_dismissed')) return;
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${GITHUB_REPO}/releases/latest`,
+      { headers: { 'Accept': 'application/vnd.github.v3+json' } }
+    );
+    if (!res.ok) return;
+    const data = await res.json();
+    const latestTag = (data.tag_name || '').replace(/^v/, '');
+    if (!isNewerVersion(APP_VERSION, latestTag)) return;
+
+    // Find the direct download URL for the ZIP asset
+    const asset = (data.assets || []).find(a => a.name === 'APTestPrep.zip');
+    const assetUrl = asset ? asset.browser_download_url : null;
+
+    showUpdateBanner(data.tag_name, assetUrl, data.html_url);
+  } catch (e) { /* silent fail — offline, rate-limited, etc. */ }
+}
+
+function isNewerVersion(current, latest) {
+  const c = current.split('.').map(Number);
+  const l = latest.split('.').map(Number);
+  for (let i = 0; i < 3; i++) {
+    if ((l[i] || 0) > (c[i] || 0)) return true;
+    if ((l[i] || 0) < (c[i] || 0)) return false;
+  }
+  return false;
+}
+
+function showUpdateBanner(version, assetUrl, releaseUrl) {
+  if (document.getElementById('updateBanner')) return;
+  const canAutoUpdate = !!(window.electronAPI && assetUrl);
+  const banner = document.createElement('div');
+  banner.id = 'updateBanner';
+  banner.innerHTML = `
+    <span>🔔 Update available: <strong>${version}</strong></span>
+    ${canAutoUpdate
+      ? `<button id="updateNowBtn" class="update-banner-btn">Update Now</button>`
+      : `<a href="${releaseUrl}" target="_blank" class="update-banner-btn">Download →</a>`}
+    <button onclick="document.getElementById('updateBanner').remove();sessionStorage.setItem('update_dismissed','1')" class="update-banner-dismiss">Later</button>
+  `;
+  document.body.prepend(banner);
+
+  if (canAutoUpdate) {
+    document.getElementById('updateNowBtn').addEventListener('click', () => {
+      const btn = document.getElementById('updateNowBtn');
+      btn.textContent = 'Downloading...';
+      btn.disabled = true;
+      window.electronAPI.installUpdate(assetUrl);
+      window.electronAPI.onUpdateProgress(msg => { btn.textContent = msg; });
+    });
+  }
+}
 
 // ─── Default State ─────────────────────────────────────────────────────────
 const DEFAULT_STATE = {
@@ -399,6 +456,7 @@ function renderSubjectSwitcher(container) {
 document.addEventListener('DOMContentLoaded', () => {
   initDarkMode();
   initNavbar();
+  checkForUpdate();
 });
 
 // ─── Public API ──────────────────────────────────────────────────────────────
