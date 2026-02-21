@@ -22,38 +22,27 @@ jobs:
       - name: Copy app files into electron/
         run: cd electron && npm run copy-files
 
-      - name: Build macOS app (dir target)
+      - name: Build macOS app (DMG + dir targets)
         run: cd electron && npx electron-builder --mac
 
-      - name: Package macOS ZIP with launcher script
+      - name: Rename DMG for clarity
+        run: mv dist/*.dmg dist/APTestPrep-Mac.dmg
+
+      - name: Package macOS ZIP for in-app updater
         run: |
           cd dist/mac-arm64
 
-          # Create the double-click launcher (removes quarantine, then opens the app)
-          cat > "Open AP Test Prep.command" << 'LAUNCHER'
-          #!/bin/bash
-          DIR="$(cd "$(dirname "$0")" && pwd)"
-          APP="$DIR/AP Test Prep.app"
-          echo "Removing macOS quarantine flag..."
-          xattr -cr "$APP"
-          echo "Opening AP Test Prep..."
-          open "$APP"
-          LAUNCHER
-          chmod +x "Open AP Test Prep.command"
+          # Create the ZIP (used by the in-app updater, not for manual download)
+          zip -r APTestPrep-Mac.zip "AP Test Prep.app"
 
-          # Compute SHA-256 checksum before zipping
-          shasum -a 256 "AP Test Prep.app/Contents/MacOS/AP Test Prep" > /tmp/app_sha.txt
-
-          # Create the ZIP
-          zip -r APTestPrep-Mac.zip "AP Test Prep.app" "Open AP Test Prep.command"
-
-          # Generate checksums.txt for the ZIP (used by the in-app updater to verify integrity)
+          # Generate checksums.txt so the updater can verify integrity
           shasum -a 256 APTestPrep-Mac.zip > checksums.txt
 
       - name: Upload macOS release assets
         uses: softprops/action-gh-release@v2
         with:
           files: |
+            dist/APTestPrep-Mac.dmg
             dist/mac-arm64/APTestPrep-Mac.zip
             dist/mac-arm64/checksums.txt
         env:
