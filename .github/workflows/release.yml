@@ -45,23 +45,25 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           body: |
-            ## Install Instructions
+            ## Installation
 
-            ### macOS
-            1. Download **APTestPrep-Mac.dmg** and open it
-            2. Drag **AP Test Prep** into your Applications folder
-            3. **If the app doesn't open** (macOS security warning), run this in Terminal:
-            ```
+            ### 🍎 macOS
+            1. Download `APTestPrep-Mac.dmg`
+            2. Open it — if blocked, right-click → Open
+            3. Drag **AP Test Prep** into the **Applications** folder
+            4. **If the app still won't open**, run this once in Terminal:
+            ```bash
             xattr -cr /Applications/"AP Test Prep.app"
             ```
-            Then double-click the app again.
+            Then double-click the app again — it will open normally from now on.
 
-            ### Windows
-            1. Download **AP.Test.Prep.Setup.${{ github.ref_name }}.exe** and run it
-            2. Click "More info → Run anyway" if Windows Defender SmartScreen appears
+            ### 🪟 Windows
+            1. Download `AP.Test.Prep.Setup.${{ github.ref_name }}.exe` and run the installer
+            2. Click **"More info → Run anyway"** if Windows Defender SmartScreen appears
+            3. Launch from the Start Menu or desktop shortcut
 
             ---
-            > The in-app updater will handle future updates automatically.
+            > Already installed? The **in-app updater** will prompt you automatically — no manual download needed.
           files: |
             dist/APTestPrep-Mac.dmg
             dist/mac-arm64/APTestPrep-Mac.zip
