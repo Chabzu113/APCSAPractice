@@ -1,5 +1,5 @@
 const { app, BrowserWindow, Menu, shell, ipcMain, session } = require('electron');
-const { exec } = require('child_process');
+const { exec, spawn } = require('child_process');
 const { promisify } = require('util');
 const execAsync = promisify(exec);
 const crypto = require('crypto');
@@ -17,9 +17,9 @@ const ALLOWED_UPDATE_DOMAINS = [
 ];
 
 // ─── In-App Updater ────────────────────────────────────────────────────────
-// macOS only: Downloads APTestPrep-Mac.zip from GitHub, verifies its SHA-256
-// checksum, extracts it, strips quarantine, replaces the running .app bundle,
-// then relaunches. On Windows the renderer falls back to a browser download.
+// Downloads the platform-specific installer from GitHub, verifies SHA-256.
+// macOS: extracts ZIP, strips quarantine, replaces .app bundle, relaunches.
+// Windows: runs NSIS installer silently (/S), which replaces files and relaunches.
 ipcMain.on('install-update', async (event, assetUrl) => {
   const send = (msg) => {
     try { event.sender.send('update-progress', msg); } catch (e) {}
@@ -37,48 +37,76 @@ ipcMain.on('install-update', async (event, assetUrl) => {
     return;
   }
 
-  // ── Windows: open release page in browser instead ───────────────────────
-  if (!isMac) {
-    shell.openExternal('https://github.com/Chabzu113/APCSAPractice/releases/latest');
-    return;
-  }
-
   const tmpDir = os.tmpdir();
-  const zipPath      = path.join(tmpDir, 'APTestPrep_update.zip');
   const checksumPath = path.join(tmpDir, 'APTestPrep_checksums.txt');
-  const extractDir   = path.join(tmpDir, 'APTestPrep_update');
 
-  try {
-    // 1. Download ZIP (async — main process stays responsive during the download)
+  // ── Shared helper: download & verify SHA-256 checksum ─────────────────
+  async function downloadAndVerify(downloadPath, assetName) {
+    // 1. Download asset
     send('Downloading...');
-    await execAsync(`curl -L -o "${zipPath}" "${assetUrl}"`);
+    await execAsync(`curl -L -o "${downloadPath}" "${assetUrl}"`);
 
-    // 2. Download and verify checksum
-    //    Use a read stream for hashing so we never load 280 MB into RAM at once
+    // 2. Download and verify checksum (stream-based so we don't load 280 MB into RAM)
     send('Verifying...');
-    const checksumUrl = assetUrl.replace('APTestPrep-Mac.zip', 'checksums.txt');
+    const checksumUrl = assetUrl.replace(assetName, 'checksums.txt');
     try {
       await execAsync(`curl -L -o "${checksumPath}" "${checksumUrl}"`);
       const checksumsText = fs.readFileSync(checksumPath, 'utf8');
-      const expectedLine  = checksumsText.split('\n').find(l => l.includes('APTestPrep-Mac.zip'));
+      const expectedLine  = checksumsText.split('\n').find(l => l.includes(assetName));
       const expectedHash  = expectedLine ? expectedLine.split(/\s+/)[0].trim() : null;
       if (expectedHash) {
         const actualHash = await new Promise((resolve, reject) => {
           const hash   = crypto.createHash('sha256');
-          const stream = fs.createReadStream(zipPath);
+          const stream = fs.createReadStream(downloadPath);
           stream.on('data',  chunk => hash.update(chunk));
           stream.on('end',   ()    => resolve(hash.digest('hex')));
           stream.on('error', reject);
         });
         if (actualHash !== expectedHash) {
-          await execAsync(`rm -f "${zipPath}" "${checksumPath}"`);
+          try { fs.unlinkSync(downloadPath); } catch (e) {}
+          try { fs.unlinkSync(checksumPath); } catch (e) {}
           send('Update cancelled: file integrity check failed. Please try again or download manually.');
-          return;
+          return false;
         }
       }
     } catch (checksumErr) {
       // checksums.txt not available — proceed without verification (older releases)
     }
+    return true;
+  }
+
+  // ── Windows: download NSIS installer, verify, run silently ────────────
+  if (!isMac) {
+    const installerPath = path.join(tmpDir, 'APTestPrep_update.exe');
+    try {
+      const ok = await downloadAndVerify(installerPath, 'APTestPrep-Win.exe');
+      if (!ok) return;
+
+      // Launch the NSIS installer silently (/S) — it will close the running
+      // app, replace files in %LOCALAPPDATA%\ap-csa-practice, and relaunch.
+      send('Installing...');
+      spawn(installerPath, ['/S'], { detached: true, stdio: 'ignore' }).unref();
+
+      // Clean up checksum file
+      try { fs.unlinkSync(checksumPath); } catch (e) {}
+
+      // Give the installer a moment to start, then quit so it can replace files
+      send('Restarting...');
+      setTimeout(() => app.quit(), 1500);
+
+    } catch (err) {
+      send(`Update failed: ${err.message}`);
+    }
+    return;
+  }
+
+  // ── macOS: download ZIP, verify, extract, replace .app, relaunch ──────
+  const zipPath    = path.join(tmpDir, 'APTestPrep_update.zip');
+  const extractDir = path.join(tmpDir, 'APTestPrep_update');
+
+  try {
+    const ok = await downloadAndVerify(zipPath, 'APTestPrep-Mac.zip');
+    if (!ok) return;
 
     // 3. Extract
     send('Extracting...');
@@ -142,11 +170,10 @@ function createWindow() {
     return { action: 'deny' };
   });
 
-  // Disable DevTools in production (prevents JS injection via inspector)
-  //mainWindow.webContents.on('devtools-opened', () => {
-  //  mainWindow.webContents.closeDevTools();
-  //});
-  mainWindow.webContents.openDevTools();
+  // Only open DevTools in development (not in packaged builds)
+  if (!app.isPackaged) {
+    mainWindow.webContents.openDevTools();
+  }
 
   // Add macOS class so CSS can offset the navbar past traffic lights
   if (isMac) {

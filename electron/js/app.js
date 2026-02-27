@@ -1,7 +1,7 @@
 // AP Practice Platform — Global App State & Utilities
 // Handles: localStorage persistence, dark mode, shared state, helper functions
 
-const APP_VERSION = '1.5.0';   // keep in sync with GitHub release tags
+const APP_VERSION = '1.7.0';   // keep in sync with GitHub release tags
 const GITHUB_REPO  = 'Chabzu113/APCSAPractice';
 const STORAGE_KEY  = 'apcsa_state';
 
@@ -18,8 +18,10 @@ async function checkForUpdate() {
     const latestTag = (data.tag_name || '').replace(/^v/, '');
     if (!isNewerVersion(APP_VERSION, latestTag)) return;
 
-    // Find the direct download URL for the macOS ZIP asset
-    const asset = (data.assets || []).find(a => a.name === 'APTestPrep-Mac.zip');
+    // Find the direct download URL for the platform-specific asset
+    const isWin = window.electronAPI && window.electronAPI.platform === 'win32';
+    const assetName = isWin ? 'APTestPrep-Win.exe' : 'APTestPrep-Mac.zip';
+    const asset = (data.assets || []).find(a => a.name === assetName);
     const assetUrl = asset ? asset.browser_download_url : null;
 
     showUpdateBanner(data.tag_name, assetUrl, data.html_url);
@@ -38,8 +40,9 @@ function isNewerVersion(current, latest) {
 
 function showUpdateBanner(version, assetUrl, releaseUrl) {
   if (document.getElementById('updateBanner')) return;
-  // Auto-install only works on macOS; Windows users get a browser download link
-  const canAutoUpdate = !!(window.electronAPI && assetUrl && window.electronAPI.platform === 'darwin');
+  // Auto-install works on macOS and Windows; other platforms get a browser download link
+  const canAutoUpdate = !!(window.electronAPI && assetUrl &&
+    (window.electronAPI.platform === 'darwin' || window.electronAPI.platform === 'win32'));
   const banner = document.createElement('div');
   banner.id = 'updateBanner';
   banner.innerHTML = `
@@ -533,24 +536,46 @@ function mathSpan(text, display) {
   return App.escapeHtml(String(text));
 }
 
-// Renders text that may contain LaTeX: $$...$$ (display), $...$ (inline),
-// or a fully-raw LaTeX string (detected by isLatexString).
+// Renders text that may contain LaTeX in any of four delimiter styles:
+//   $$…$$   display block     (Physics/Stats)
+//   $…$     inline            (Physics/Stats)
+//   \[…\]   display block     (AP Calc style)
+//   \(…\)   inline            (AP Calc style)
+// Also handles a fully-raw bare-LaTeX string (e.g. "\frac{1}{2}x^2").
 function renderFRQPromptText(text) {
   if (!text) return '';
-  if (isLatexString(text)) return mathSpan(text, false);
-  const re = /(\$\$[\s\S]*?\$\$|\$[^$\n]+?\$)/g;
+  // Shortcut: ONLY for pure bare-LaTeX strings that start with \ and have no delimiter wrappers.
+  // Excludes natural-language sentences like "The rate... \(A(t)=10\sqrt{t}\) people/hr."
+  if (isLatexString(text) && text.startsWith('\\') && !text.includes('$')) return mathSpan(text, false);
+  // Match all four delimiter styles
+  const re = /(\$\$[\s\S]*?\$\$|\$[^$\n]+?\$|\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\))/g;
   let lastIndex = 0, result = '', match;
   while ((match = re.exec(text)) !== null) {
-    if (match.index > lastIndex) result += App.escapeHtml(text.slice(lastIndex, match.index));
+    if (match.index > lastIndex) result += App.escapeHtml(text.slice(lastIndex, match.index)).replace(/\n/g, '<br>');
     const raw = match[0];
-    const isDisplay = raw.startsWith('$$');
-    const inner = isDisplay ? raw.slice(2, -2).trim() : raw.slice(1, -1).trim();
+    const isDisplay = raw.startsWith('$$') || raw.startsWith('\\[');
+    // Strip delimiters: $$ / \[ / \( are 2 chars each; single $ is 1 char
+    const inner = (raw.startsWith('$') && !raw.startsWith('$$'))
+      ? raw.slice(1, -1).trim()
+      : raw.slice(2, -2).trim();
     const esc = inner.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     result += `<span data-latex="${esc}" data-display="${isDisplay ? 'true' : 'false'}"></span>`;
     lastIndex = match.index + raw.length;
   }
-  if (lastIndex < text.length) result += App.escapeHtml(text.slice(lastIndex));
+  if (lastIndex < text.length) result += App.escapeHtml(text.slice(lastIndex)).replace(/\n/g, '<br>');
   return result;
+}
+
+// ─── Table builder (shared between testRunner and questionBank) ───────────────
+// Renders a { headers: [...], rows: [[...], ...] } data object as an HTML table.
+function buildTableHtml(tableData) {
+  if (!tableData || !tableData.headers) return '';
+  const ths = tableData.headers.map(h => `<th>${App.escapeHtml(h)}</th>`).join('');
+  const rows = (tableData.rows || []).map(row => {
+    const tds = row.map(cell => `<td>${App.escapeHtml(cell)}</td>`).join('');
+    return `<tr>${tds}</tr>`;
+  }).join('');
+  return `<div class="q-table-wrap"><table class="q-table"><thead><tr>${ths}</tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 // ─── Desmos Graphing Calculator ───────────────────────────────────────────────

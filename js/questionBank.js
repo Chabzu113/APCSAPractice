@@ -1,5 +1,29 @@
 // AP Practice — Question Bank (multi-subject)
 
+// ─── FRQ Grader Dispatcher ────────────────────────────────────────────────────
+// Routes to APUSHGrader (apush) or GenericFRQGrader (all other auto-graded subjects).
+// Returns the gradeResult or a minimal fallback object.
+function dispatchFRQGrade(answerObj, frqType, unitNum, question, analysisEl, rawText) {
+  var result;
+  try {
+    if (question.subject === 'apush' && typeof APUSHGrader !== 'undefined') {
+      result = APUSHGrader.grade(answerObj, frqType, unitNum, question.subject, question);
+      if (typeof Scoring !== 'undefined') Scoring.renderAnalysisPanel(analysisEl, result, rawText);
+    } else if (typeof GenericFRQGrader !== 'undefined') {
+      var subjectCfg = (typeof FRQ_CONFIGS !== 'undefined' && FRQ_CONFIGS[question.subject]) || {};
+      result = GenericFRQGrader.grade(answerObj, frqType, unitNum, question, subjectCfg);
+      var renderFn = (typeof renderAutoFRQPanel !== 'undefined') ? renderAutoFRQPanel
+                   : (typeof Scoring !== 'undefined' && Scoring.renderAutoFRQPanel) ? Scoring.renderAutoFRQPanel
+                   : null;
+      if (renderFn) renderFn(analysisEl, result, rawText);
+    }
+  } catch (e) {
+    console.error('FRQ Grader Error:', e.message, e);
+    if (analysisEl) analysisEl.innerHTML = '<p class="frq-analysis-empty text-muted">Analysis unavailable — check console for details.</p>';
+  }
+  return result || { score: { total: 0, max: question.points || 7 } };
+}
+
 // Build a UNIT_TOPICS lookup from the active subject's unit definitions.
 // Falls back to an empty object if SubjectRegistry isn't loaded yet.
 function getActiveSubjectTopics() {
@@ -481,7 +505,7 @@ function renderFRQPrompt(prompt) {
   };
   const flushText = () => {
     if (textBuffer.length) {
-      html += `<p class="frq-prompt-text">${textBuffer.map(l => App.escapeHtml(l)).join('<br>')}</p>`;
+      html += `<p class="frq-prompt-text">${textBuffer.map(l => renderFRQPromptText(l)).join('<br>')}</p>`;
       textBuffer = [];
     }
   };
@@ -528,11 +552,12 @@ function renderSessionQuestion() {
     // FRQ: smart rendering — split prose from embedded code
     questionHtml = `<div class="session-question-text frq-prompt">${renderFRQPrompt(q.prompt || '')}</div>`;
   } else {
-    // MCQ: use mathSpan for LaTeX questions, safeText for plain text
-    questionHtml = q.isLatex
-      ? `<div class="session-question-text math-display">${mathSpan(q.question, true)}</div>`
-      : `<div class="session-question-text">${safeText(q.question || '')}</div>`;
+    // MCQ: renderFRQPromptText handles plain text, bare LaTeX, and $…$/$$…$$ delimiters
+    questionHtml = `<div class="session-question-text">${renderFRQPromptText(q.question || '')}</div>`;
   }
+
+  // MCQ table (for format:"table" questions using tableData)
+  const tableHtml = (!isFRQ && q.format === 'table' && q.tableData) ? buildTableHtml(q.tableData) : '';
 
   // MCQ code block (separate field)
   const codeHtml = (!isFRQ && q.isCode && q.code) ? App.renderCode(q.code) : '';
@@ -552,15 +577,18 @@ function renderSessionQuestion() {
         if (ci === q.answer) { cls += ' correct'; icon = '<span class="choice-icon correct-icon">✓</span>'; }
         else if (ci === state.selectedIndex) { cls += ' incorrect'; icon = '<span class="choice-icon wrong-icon">✗</span>'; }
       }
-      // Choice text: LaTeX → mathSpan, code → monospace, plain → escapeHtml
+      // Choice text: code → monospace, everything else → renderFRQPromptText
+      // (handles plain text, bare LaTeX like \frac{}, and $…$-delimited Physics/Calc choices)
+      // isCodeChoice guard: requires no $ delimiter AND not bare LaTeX (avoids tagging Physics
+      // choices like "$v = 12 m/s$" as code because they contain '=')
       const choiceText = String(c).replace(/\n/g, ' ');
-      const isLatexChoice = isLatexString(choiceText);
-      const isCodeChoice = !isLatexChoice && /[{};=()]/.test(choiceText) && choiceText.length < 80;
-      const renderedChoice = isLatexChoice
-        ? mathSpan(choiceText, false)
-        : isCodeChoice
-          ? `<code style="font-family:monospace;font-size:0.9em">${App.escapeHtml(choiceText)}</code>`
-          : App.escapeHtml(choiceText);
+      const isCodeChoice = !choiceText.includes('$')
+        && !isLatexString(choiceText)
+        && /[{};=()]/.test(choiceText)
+        && choiceText.length < 80;
+      const renderedChoice = isCodeChoice
+        ? `<code style="font-family:monospace;font-size:0.9em">${App.escapeHtml(choiceText)}</code>`
+        : renderFRQPromptText(choiceText);
 
       return `<label class="${cls}" style="cursor:${state ? 'default' : 'pointer'}" data-ci="${ci}">
         <input type="radio" name="session_choice" value="${ci}" style="display:none" ${state ? 'disabled' : ''} ${state && ci === state.selectedIndex ? 'checked' : ''}>
@@ -575,7 +603,7 @@ function renderSessionQuestion() {
     const feedbackHtml = state ? `
       <div class="session-feedback ${state.correct ? 'session-feedback-correct' : 'session-feedback-wrong'}">
         <p class="feedback-title">${state.correct ? '✓ Correct!' : '✗ Incorrect — Correct answer: ' + String.fromCharCode(65 + q.answer) + ')'}</p>
-        <p class="feedback-body">${App.escapeHtml(q.explanation || '')}</p>
+        <p class="feedback-body">${renderFRQPromptText(q.explanation || '')}</p>
       </div>` : '';
 
     bodyHtml = `<div class="choices-list" id="sessionChoices">${choicesHtml}</div>${submitBtn}${feedbackHtml}`;
@@ -584,7 +612,27 @@ function renderSessionQuestion() {
     // ── FRQ ──
     const totalPts = (q.rubric || []).reduce((s, r) => s + (r.points || 0), 0);
 
-    const partsHtml = (q.parts || []).map(p => {
+    // Synthesize parts[] for auto-graded questions with empty parts[] (e.g. AP Micro).
+    // Graph rubric items → one shared diagram self-check part.
+    // Each non-graph rubric item → its own labelled textarea.
+    if (q.autoGraded && (!q.parts || q.parts.length === 0) && (q.rubric || []).length > 0) {
+      const syntheticParts = [];
+      if (q.rubric.some(r => r.skill === 'graph')) {
+        syntheticParts.push({ label: 'graph', skill: 'diagram', synthetic: true });
+      }
+      q.rubric.filter(r => r.skill !== 'graph').forEach(item => {
+        syntheticParts.push({
+          label:    item.partLabel || 'a',
+          skill:    item.skill,
+          synthetic: true
+          // no 'question' — rubric description would give away the answer
+        });
+      });
+      q.parts = syntheticParts;  // mutate parts in-place (q is const — can't reassign)
+    }
+
+    // Synthetic parts carry their own question prompt inside the editor — skip them in partsHtml
+    const partsHtml = (q.parts || []).filter(p => !p.synthetic).map(p => {
       const ptsHtml = p.points !== undefined ? `<span class="frq-part-pts">${p.points} pt${p.points !== 1 ? 's' : ''}</span>` : '';
       const text = p.instruction || p.question || '';
       return `<div class="frq-part-card">
@@ -596,7 +644,7 @@ function renderSessionQuestion() {
       </div>`;
     }).join('');
 
-    const isAutoGraded = q.subject && typeof FRQ_CONFIGS !== 'undefined' && FRQ_CONFIGS[q.subject];
+    const isAutoGraded = q.autoGraded === true || (q.subject && typeof FRQ_CONFIGS !== 'undefined' && FRQ_CONFIGS[q.subject] && FRQ_CONFIGS[q.subject].autoGradeAll);
     const displayPts = isAutoGraded ? (q.points || 7) : totalPts;
 
     // DBQ: render stimulus documents above the editor
@@ -626,45 +674,86 @@ function renderSessionQuestion() {
         ? `<div id="frqGradingSection" class="hidden" style="margin-top:20px">
              <div id="frqAutoAnalysis" class="frq-analysis-placeholder"></div>
            </div>`
-        : `<div id="frqGradingSection" class="hidden" style="margin-top:20px">
-             ${q.sampleSolution ? `<div style="margin-bottom:20px">
-               <p class="frq-section-label">Sample Solution:</p>
-               ${App.renderCode(q.sampleSolution)}
-             </div>` : ''}
-             <div class="frq-rubric-grader">
-               <div class="frq-rubric-grader-header">
-                 <p style="font-weight:700;font-size:1rem;margin:0">Grade Your Answer</p>
-                 <p style="color:var(--text-muted);font-size:0.85rem;margin:4px 0 0">Check each rubric point your answer earns:</p>
-               </div>
-               <div class="frq-rubric-checklist" id="rubricChecklist">
-                 ${(q.rubric || []).map((r, ri) => `
-                   <label class="rubric-check-row" data-idx="${ri}" data-pts="${r.points}">
-                     <input type="checkbox" class="rubric-checkbox" data-pts="${r.points}">
-                     <span class="rubric-check-desc">${App.escapeHtml(r.description)}</span>
-                     <span class="rubric-check-pts">${r.points} pt</span>
-                   </label>
-                 `).join('')}
-               </div>
-               <div class="frq-rubric-score-bar">
-                 <span>Your score:</span>
-                 <span id="frqLiveScore" class="frq-live-score">0 / ${totalPts}</span>
-               </div>
-               <button class="btn btn-primary" id="frqSubmitScore" style="width:100%;margin-top:12px">
-                 Submit Score
-               </button>
-             </div>
-           </div>`;
+        : `<div id="frqGradingSection" class="hidden" style="margin-top:20px"></div>`;
 
       const frqTypeForEditor = (q.frqType || q.type || '').toLowerCase();
-      const isSAQEditor = isAutoGraded && frqTypeForEditor === 'saq';
+      // Show per-part editors for ANY question that has a parts[] array
+      // (covers saq, frq, short, long — regardless of whether it is auto-graded)
+      const isSAQEditor = q.parts && q.parts.length > 0;
       const editorHtml = isSAQEditor
-        ? (q.parts || [{label:'a'},{label:'b'},{label:'c'}]).map(p => `
-            <div class="frq-editor-section" style="margin-bottom:12px">
-              <div class="frq-editor-header">
-                <span class="frq-section-label">Part (${p.label.toUpperCase()}) RESPONSE:</span>
+        ? (q.parts || [{label:'a'},{label:'b'},{label:'c'}]).map(p => {
+            const ptsLabel = p.points ? `${p.points} pt${p.points !== 1 ? 's' : ''}` : '';
+            const skillLabel = p.skill ? ` — ${p.skill.charAt(0).toUpperCase() + p.skill.slice(1)}` : '';
+            const minH = (p.skill === 'paragraph' || p.skill === 'derivation') ? '120px' : '72px';
+
+            // ── Diagram parts: draw-first, then reveal rubric for honest self-grade
+            if (p.skill === 'diagram') {
+              const diagRubric = (q.rubric || []).filter(r => r.skill === 'diagram' || r.skill === 'graph');
+              const criteriaHtml = diagRubric.map(r =>
+                `<li style="margin-bottom:8px">${r.description}</li>`
+              ).join('');
+              const drawId   = `diagramDraw_${p.label}`;
+              const rubricId = `diagramRubric_${p.label}`;
+              return `
+              <div class="frq-editor-section" style="margin-bottom:14px;border:1px solid var(--border-color);border-radius:8px;overflow:hidden">
+                <div class="frq-editor-header" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--card-header-bg,var(--bg-secondary));border-bottom:1px solid var(--border-color)">
+                  <span class="frq-section-label" style="font-weight:700;font-size:0.85rem;letter-spacing:0.04em">
+                    PART (${p.label.toUpperCase()}) — Diagram
+                  </span>
+                  ${ptsLabel ? `<span style="font-size:0.78rem;color:var(--text-muted);font-weight:600">${ptsLabel}</span>` : ''}
+                </div>
+
+                <!-- Step 1: Draw prompt -->
+                <div id="${drawId}" style="padding:16px 18px;text-align:center">
+                  <p style="margin:0 0 14px;font-size:0.92rem;color:var(--text-primary)">
+                    ✏️ <strong>Grab a pencil and draw your diagram on paper.</strong><br>
+                    <span style="font-size:0.84rem;color:var(--text-muted)">Don't peek at the rubric — draw what you think is correct first.</span>
+                  </p>
+                  <button
+                    class="diagram-reveal-btn"
+                    data-draw-id="${drawId}"
+                    data-rubric-id="${rubricId}"
+                    style="padding:9px 22px;border-radius:6px;border:none;background:var(--accent-color,#3b82f6);color:#fff;font-weight:700;font-size:0.9rem;cursor:pointer">
+                    I've finished drawing →
+                  </button>
+                </div>
+
+                <!-- Step 2: Rubric reveal + self-grade checkbox (hidden until Step 1 done) -->
+                <div id="${rubricId}" style="display:none;padding:14px 18px">
+                  <p style="margin:0 0 10px;font-size:0.88rem;color:var(--text-secondary);font-weight:600">
+                    Now compare your diagram to the rubric criteria below:
+                  </p>
+                  <ul style="margin:0 0 16px;padding-left:20px;font-size:0.86rem;line-height:1.7;color:var(--text-primary)">
+                    ${criteriaHtml}
+                  </ul>
+                  <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:0.9rem;font-weight:600;padding:10px 12px;border-radius:6px;border:1px solid var(--border-color);background:var(--bg-secondary)">
+                    <input type="checkbox" id="frqPartEditor_${p.label}"
+                      style="margin-top:2px;width:17px;height:17px;flex-shrink:0;cursor:pointer;accent-color:#4ade80">
+                    <span>Yes — my diagram correctly satisfies all of the criteria above <span style="font-weight:400;color:var(--text-muted)">(awards 1 pt)</span></span>
+                  </label>
+                </div>
+              </div>`;
+            }
+
+            // ── All other parts: standard textarea ──────────────────────────────
+            // Only show inline prompt for synthetic parts — real parts show their question in the cards above
+            const questionPromptHtml = (p.synthetic && p.question)
+              ? `<div style="padding:8px 12px 10px;font-size:0.84rem;color:var(--text-secondary);border-bottom:1px solid var(--border-color)">${p.question}</div>`
+              : '';
+            return `
+            <div class="frq-editor-section" style="margin-bottom:14px;border:1px solid var(--border-color);border-radius:8px;overflow:hidden">
+              <div class="frq-editor-header" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--card-header-bg,var(--bg-secondary));border-bottom:1px solid var(--border-color)">
+                <span class="frq-section-label" style="font-weight:700;font-size:0.85rem;letter-spacing:0.04em">
+                  PART (${p.label.toUpperCase()})${skillLabel}
+                </span>
+                ${ptsLabel ? `<span style="font-size:0.78rem;color:var(--text-muted);font-weight:600">${ptsLabel}</span>` : ''}
               </div>
-              <textarea id="frqPartEditor_${p.label}" class="frq-code-editor" style="min-height:80px" placeholder="Write your answer for Part (${p.label.toUpperCase()})..."></textarea>
-            </div>`).join('')
+              ${questionPromptHtml}
+              <textarea id="frqPartEditor_${p.label}" class="frq-code-editor"
+                style="min-height:${minH};border:none;border-radius:0;resize:vertical"
+                placeholder="Write your response for Part (${p.label.toUpperCase()})..."></textarea>
+            </div>`;
+          }).join('')
         : `<div class="frq-editor-section">
              <div class="frq-editor-header">
                <span class="frq-section-label">${isFRQ ? 'ESSAY RESPONSE:' : 'Your answer (Java code):'}</span>
@@ -679,7 +768,7 @@ function renderSessionQuestion() {
         ${editorHtml}
         <div class="frq-editor-actions" style="margin-top:4px">
           <button class="btn btn-primary" id="frqCheckAnswer">
-            ${isAutoGraded ? 'Grade My Essay' : 'Check My Answer'}
+            ${isAutoGraded ? 'Grade My Response' : 'Check My Answer'}
           </button>
         </div>
         ${gradingSectionHtml}`;
@@ -717,7 +806,7 @@ function renderSessionQuestion() {
               <p style="font-weight:700;margin-bottom:8px">Rubric (${totalPts} pts)</p>
               <ul class="rubric-list">${(q.rubric || []).map(r =>
                 `<li class="rubric-item">
-                  <span>${App.escapeHtml(r.description)}</span>
+                  <span>${renderFRQPromptText(r.description)}</span>
                   <span class="rubric-pts">${r.points} pt</span>
                 </li>`).join('')}</ul>
             </div>
@@ -730,6 +819,7 @@ function renderSessionQuestion() {
     <div class="session-question-card">
       ${headerHtml}
       ${questionHtml}
+      ${tableHtml}
       ${codeHtml}
       ${starterHtml}
       <div class="session-answer-area">${bodyHtml}</div>
@@ -740,19 +830,14 @@ function renderSessionQuestion() {
 
   // Re-render auto-analysis panel for already-answered auto-graded FRQs
   if (isFRQ && state) {
-    const isAutoGradedRerender = q.subject && typeof FRQ_CONFIGS !== 'undefined' && FRQ_CONFIGS[q.subject];
-    if (isAutoGradedRerender && state.frqAnswerObj && typeof APUSHGrader !== 'undefined' && typeof Scoring !== 'undefined') {
+    const isAutoGradedRerender = q.autoGraded === true || (q.subject && typeof FRQ_CONFIGS !== 'undefined' && FRQ_CONFIGS[q.subject] && FRQ_CONFIGS[q.subject].autoGradeAll);
+    if (isAutoGradedRerender && state.frqAnswerObj) {
       const analysisEl = document.getElementById('frqAutoAnalysisResult');
       if (analysisEl) {
-        try {
-          const frqType = (q.frqType || q.type || 'leq').toLowerCase();
-          const unitNum = (q.units && q.units[0]) || q.unit || 1;
-          const result = APUSHGrader.grade(state.frqAnswerObj, frqType, unitNum, q.subject, q);
-          const rawText = Object.values(state.frqAnswerObj).join('\n\n');
-          Scoring.renderAnalysisPanel(analysisEl, result, rawText);
-        } catch (e) {
-          console.error('Grader Error (re-render):', e.message, e);
-        }
+        const frqType = (q.frqType || q.type || 'leq').toLowerCase();
+        const unitNum = (q.units && q.units[0]) || q.unit || 1;
+        const rawText = Object.values(state.frqAnswerObj).join('\n\n');
+        dispatchFRQGrade(state.frqAnswerObj, frqType, unitNum, q, analysisEl, rawText);
       }
     }
   }
@@ -786,7 +871,17 @@ function renderSessionQuestion() {
 
   // Wire FRQ buttons
   if (isFRQ && !state) {
-    const isAutoGradedWire = q.subject && typeof FRQ_CONFIGS !== 'undefined' && FRQ_CONFIGS[q.subject];
+    // Wire diagram "I've finished drawing" reveal buttons (CSP-safe — no inline onclick)
+    wrap.querySelectorAll('.diagram-reveal-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const drawEl   = document.getElementById(btn.dataset.drawId);
+        const rubricEl = document.getElementById(btn.dataset.rubricId);
+        if (drawEl)   drawEl.style.display   = 'none';
+        if (rubricEl) rubricEl.style.display = 'block';
+      });
+    });
+
+    const isAutoGradedWire = q.autoGraded === true || (q.subject && typeof FRQ_CONFIGS !== 'undefined' && FRQ_CONFIGS[q.subject] && FRQ_CONFIGS[q.subject].autoGradeAll);
     const totalPtsForWire = (q.rubric || []).reduce((s, r) => s + (r.points || 0), 0);
     const checkBtn = document.getElementById('frqCheckAnswer');
 
@@ -795,27 +890,22 @@ function renderSessionQuestion() {
         // Auto-graded: run engine, show analysis, record result
         checkBtn.addEventListener('click', () => {
           const frqType = (q.frqType || q.type || 'leq').toLowerCase();
-          const isSAQWire = frqType === 'saq';
+          const isSAQWire = q.parts && q.parts.length > 0;
 
-          // Collect answer: per-part textareas for SAQ, single textarea for LEQ/DBQ
+          // Step 1: Collect answers only (do NOT lock yet)
           let answerObj = {};
           if (isSAQWire) {
             (q.parts || [{label:'a'},{label:'b'},{label:'c'}]).forEach(p => {
               const el = document.getElementById('frqPartEditor_' + p.label);
-              answerObj[p.label] = el ? el.value.trim() : '';
-            });
-            // Lock all part editors
-            (q.parts || [{label:'a'},{label:'b'},{label:'c'}]).forEach(p => {
-              const el = document.getElementById('frqPartEditor_' + p.label);
-              if (el) { el.readOnly = true; el.style.opacity = '0.7'; }
+              if (!el) { answerObj[p.label] = ''; return; }
+              answerObj[p.label] = (el.type === 'checkbox') ? (el.checked ? 'yes' : '') : el.value.trim();
             });
           } else {
             const editor = document.getElementById('frqAnswerEditor');
-            const fullText = (editor ? editor.value : '').trim();
-            answerObj = { essay: fullText };
-            if (editor) { editor.readOnly = true; editor.style.opacity = '0.7'; }
+            answerObj = { essay: (editor ? editor.value : '').trim() };
           }
 
+          // Step 2: Guard — must have content before locking/grading
           const hasAnyText = Object.values(answerObj).some(v => v && v.trim());
           if (!hasAnyText) {
             checkBtn.classList.add('shake');
@@ -825,61 +915,77 @@ function renderSessionQuestion() {
             return;
           }
 
-          document.getElementById('frqGradingSection').classList.remove('hidden');
-          checkBtn.style.display = 'none';
-          const rawText = Object.values(answerObj).join('\n\n');
-          const analysisEl = document.getElementById('frqAutoAnalysis');
-          try {
-            const unitNum = (q.units && q.units[0]) || q.unit || 1;
-            const result = APUSHGrader.grade(answerObj, frqType, unitNum, q.subject, q);
-            if (typeof Scoring !== 'undefined') Scoring.renderAnalysisPanel(analysisEl, result, rawText);
-            const earned = result.score.total;
-            const isCorrect = earned >= Math.ceil(result.score.max * 0.6);
-            recordFRQResult(isCorrect, earned, answerObj, result.score.max);
-          } catch (e) {
-            console.error('Grader Error (submit):', e.message, e);
-            if (analysisEl) analysisEl.innerHTML = '<p class="frq-analysis-empty text-muted">Analysis unavailable — check console for details.</p>';
-            recordFRQResult(false, 0, answerObj, q.points || 7);
+          // Step 3: Lock editors (only after we know there's content)
+          checkBtn.disabled = true;
+          if (isSAQWire) {
+            (q.parts || [{label:'a'},{label:'b'},{label:'c'}]).forEach(p => {
+              const el = document.getElementById('frqPartEditor_' + p.label);
+              if (!el) return;
+              if (el.type === 'checkbox') { el.disabled = true; el.style.opacity = '0.6'; }
+              else { el.readOnly = true; el.style.opacity = '0.7'; }
+            });
+          } else {
+            const editor = document.getElementById('frqAnswerEditor');
+            if (editor) { editor.readOnly = true; editor.style.opacity = '0.7'; }
           }
+
+          // ── Direct DOM injection (no hidden-div toggling) ─────────────────
+          const rawText = Object.values(answerObj).join('\n\n');
+          const unitNum = (q.units && q.units[0]) || q.unit || 1;
+
+          // Grade into a temp off-DOM element so we get the HTML without any
+          // dependency on a pre-existing hidden div in the live page.
+          const tempAnalysisDiv = document.createElement('div');
+          const result = dispatchFRQGrade(answerObj, frqType, unitNum, q, tempAnalysisDiv, rawText);
+          const earned = result.score.total;
+          const isCorrect = earned >= Math.ceil(result.score.max * 0.6);
+          const pct = result.score.max > 0 ? Math.round((earned / result.score.max) * 100) : 0;
+
+          // Build score badge + inject analysis, replacing the button container
+          const scoreBadge = `<div class="session-feedback ${isCorrect ? 'session-feedback-correct' : 'session-feedback-wrong'}" style="margin-top:12px">
+            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+              <span style="font-size:1.6rem;font-weight:800">${earned}/${result.score.max}</span>
+              <span style="font-weight:600">${pct}% — ${isCorrect ? '✓ Passing' : '✗ Needs work'}</span>
+            </div>
+          </div>`;
+          const actionsDiv = document.querySelector('.frq-editor-actions');
+          if (actionsDiv) {
+            const insertEl = document.createElement('div');
+            insertEl.innerHTML = scoreBadge + tempAnalysisDiv.innerHTML;
+            actionsDiv.replaceWith(insertEl);
+            insertEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            const wrapEl = document.getElementById('sessionQuestionWrap');
+            if (typeof renderMath !== 'undefined' && wrapEl) renderMath(wrapEl);
+          }
+
+          // Save state (no full re-render — grade is now live in the DOM)
+          if (typeof App !== 'undefined' && App.recordAnswer) App.recordAnswer(q.id, isCorrect);
+          sessionAnswerState[q.id] = { answered: true, correct: isCorrect, selectedIndex: -1,
+            frqScore: earned, frqAnswerObj: answerObj, frqScoreMax: result.score.max };
+          sessionAnswered++;
+          if (isCorrect) sessionCorrect++;
+          updateSessionHeader();
         });
       } else {
-        // Manual rubric: reveal checklist
+        // Non-auto-graded: lock editors only (no scoring, no panel)
         checkBtn.addEventListener('click', () => {
-          document.getElementById('frqGradingSection').classList.remove('hidden');
           checkBtn.style.display = 'none';
-          const editor = document.getElementById('frqAnswerEditor');
-          if (editor) { editor.readOnly = true; editor.style.opacity = '0.7'; }
+          if (q.parts && q.parts.length > 0) {
+            (q.parts || []).forEach(p => {
+              const el = document.getElementById('frqPartEditor_' + p.label);
+              if (!el) return;
+              if (el.type === 'checkbox') { el.disabled = true; el.style.opacity = '0.6'; }
+              else { el.readOnly = true; el.style.opacity = '0.7'; }
+            });
+          } else {
+            const editor = document.getElementById('frqAnswerEditor');
+            if (editor) { editor.readOnly = true; editor.style.opacity = '0.7'; }
+          }
+          // Do NOT record score — non-auto FRQ questions are unscored
         });
       }
     }
 
-    if (!isAutoGradedWire) {
-      // Live score updating from rubric checkboxes
-      const checklist = document.getElementById('rubricChecklist');
-      const liveScore = document.getElementById('frqLiveScore');
-      if (checklist && liveScore) {
-        checklist.addEventListener('change', () => {
-          let earned = 0;
-          checklist.querySelectorAll('.rubric-checkbox:checked').forEach(cb => {
-            earned += parseInt(cb.dataset.pts) || 0;
-          });
-          liveScore.textContent = `${earned} / ${totalPtsForWire}`;
-          const pct = totalPtsForWire > 0 ? earned / totalPtsForWire : 0;
-          liveScore.style.color = pct >= 0.6 ? 'var(--accent-green)' : pct >= 0.4 ? '#d97706' : 'var(--accent-red)';
-        });
-      }
-      const submitScoreBtn = document.getElementById('frqSubmitScore');
-      if (submitScoreBtn) {
-        submitScoreBtn.addEventListener('click', () => {
-          let earned = 0;
-          (checklist || document).querySelectorAll('.rubric-checkbox:checked').forEach(cb => {
-            earned += parseInt(cb.dataset.pts) || 0;
-          });
-          const isCorrect = earned >= Math.ceil(totalPtsForWire * 0.6);
-          recordFRQResult(isCorrect, earned);
-        });
-      }
-    }
   }
 
   updateSessionHeader();

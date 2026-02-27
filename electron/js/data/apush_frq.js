@@ -835,6 +835,7 @@ var APUSH_FRQ = [
         docNum: 4,
         attribution: 'Expansion of the Erie Canal and Railroad Mileage, 1825–1850',
         docType: 'map',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/38/Erie_Canal_Map_1853.jpg',
         excerpt: 'A map of the northeastern United States illustrating the transportation revolution, 1825–1850. The Erie Canal (completed 1825) is shown running 363 miles from Albany on the Hudson River to Buffalo on Lake Erie, opening the Great Lakes interior to Atlantic commerce and reducing freight costs by approximately 90%. Inset bar charts show total U.S. railroad mileage growing from 23 miles in 1830 to 2,818 miles by 1840 and 9,021 miles by 1850, concentrated in the Northeast and Midwest. A second inset shows the resulting decline in shipping costs from New York to Cincinnati: from $100 per ton by wagon road in 1815 to $4 per ton by canal and lake steamer by 1850.'
       },
       {
@@ -851,6 +852,7 @@ var APUSH_FRQ = [
         docNum: 7,
         attribution: 'Advertisement for the McCormick "Virginia Reaper," 1847',
         docType: 'advertisement',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Cyrus_McCormick%27s_reaper.jpg/800px-Cyrus_McCormick%27s_reaper.jpg',
         excerpt: 'A printed advertisement for Cyrus McCormick\'s mechanical reaper, published in agricultural newspapers and the Prairie Farmer journal in 1847. The advertisement features an engraving of the horse-drawn reaper moving through a field of standing wheat alongside bold text claiming the machine can harvest 15 acres per day — the equivalent of 15 men working with hand scythes — at a purchase price of $100–$115. Testimonials from Virginia and Illinois farmers praise its reliability and cost savings. The advertisement boasts over 1,500 machines sold since 1840 and notes that the McCormick factory in Chicago now employs 50 workers producing 500 reapers annually using water-powered machinery and standardized parts.'
       }
     ],
@@ -904,6 +906,7 @@ var APUSH_FRQ = [
         docNum: 4,
         attribution: '"The Protectors of Our Industries," Puck Magazine, 1883',
         docType: 'political_cartoon',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/The_protectors_of_our_industries.jpg/800px-The_protectors_of_our_industries.jpg',
         excerpt: 'A political cartoon from Puck magazine (1883) by artist Joseph Keppler. The cartoon shows three enormous figures, labeled "Standard Oil," "Steel Trust," and "Railroad Monopoly," straddling the dome of the U.S. Capitol building. The monopolists physically dwarf the legislators working inside. The cartoon is titled "The Protectors of Our Industries" — a sarcastic reference to industrialists\' argument that high protective tariffs benefit American workers. Small figures representing ordinary citizens, farmers, and factory workers are shown being crushed beneath the feet of the giants. An eagle perched on the Capitol looks on helplessly. The cartoon reflects widespread public anxiety that large corporations had effectively captured the federal government and its regulatory machinery.'
       },
       {
@@ -920,6 +923,7 @@ var APUSH_FRQ = [
         docNum: 7,
         attribution: 'Jacob Riis, How the Other Half Lives: Studies Among the Tenements of New York, 1890',
         docType: 'photo',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Bandit%27s_Roost_by_Jacob_Riis.jpeg/500px-Bandit%27s_Roost_by_Jacob_Riis.jpeg',
         excerpt: 'A photograph and accompanying text from Jacob Riis\'s 1890 exposé of New York City tenement life, documenting conditions in the Five Points and lower East Side neighborhoods. The photograph shows a dark alley flanked by wooden tenement buildings rising five stories, with families crowded onto narrow fire escapes and laundry strung between windows. The text reads: "In the tenements of the lower East Side, twelve or fourteen people may occupy a three-room apartment designed for four. The air in these rooms is foul, light is absent, and the water supply is a single tap on each floor shared by all tenants of that landing. Disease — especially tuberculosis, known as \'the great white plague\' — thrives under these conditions. In one block between Mulberry and Mott Streets, I counted over a thousand human beings living in a space designed for two hundred."'
       }
     ],
@@ -989,6 +993,7 @@ var APUSH_FRQ = [
         docNum: 7,
         attribution: '"We Can Do It!" Westinghouse Electric & Manufacturing Co. Poster, J. Howard Miller, 1942',
         docType: 'poster',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/We_Can_Do_It%21.jpg/500px-We_Can_Do_It%21.jpg',
         excerpt: 'A wartime industrial morale poster commissioned by the War Production Coordinating Committee for display in Westinghouse Electric factories, February–March 1942. The poster features a woman in a blue collared work shirt and red polka-dot bandana, flexing her right arm in a show of muscular strength. The bold text above reads "We Can Do It!" The image was designed to encourage female factory workers and boost morale on the home front production lines. During World War II, over six million women entered the industrial workforce for the first time, filling positions in aircraft manufacturing, shipbuilding, munitions production, and steel fabrication vacated by men serving in the military. By 1945, women constituted approximately 36% of the civilian labor force, compared to 24% in 1940.'
       }
     ],

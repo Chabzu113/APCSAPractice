@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════════════════
-//  APUSHGrader — Deterministic Local FRQ Grading Engine  v1.7.0
+//  APUSHGrader — Deterministic Local FRQ Grading Engine  v1.6.0
 //
 //  All 5 Refinements implemented:
 //   R1  Negative Evidence Guard (Qualifier Check)
@@ -8,7 +8,7 @@
 //   R4  Era-Overlap Buffer (15-year grace period for forbidden terms)
 //   R5  Multi-Word Term Priority (longest match first, consumed-range tracking)
 //
-//  v1.7.0 fixes:
+//  v1.6.0 fixes:
 //   FIX1  links15 block-scope crash in gradeLEQ (ReferenceError → 0/6 bug)
 //   FIX2  config.evidenceBuckets → config.units in gradeOutsideEvidence
 //   FIX3  LEQ/SAQ shield in grade() — frqStimulus only set for DBQ

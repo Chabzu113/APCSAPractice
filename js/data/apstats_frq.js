@@ -22,9 +22,22 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "No, correlation does not imply causation. A lurking variable, such as high outdoor temperature, likely causes both an increase in AC usage and an increase in heatstroke cases."
+        "description": "No, correlation does not imply causation. A lurking variable, such as high outdoor temperature, likely causes both an increase in AC usage and an increase in heatstroke cases.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "correlation ≠ causation",
+          "a plausible lurking variable",
+          "the logic",
+          "correlation does not imply causation",
+          "lurking variable",
+          "correlation",
+          "plausible",
+          "causation"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u2_frq_002",
@@ -54,13 +67,33 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "For every 1 week increase in the dog's age, the weight is predicted to increase by 1.4 lbs."
+        "description": "For every 1 week increase in the dog's age, the weight is predicted to increase by 1.4 lbs.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "predicted",
+          "estimated",
+          "slope value",
+          "units (weeks/lbs)",
+          "slope"
+        ]
       },
       {
         "points": 1,
-        "description": "The y-intercept (5.2) represents the predicted weight of a dog that is 0 weeks old (birth weight). This is a meaningful interpretation in this context."
+        "description": "The y-intercept (5.2) represents the predicted weight of a dog that is 0 weeks old (birth weight). This is a meaningful interpretation in this context.",
+        "partLabel": "b",
+        "skill": "describe",
+        "keywords": [
+          "predicted value at x=0",
+          "context of birth weight",
+          "evaluation of meaningfulness",
+          "predicted value",
+          "y-intercept",
+          "predicted"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u2_frq_003",
@@ -85,9 +118,22 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "No, a linear model is not appropriate. A residual plot should show a random scatter of points if a linear model is a good fit. The U-shaped pattern indicates that the relationship is actually non-linear."
+        "description": "No, a linear model is not appropriate. A residual plot should show a random scatter of points if a linear model is a good fit. The U-shaped pattern indicates that the relationship is actually non-linear.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "not appropriate",
+          "random scatter requirement",
+          "pattern in plot",
+          "random scatter",
+          "residual plot",
+          "residual",
+          "linear",
+          "random"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u2_frq_004",
@@ -112,9 +158,23 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "The correlation coefficient (r) will increase (become closer to 1) because the point follows the linear trend but is far away, strengthening the linear perception. The slope will remain roughly the same since the point falls on the existing line."
+        "description": "The correlation coefficient (r) will increase (become closer to 1) because the point follows the linear trend but is far away, strengthening the linear perception. The slope will remain roughly the same since the point falls on the existing line.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "r increases",
+          "slope remains same",
+          "explanation of influential point",
+          "correlation coefficient",
+          "influential point",
+          "correlation",
+          "roughly",
+          "linear",
+          "slope"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u3_frq_001",
@@ -139,9 +199,19 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "This is a cluster sample. It is more practical because it reduces travel time and costs for the researchers, as they only need to visit two specific areas rather than individuals scattered across the entire city."
+        "description": "This is a cluster sample. It is more practical because it reduces travel time and costs for the researchers, as they only need to visit two specific areas rather than individuals scattered across the entire city.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "identify cluster sample",
+          "practicality (cost/time)",
+          "context of city districts",
+          "cluster sample",
+          "sample"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u3_frq_002",
@@ -166,9 +236,21 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "First, group the volunteers into two blocks based on gender (60 men, 40 women). Within the block of men, randomly assign 30 to the new medication and 30 to a placebo. Within the block of women, randomly assign 20 to the medication and 20 to the placebo. Compare the change in blood pressure within each block."
+        "description": "First, group the volunteers into two blocks based on gender (60 men, 40 women). Within the block of men, randomly assign 30 to the new medication and 30 to a placebo. Within the block of women, randomly assign 20 to the medication and 20 to the placebo. Compare the change in blood pressure within each block.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "block by gender",
+          "random assignment within blocks",
+          "group sizes",
+          "comparison mentioned",
+          "random assignment",
+          "placebo",
+          "random"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u3_frq_003",
@@ -193,9 +275,20 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "The matched pairs design reduces variability by controlling for individual differences in reading ability. Each student acts as their own control, so the researcher can see the specific improvement for each person rather than comparing different people with different starting levels."
+        "description": "The matched pairs design reduces variability by controlling for individual differences in reading ability. Each student acts as their own control, so the researcher can see the specific improvement for each person rather than comparing different people with different starting levels.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "reduced variability",
+          "individual control",
+          "comparison of different students vs. self",
+          "matched pairs",
+          "variability",
+          "control"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u3_frq_004",
@@ -220,9 +313,22 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "This is voluntary response bias. Alumni who had either extremely positive or extremely negative experiences are more likely to respond. This means the 450 respondents may not represent the true satisfaction level of the entire 5,000 alumni population."
+        "description": "This is voluntary response bias. Alumni who had either extremely positive or extremely negative experiences are more likely to respond. This means the 450 respondents may not represent the true satisfaction level of the entire 5,000 alumni population.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "identify voluntary response bias",
+          "mechanism",
+          "direction of bias",
+          "voluntary response bias",
+          "response bias",
+          "population",
+          "response",
+          "bias"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u3_frq_005",
@@ -247,9 +353,23 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "The four principles are Comparison, Randomization, Replication, and Control. The purpose of control is to keep other variables constant so they do not become confounding variables that interfere with the treatment effect."
+        "description": "The four principles are Comparison, Randomization, Replication, and Control. The purpose of control is to keep other variables constant so they do not become confounding variables that interfere with the treatment effect.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "comparison/random/replication/control",
+          "confounding variable mention",
+          "constant environment",
+          "confounding variable",
+          "randomization",
+          "confounding",
+          "replication",
+          "control",
+          "random"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u3_frq_006",
@@ -274,9 +394,21 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Because students chose their treatment, there is no random assignment. A confounding variable, such as motivation, might exist: students who are already more motivated to succeed might be the ones choosing the pill, and their motivation (not the pill) caused the focus."
+        "description": "Because students chose their treatment, there is no random assignment. A confounding variable, such as motivation, might exist: students who are already more motivated to succeed might be the ones choosing the pill, and their motivation (not the pill) caused the focus.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "no random assignment",
+          "confounding variable identification",
+          "cause-and-effect link broken",
+          "confounding variable",
+          "random assignment",
+          "confounding",
+          "random"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u3_frq_007",
@@ -301,9 +433,22 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "An observational study observes individuals without imposing a treatment, while an experiment deliberately imposes a treatment. Only an experiment with random assignment can establish a cause-and-effect relationship."
+        "description": "An observational study observes individuals without imposing a treatment, while an experiment deliberately imposes a treatment. Only an experiment with random assignment can establish a cause-and-effect relationship.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "observational definition",
+          "experiment definition",
+          "causation/random assignment link",
+          "observational study",
+          "random assignment",
+          "experiment",
+          "causation",
+          "random"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u3_frq_008",
@@ -328,9 +473,22 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Because random assignment was used, the researcher can infer cause-and-effect for the participants. However, because the participants were volunteers from a specific gym (not a random sample of a population), the results can only be generalized to people similar to the volunteers (active gym-goers)."
+        "description": "Because random assignment was used, the researcher can infer cause-and-effect for the participants. However, because the participants were volunteers from a specific gym (not a random sample of a population), the results can only be generalized to people similar to the volunteers (active gym-goers).",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "causation established",
+          "generalization limited",
+          "volunteers vs. population",
+          "random assignment",
+          "population",
+          "causation",
+          "sample",
+          "random"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u4_frq_001",
@@ -355,9 +513,19 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "P(M or S) = 0.6 + 0.4 - 0.2 = 0.8. They are NOT independent because P(M)*P(S) = 0.24, which does not equal P(M and S) = 0.20."
+        "description": "P(M or S) = 0.6 + 0.4 - 0.2 = 0.8. They are NOT independent because P(M)*P(S) = 0.24, which does not equal P(M and S) = 0.20.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "addition rule (0.8)",
+          "independence test formula",
+          "conclusion",
+          "addition rule",
+          "independence"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u4_frq_002",
@@ -382,9 +550,18 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "P(Def) = (0.7*0.02) + (0.3*0.05) = 0.014 + 0.015 = 0.029. P(B|Def) = 0.015 / 0.029 ≈ 0.517."
+        "description": "P(Def) = (0.7*0.02) + (0.3*0.05) = 0.014 + 0.015 = 0.029. P(B|Def) = 0.015 / 0.029 ≈ 0.517.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "total probability calculation",
+          "bayes' theorem/conditional formula",
+          "final probability",
+          "probability"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u4_frq_003",
@@ -409,9 +586,19 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Mean(X+Y) = 0.5 + 0.2 = 0.7 lbs. SD(X+Y) = sqrt(0.05^2 + 0.02^2) = sqrt(0.0025 + 0.0004) ≈ 0.0539 lbs."
+        "description": "Mean(X+Y) = 0.5 + 0.2 = 0.7 lbs. SD(X+Y) = sqrt(0.05^2 + 0.02^2) = sqrt(0.0025 + 0.0004) ≈ 0.0539 lbs.",
+        "partLabel": "a",
+        "skill": "calculate",
+        "keywords": [
+          "add means",
+          "add variances (not sds)",
+          "square root of sum",
+          "units (lbs)",
+          "mean"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u4_frq_004",
@@ -436,9 +623,17 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "E(X) = (10*0.1) + (5*0.3) + (0*0.6) = 1 + 1.5 + 0 = $2.50. In the long run, if a player plays many times, they will average a gain of $2.50 per game."
+        "description": "E(X) = (10*0.1) + (5*0.3) + (0*0.6) = 1 + 1.5 + 0 = $2.50. In the long run, if a player plays many times, they will average a gain of $2.50 per game.",
+        "partLabel": "a",
+        "skill": "calculate",
+        "keywords": [
+          "e(x) calculation",
+          "long-run interpretation",
+          "units ($)"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u4_frq_005",
@@ -463,9 +658,17 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "P(X >= 8) = P(8) + P(9) + P(10). Using binomial formula: 10C8(0.8^8)(0.2^2) + 10C9(0.8^9)(0.2^1) + 10C10(0.8^10)(0.2^0) ≈ 0.6778."
+        "description": "P(X >= 8) = P(8) + P(9) + P(10). Using binomial formula: 10C8(0.8^8)(0.2^2) + 10C9(0.8^9)(0.2^1) + 10C10(0.8^10)(0.2^0) ≈ 0.6778.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "binomial setting confirmed",
+          "at least logic (summing 8,9,10)",
+          "calculation"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u4_frq_006",
@@ -490,9 +693,17 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "P(Miss) = 0.25. P(Success) = 0.75. P(X=4) = (0.75)^3 * (0.25) ≈ 0.1055."
+        "description": "P(Miss) = 0.25. P(Success) = 0.75. P(X=4) = (0.75)^3 * (0.25) ≈ 0.1055.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "geometric formula",
+          "identify success/fail correctly",
+          "calculation"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u4_frq_007",
@@ -517,9 +728,21 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "np = 400(0.6) = 240, nq = 400(0.4) = 160. Both >= 10. mu = 240, sigma = sqrt(400*0.6*0.4) = 9.8. z = (250 - 240) / 9.8 = 1.02. P(Z > 1.02) ≈ 0.1539."
+        "description": "np = 400(0.6) = 240, nq = 400(0.4) = 160. Both >= 10. mu = 240, sigma = sqrt(400*0.6*0.4) = 9.8. z = (250 - 240) / 9.8 = 1.02. P(Z > 1.02) ≈ 0.1539.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "condition check (np/nq)",
+          "mean/sd of binomial",
+          "z-score and area",
+          "z-score",
+          "sigma",
+          "mean",
+          "mu"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u4_frq_008",
@@ -544,9 +767,19 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Total Weight (W) = 550g, SD(W) = sqrt(10^2+2^2) = 10.2. Cost Mean = 0.05(550) + 2 = $29.50. Cost SD = 0.05 * 10.2 = $0.51."
+        "description": "Total Weight (W) = 550g, SD(W) = sqrt(10^2+2^2) = 10.2. Cost Mean = 0.05(550) + 2 = $29.50. Cost SD = 0.05 * 10.2 = $0.51.",
+        "partLabel": "a",
+        "skill": "calculate",
+        "keywords": [
+          "total weight mean/sd",
+          "mean of linear transformation",
+          "sd of linear transformation (ignore +2)",
+          "linear",
+          "mean"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u5_frq_001",
@@ -571,9 +804,24 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Population: All 3,000 students at the high school. Parameter: The true mean SAT score of all students ($mu = 1150$). Statistic: The mean SAT score of the sample of 40 students ($\bar{x} = 1180$)."
+        "description": "Population: All 3,000 students at the high school. Parameter: The true mean SAT score of all students ($mu = 1150$). Statistic: The mean SAT score of the sample of 40 students ($\bar{x} = 1180$).",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "population identified",
+          "parameter defined with $mu$",
+          "statistic defined with $\bar{x}$",
+          "context of sat scores",
+          "population",
+          "statistic",
+          "parameter",
+          "sample",
+          "mean",
+          "mu"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u5_frq_002",
@@ -598,9 +846,24 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "The shape is approximately Normal because the population is Normal. The mean is $mu_{\bar{x}} = 12$ seconds. The standard deviation is $sigma_{\bar{x}} = sigma / sqrt{n} = 2 / sqrt{9} = 0.667$ seconds."
+        "description": "The shape is approximately Normal because the population is Normal. The mean is $mu_{\bar{x}} = 12$ seconds. The standard deviation is $sigma_{\bar{x}} = sigma / sqrt{n} = 2 / sqrt{9} = 0.667$ seconds.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "shape (normal)",
+          "mean (12)",
+          "standard deviation (0.667)",
+          "units",
+          "approximately normal",
+          "standard deviation",
+          "approximately",
+          "population",
+          "sigma",
+          "shape"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u5_frq_003",
@@ -625,9 +888,24 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "According to the Central Limit Theorem, since the sample size is large ($n = 50 ge 30$), the sampling distribution of the sample mean ($\bar{x}$) will be approximately Normal regardless of the shape of the population distribution."
+        "description": "According to the Central Limit Theorem, since the sample size is large ($n = 50 ge 30$), the sampling distribution of the sample mean ($\bar{x}$) will be approximately Normal regardless of the shape of the population distribution.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "states clt",
+          "cites $n ge 30$ condition",
+          "shape becomes normal",
+          "context of grocery spending",
+          "sampling distribution of the sample mean",
+          "central limit theorem",
+          "sampling distribution",
+          "approximately normal",
+          "approximately",
+          "sample mean"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u5_frq_004",
@@ -657,13 +935,34 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "The 'Large Counts' condition must be met: $np = 100(0.20) = 20$ and $n(1-p) = 100(0.80) = 80$. Since both $20 ge 10$ and $80 ge 10$, the distribution is approximately Normal."
+        "description": "The 'Large Counts' condition must be met: $np = 100(0.20) = 20$ and $n(1-p) = 100(0.80) = 80$. Since both $20 ge 10$ and $80 ge 10$, the distribution is approximately Normal.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "$np ge 10$",
+          "$n(1-p) ge 10$",
+          "conclude normal shape",
+          "approximately normal",
+          "approximately",
+          "conclude",
+          "shape"
+        ]
       },
       {
         "points": 1,
-        "description": "Mean = 0.20. $SD = sqrt{(0.2 cdot 0.8) / 100} = 0.04$. $z = (0.25 - 0.20) / 0.04 = 1.25$. $P(Z > 1.25) approx 0.1056$."
+        "description": "Mean = 0.20. $SD = sqrt{(0.2 cdot 0.8) / 100} = 0.04$. $z = (0.25 - 0.20) / 0.04 = 1.25$. $P(Z > 1.25) approx 0.1056$.",
+        "partLabel": "b",
+        "skill": "calculate",
+        "keywords": [
+          "sd of $hat{p}$",
+          "z-score",
+          "final probability",
+          "probability",
+          "mean"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u5_frq_005",
@@ -688,9 +987,20 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "The standard deviation of the mean is proportional to $1/sqrt{n}$. To divide the standard deviation by 4, the sample size must be multiplied by $4^2 = 16$. New $n = 25 cdot 16 = 400$."
+        "description": "The standard deviation of the mean is proportional to $1/sqrt{n}$. To divide the standard deviation by 4, the sample size must be multiplied by $4^2 = 16$. New $n = 25 cdot 16 = 400$.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "$1/sqrt{n}$ relationship",
+          "factor of 16 identified",
+          "new sample size (400)",
+          "standard deviation",
+          "sample",
+          "mean"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u5_frq_006",
@@ -715,9 +1025,22 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "The shape is approximately Normal (both $n ge 30$). Mean $= 1100 - 1000 = 100$ hours. $SD = sqrt{50^2/30 + 60^2/30} = sqrt{83.33 + 120} approx 14.26$ hours."
+        "description": "The shape is approximately Normal (both $n ge 30$). Mean $= 1100 - 1000 = 100$ hours. $SD = sqrt{50^2/30 + 60^2/30} = sqrt{83.33 + 120} approx 14.26$ hours.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "shape (normal)",
+          "mean (100)",
+          "add variances formula",
+          "sd (14.26)",
+          "approximately normal",
+          "approximately",
+          "shape",
+          "mean"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u5_frq_007",
@@ -742,9 +1065,21 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Mean $= 0.5 - 0.6 = -0.1$. $SD = sqrt{(0.6 cdot 0.4)/100 + (0.5 cdot 0.5)/100} = sqrt{0.0024 + 0.0025} approx 0.07$. We want $P(hat{p}_B - hat{p}_A > 0)$. $z = (0 - (-0.1)) / 0.07 = 1.43$. $P(Z > 1.43) approx 0.0764$."
+        "description": "Mean $= 0.5 - 0.6 = -0.1$. $SD = sqrt{(0.6 cdot 0.4)/100 + (0.5 cdot 0.5)/100} = sqrt{0.0024 + 0.0025} approx 0.07$. We want $P(hat{p}_B - hat{p}_A > 0)$. $z = (0 - (-0.1)) / 0.07 = 1.43$. $P(Z > 1.43) approx 0.0764$.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "mean of difference (-0.1)",
+          "sd of difference calculation",
+          "z-score calculation",
+          "probability result",
+          "probability",
+          "z-score",
+          "mean"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u5_frq_008",
@@ -769,9 +1104,21 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Scenario 1 represents high bias (the 'average' shot is off-center) and low variability (the shots are clustered). Scenario 2 represents low bias (the 'average' shot is the center) and high variability (the shots are spread out)."
+        "description": "Scenario 1 represents high bias (the 'average' shot is off-center) and low variability (the shots are clustered). Scenario 2 represents low bias (the 'average' shot is the center) and high variability (the shots are spread out).",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "scenario 1: high bias/low var",
+          "scenario 2: low bias/high var",
+          "clear explanation of terms",
+          "variability",
+          "spread",
+          "center",
+          "bias"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u6_frq_003",
@@ -796,9 +1143,23 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "If we were to take many random samples of the same size (n=400) and calculate a 95% confidence interval for each, about 95% of those intervals would capture the true population proportion of residents who support the tax."
+        "description": "If we were to take many random samples of the same size (n=400) and calculate a 95% confidence interval for each, about 95% of those intervals would capture the true population proportion of residents who support the tax.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "refers to the process (many samples)",
+          "'about 95%'",
+          "context of residents/tax",
+          "population proportion",
+          "confidence interval",
+          "population",
+          "capture",
+          "random",
+          "about"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u6_frq_004",
@@ -823,9 +1184,24 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "State: H0: p = 0.70; Ha: p > 0.70. Plan: One-sample z-test for p. Random (given), 10% (100 is < 10% of all seeds), Large Counts (100*0.7=70, 100*0.3=30 both >=10). Do: z = (0.78 - 0.70) / sqrt(0.7*0.3/100) = 1.746. P-value = 0.0404. Conclude: Since 0.0404 < 0.05, we reject the null. There is convincing evidence that more than 70% of seeds germinate."
+        "description": "State: H0: p = 0.70; Ha: p > 0.70. Plan: One-sample z-test for p. Random (given), 10% (100 is < 10% of all seeds), Large Counts (100*0.7=70, 100*0.3=30 both >=10). Do: z = (0.78 - 0.70) / sqrt(0.7*0.3/100) = 1.746. P-value = 0.0404. Conclude: Since 0.0404 < 0.05, we reject the null. There is convincing evidence that more than 70% of seeds germinate.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "hypotheses with p",
+          "named test",
+          "conditions checked with p_0",
+          "z-stat and p-value",
+          "conclusion in context",
+          "convincing evidence",
+          "in context",
+          "conditions",
+          "conclude",
+          "evidence"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u6_frq_005",
@@ -850,9 +1226,19 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "p1-hat = 0.80, p2-hat = 0.925. SE = sqrt(0.8*0.2/200 + 0.925*0.075/200) = 0.0339. Interval: (0.925 - 0.80) ± 1.645(0.0339) = 0.125 ± 0.0558 = (0.0692, 0.1808)."
+        "description": "p1-hat = 0.80, p2-hat = 0.925. SE = sqrt(0.8*0.2/200 + 0.925*0.075/200) = 0.0339. Interval: (0.925 - 0.80) ± 1.645(0.0339) = 0.125 ± 0.0558 = (0.0692, 0.1808).",
+        "partLabel": "a",
+        "skill": "calculate",
+        "keywords": [
+          "calculated p-hats",
+          "se (not pooled)",
+          "critical value z* = 1.645",
+          "interval calculation",
+          "critical value"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u6_frq_006",
@@ -877,9 +1263,22 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "P(Type II Error) = 1 - Power = 1 - 0.82 = 0.18. If alpha decreases to 0.01, the power will decrease because it becomes harder to reject the null hypothesis."
+        "description": "P(Type II Error) = 1 - Power = 1 - 0.82 = 0.18. If alpha decreases to 0.01, the power will decrease because it becomes harder to reject the null hypothesis.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "beta = 0.18",
+          "power decreases",
+          "relationship between alpha and power",
+          "reject the null hypothesis",
+          "null hypothesis",
+          "type ii error",
+          "power",
+          "alpha"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u6_frq_007",
@@ -904,9 +1303,19 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Use p-hat = 0.5. z* = 2.576. 0.03 = 2.576 * sqrt(0.5*0.5/n). 0.03/2.576 = sqrt(0.25/n). 0.0001356 = 0.25/n. n = 1843.1. Round up to 1844."
+        "description": "Use p-hat = 0.5. z* = 2.576. 0.03 = 2.576 * sqrt(0.5*0.5/n). 0.03/2.576 = sqrt(0.25/n). 0.0001356 = 0.25/n. n = 1843.1. Round up to 1844.",
+        "partLabel": "a",
+        "skill": "calculate",
+        "keywords": [
+          "used p-hat = 0.5",
+          "z* = 2.576",
+          "algebraic work shown",
+          "rounded up to next whole number",
+          "p-hat"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u6_frq_008",
@@ -931,9 +1340,17 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "p-pooled = (40+55)/(100+100) = 0.475. z = (0.55 - 0.40) / sqrt(0.475*0.525*(1/100 + 1/100)) = 0.15 / 0.0706 = 2.12."
+        "description": "p-pooled = (40+55)/(100+100) = 0.475. z = (0.55 - 0.40) / sqrt(0.475*0.525*(1/100 + 1/100)) = 0.15 / 0.0706 = 2.12.",
+        "partLabel": "a",
+        "skill": "calculate",
+        "keywords": [
+          "pooled p (0.475)",
+          "used pooled se in denominator",
+          "z-score"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u6_frq_009",
@@ -958,9 +1375,24 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Since 0 is included in the 95% confidence interval, we fail to reject the null hypothesis at the alpha = 0.05 level. There is not convincing evidence of a difference between the two proportions."
+        "description": "Since 0 is included in the 95% confidence interval, we fail to reject the null hypothesis at the alpha = 0.05 level. There is not convincing evidence of a difference between the two proportions.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "0 is in the interval",
+          "fail to reject h0",
+          "link alpha (0.05) to 95% interval",
+          "fail to reject the null hypothesis",
+          "reject the null hypothesis",
+          "confidence interval",
+          "convincing evidence",
+          "null hypothesis",
+          "evidence",
+          "alpha"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u6_frq_010",
@@ -985,9 +1417,21 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1. Increase the sample size (n), which decreases the standard error. 2. Decrease the confidence level (e.g., from 95% to 90%), which decreases the critical value z*."
+        "description": "1. Increase the sample size (n), which decreases the standard error. 2. Decrease the confidence level (e.g., from 95% to 90%), which decreases the critical value z*.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "increase sample size",
+          "decrease confidence level",
+          "effect on se or z*",
+          "confidence level",
+          "standard error",
+          "critical value",
+          "sample"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u7_frq_003",
@@ -1012,9 +1456,24 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Plan: One-sample t-interval for $mu$. Conditions: Random (given), Normal (given). Do: $df = 24$, $t^* = 2.064$. Interval: $1200 pm 2.064(80/sqrt{25}) = 1200 pm 33.024 = (1166.98, 1233.02)$. Conclude: We are 95% confident that the true mean life of the bulbs is between 1,166.98 and 1,233.02 hours."
+        "description": "Plan: One-sample t-interval for $mu$. Conditions: Random (given), Normal (given). Do: $df = 24$, $t^* = 2.064$. Interval: $1200 pm 2.064(80/sqrt{25}) = 1200 pm 33.024 = (1166.98, 1233.02)$. Conclude: We are 95% confident that the true mean life of the bulbs is between 1,166.98 and 1,233.02 hours.",
+        "partLabel": "a",
+        "skill": "calculate",
+        "keywords": [
+          "named t-interval",
+          "used df = 24",
+          "t* (2.064)",
+          "interpretation includes units (hours)",
+          "conditions",
+          "conclude",
+          "sample",
+          "random",
+          "mean",
+          "mu"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u7_frq_004",
@@ -1039,9 +1498,24 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "State: $H_0: mu = 20$; $H_a: mu \neq 20$. Plan: One-sample t-test. Random (given), Normal (n < 30, so assume no outliers/skew). Do: $t = (22.5 - 20) / (4/sqrt{16}) = 2.5 / 1 = 2.5$. $df = 15$. $P$-value $approx 0.024$. Conclude: Since $0.024 < 0.05$, reject $H_0$. There is convincing evidence the mean sugar content is not 20g."
+        "description": "State: $H_0: mu = 20$; $H_a: mu \neq 20$. Plan: One-sample t-test. Random (given), Normal (n < 30, so assume no outliers/skew). Do: $t = (22.5 - 20) / (4/sqrt{16}) = 2.5 / 1 = 2.5$. $df = 15$. $P$-value $approx 0.024$. Conclude: Since $0.024 < 0.05$, reject $H_0$. There is convincing evidence the mean sugar content is not 20g.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "two-sided hypotheses",
+          "used t-distribution",
+          "t-statistic",
+          "p-value linked to alpha",
+          "convincing evidence",
+          "statistic",
+          "conclude",
+          "evidence",
+          "p-value",
+          "sample"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u7_frq_005",
@@ -1066,9 +1540,23 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "State: $H_0: mu_{diff} = 0$; $H_a: mu_{diff} > 0$. Plan: Matched pairs t-test. Random (assume representativeness), Normal (assume no outliers). Do: $t = 1.2 / (0.8/sqrt{12}) = 5.196$. $P$-value $< 0.001$. Conclude: Reject $H_0$. Convincing evidence the course reduces violations."
+        "description": "State: $H_0: mu_{diff} = 0$; $H_a: mu_{diff} > 0$. Plan: Matched pairs t-test. Random (assume representativeness), Normal (assume no outliers). Do: $t = 1.2 / (0.8/sqrt{12}) = 5.196$. $P$-value $< 0.001$. Conclude: Reject $H_0$. Convincing evidence the course reduces violations.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "used mu_diff",
+          "one-sided test",
+          "denominator (se of differences)",
+          "context (violations)",
+          "convincing evidence",
+          "matched pairs",
+          "conclude",
+          "evidence",
+          "random"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u7_frq_006",
@@ -1093,9 +1581,21 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "State: $H_0: mu_1 = mu_2$; $H_a: mu_1 \neq mu_2$. Plan: Two-sample t-test. Random (given), Normal ($n ge 30$ for both, CLT applies). Do: $t = (3.2 - 3.0) / sqrt{0.4^2/30 + 0.5^2/35} approx 1.77$. $P$-value $approx 0.08$. Conclude: Since $0.08 > 0.01$, fail to reject $H_0$. No significant difference found."
+        "description": "State: $H_0: mu_1 = mu_2$; $H_a: mu_1 \neq mu_2$. Plan: Two-sample t-test. Random (given), Normal ($n ge 30$ for both, CLT applies). Do: $t = (3.2 - 3.0) / sqrt{0.4^2/30 + 0.5^2/35} approx 1.77$. $P$-value $approx 0.08$. Conclude: Since $0.08 > 0.01$, fail to reject $H_0$. No significant difference found.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "named 2-sample t-test",
+          "clt cited ($n ge 30$)",
+          "se calculation",
+          "fail to reject conclusion",
+          "conclude",
+          "sample",
+          "random"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u7_frq_007",
@@ -1120,9 +1620,18 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Conservative $df = min(n_1-1, n_2-1) = 14$. The calculator uses the Satterthwaite formula, resulting in a larger $df$. Larger $df$ lead to more precise $P$-values and higher power for the test."
+        "description": "Conservative $df = min(n_1-1, n_2-1) = 14$. The calculator uses the Satterthwaite formula, resulting in a larger $df$. Larger $df$ lead to more precise $P$-values and higher power for the test.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "calculated conservative df",
+          "power/precision",
+          "prefers calculator value",
+          "power"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u7_frq_008",
@@ -1147,9 +1656,22 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Since the sample size is small ($n=8 < 30$), the Central Limit Theorem does not apply. We must check the sample data for normality. The strong skewness and outlier in the dotplot violate the Normal condition required for t-procedures."
+        "description": "Since the sample size is small ($n=8 < 30$), the Central Limit Theorem does not apply. We must check the sample data for normality. The strong skewness and outlier in the dotplot violate the Normal condition required for t-procedures.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "cites $n < 30$",
+          "clt failure",
+          "skew/outlier in plot",
+          "central limit theorem",
+          "normal condition",
+          "dotplot",
+          "outlier",
+          "sample"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u7_frq_009",
@@ -1174,9 +1696,22 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "As the true mean moves further from the null value (larger 'effect size'), the distributions overlap less. This increases the Power of the test and decreases the probability of a Type II error ($\beta$)."
+        "description": "As the true mean moves further from the null value (larger 'effect size'), the distributions overlap less. This increases the Power of the test and decreases the probability of a Type II error ($\beta$).",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "power increases",
+          "beta decreases",
+          "'effect size' or 'overlap'",
+          "power of the test",
+          "type ii error",
+          "probability",
+          "power",
+          "mean"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u7_frq_010",
@@ -1201,9 +1736,20 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "$t = \text{Difference} / \text{SE} = 4.2 / 1.4 = 3.0$. Since $0.003 < 0.01$, reject the null. There is convincing evidence of a difference."
+        "description": "$t = \text{Difference} / \text{SE} = 4.2 / 1.4 = 3.0$. Since $0.003 < 0.01$, reject the null. There is convincing evidence of a difference.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "calculated t = 3.0",
+          "linked p to alpha",
+          "reject decision",
+          "convincing evidence",
+          "evidence",
+          "alpha"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u8_frq_003",
@@ -1233,13 +1779,28 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "H0: The true distribution of nuts matches the company's claim (50% peanuts, 30% cashews, 20% almonds). Ha: The true distribution of nuts is different from the company's claim."
+        "description": "H0: The true distribution of nuts matches the company's claim (50% peanuts, 30% cashews, 20% almonds). Ha: The true distribution of nuts is different from the company's claim.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "null reflects the claim",
+          "alternative states 'different'",
+          "context of nuts included"
+        ]
       },
       {
         "points": 1,
-        "description": "Total nuts = 200. Peanuts: 0.50(200) = 100. Cashews: 0.30(200) = 60. Almonds: 0.20(200) = 40."
+        "description": "Total nuts = 200. Peanuts: 0.50(200) = 100. Cashews: 0.30(200) = 60. Almonds: 0.20(200) = 40.",
+        "partLabel": "b",
+        "skill": "calculate",
+        "keywords": [
+          "calculated peanuts (100)",
+          "calculated cashews (60)",
+          "calculated almonds (40)"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u8_frq_004",
@@ -1269,13 +1830,29 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Rows = 3, Columns = 3. df = (3-1)(3-1) = 2 * 2 = 4."
+        "description": "Rows = 3, Columns = 3. df = (3-1)(3-1) = 2 * 2 = 4.",
+        "partLabel": "a",
+        "skill": "calculate",
+        "keywords": [
+          "identified 3x3 table",
+          "used (r-1)(c-1) formula",
+          "df = 4"
+        ]
       },
       {
         "points": 1,
-        "description": "Contribution = (Observed - Expected)^2 / Expected = (10 - 25)^2 / 25 = 225 / 25 = 9.0."
+        "description": "Contribution = (Observed - Expected)^2 / Expected = (10 - 25)^2 / 25 = 225 / 25 = 9.0.",
+        "partLabel": "b",
+        "skill": "explain",
+        "keywords": [
+          "subtracted o-e",
+          "squared result",
+          "divided by e",
+          "result = 9.0"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u8_frq_005",
@@ -1300,9 +1877,24 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "The Large Counts condition for Chi-square requires all expected counts to be at least 5. Since one expected count (3.2) is less than 5, the Chi-square distribution may not be a good approximation for the sampling distribution of the test statistic, making the P-value unreliable."
+        "description": "The Large Counts condition for Chi-square requires all expected counts to be at least 5. Since one expected count (3.2) is less than 5, the Chi-square distribution may not be a good approximation for the sampling distribution of the test statistic, making the P-value unreliable.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "cites 'large counts' condition",
+          "3.2 < 5",
+          "p-value/distribution unreliability",
+          "chi-square distribution",
+          "large counts condition",
+          "sampling distribution",
+          "expected count",
+          "test statistic",
+          "statistic",
+          "p-value"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u8_frq_006",
@@ -1327,9 +1919,20 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "For a 2x2 table, the two tests are mathematically equivalent. The P-values will be identical, and the Chi-square test statistic ($chi^2$) will be equal to the square of the z-statistic ($z^2$)."
+        "description": "For a 2x2 table, the two tests are mathematically equivalent. The P-values will be identical, and the Chi-square test statistic ($chi^2$) will be equal to the square of the z-statistic ($z^2$).",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "states tests are equivalent",
+          "p-values are same",
+          "relationship $chi^2 = z^2$",
+          "chi-square test",
+          "test statistic",
+          "statistic"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u8_frq_007",
@@ -1354,9 +1957,23 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Since the P-value (0.037) is less than alpha (0.05), we reject the null hypothesis. There is convincing evidence that the distribution of fruit fly traits is different from the hypothesized 9:3:3:1 ratio."
+        "description": "Since the P-value (0.037) is less than alpha (0.05), we reject the null hypothesis. There is convincing evidence that the distribution of fruit fly traits is different from the hypothesized 9:3:3:1 ratio.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "linked p to alpha",
+          "rejected h0",
+          "context of fruit flies/ratio",
+          "reject the null hypothesis",
+          "convincing evidence",
+          "null hypothesis",
+          "evidence",
+          "p-value",
+          "alpha"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u8_frq_008",
@@ -1381,9 +1998,20 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Scenario A is Homogeneity because there are two separate populations (School X and School Y) being compared on one variable. Scenario B is Independence because there is one population (university students) being asked about two categorical variables."
+        "description": "Scenario A is Homogeneity because there are two separate populations (School X and School Y) being compared on one variable. Scenario B is Independence because there is one population (university students) being asked about two categorical variables.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "a = homogeneity",
+          "b = independence",
+          "difference in population count",
+          "independence",
+          "population",
+          "about"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u8_frq_009",
@@ -1408,9 +2036,21 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "With low degrees of freedom (df=2), the distribution is highly skewed to the right. As the degrees of freedom increase (df=20), the distribution becomes less skewed and begins to look more symmetric and approximately Normal."
+        "description": "With low degrees of freedom (df=2), the distribution is highly skewed to the right. As the degrees of freedom increase (df=20), the distribution becomes less skewed and begins to look more symmetric and approximately Normal.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "low df = right skewed",
+          "high df = more symmetric/normal",
+          "clear comparison",
+          "approximately normal",
+          "degrees of freedom",
+          "approximately",
+          "symmetric"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u8_frq_010",
@@ -1435,9 +2075,22 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "A large Chi-square statistic implies that there is a large discrepancy between the observed counts and the counts we would expect if the null hypothesis were true. This leads to a small P-value and stronger evidence against the null."
+        "description": "A large Chi-square statistic implies that there is a large discrepancy between the observed counts and the counts we would expect if the null hypothesis were true. This leads to a small P-value and stronger evidence against the null.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "discrepancy between o and e",
+          "link to small p-value",
+          "evidence against null",
+          "chi-square statistic",
+          "null hypothesis",
+          "statistic",
+          "evidence",
+          "p-value"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u9_frq_003",
@@ -1462,9 +2115,18 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "H0: beta = 0 (There is no linear relationship between sunlight and growth). Ha: beta != 0 (There is a linear relationship between sunlight and growth)."
+        "description": "H0: beta = 0 (There is no linear relationship between sunlight and growth). Ha: beta != 0 (There is a linear relationship between sunlight and growth).",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "used beta ($\beta$)",
+          "null is 0",
+          "context of sunlight/growth",
+          "linear"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u9_frq_004",
@@ -1494,13 +2156,26 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "t = b / SE_b = 0.45 / 0.15 = 3.0."
+        "description": "t = b / SE_b = 0.45 / 0.15 = 3.0.",
+        "partLabel": "a",
+        "skill": "calculate",
+        "keywords": [
+          "used b / se_b",
+          "t = 3.0"
+        ]
       },
       {
         "points": 1,
-        "description": "df = n - 2 = 25 - 2 = 23."
+        "description": "df = n - 2 = 25 - 2 = 23.",
+        "partLabel": "b",
+        "skill": "calculate",
+        "keywords": [
+          "used n-2",
+          "df = 23"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u9_frq_005",
@@ -1525,9 +2200,17 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "Interval = b ± t*(SE_b) = 12.4 ± 2.048(2.1) = 12.4 ± 4.30 = (8.1, 16.7)."
+        "description": "Interval = b ± t*(SE_b) = 12.4 ± 2.048(2.1) = 12.4 ± 4.30 = (8.1, 16.7).",
+        "partLabel": "a",
+        "skill": "calculate",
+        "keywords": [
+          "used correct formula",
+          "margin of error",
+          "interval"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u9_frq_006",
@@ -1552,9 +2235,21 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "For every 1 unit increase in GPA, the response variable is predicted to increase by 0.15 units."
+        "description": "For every 1 unit increase in GPA, the response variable is predicted to increase by 0.15 units.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "context of 'predicted'",
+          "value 0.15",
+          "interpretation of slope",
+          "response variable",
+          "predicted",
+          "response",
+          "slope"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u9_frq_007",
@@ -1579,9 +2274,21 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "The 'Equal Variance' (or Homoscedasticity) condition is violated. The consequence is that the standard error of the slope may be inaccurate, making confidence intervals and P-values for the slope unreliable."
+        "description": "The 'Equal Variance' (or Homoscedasticity) condition is violated. The consequence is that the standard error of the slope may be inaccurate, making confidence intervals and P-values for the slope unreliable.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "identified 'equal variance'",
+          "fan shape",
+          "consequence for se/p-values",
+          "standard error",
+          "variance",
+          "shape",
+          "slope"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u9_frq_008",
@@ -1606,9 +2313,23 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "The test for the slope (beta=0) and the test for the population correlation (rho=0) are equivalent. Since the P-value is 0.04 (less than 0.05), we also have convincing evidence that the true correlation is not zero."
+        "description": "The test for the slope (beta=0) and the test for the population correlation (rho=0) are equivalent. Since the P-value is 0.04 (less than 0.05), we also have convincing evidence that the true correlation is not zero.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "states tests are equivalent",
+          "links p-value to correlation",
+          "conclusion of non-zero correlation",
+          "convincing evidence",
+          "correlation",
+          "population",
+          "evidence",
+          "p-value",
+          "slope"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u9_frq_009",
@@ -1633,9 +2354,22 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "The researcher should examine a histogram, boxplot, or Normal Probability Plot of the residuals (not the raw data) to ensure they are approximately Normal with no extreme outliers or strong skewness."
+        "description": "The researcher should examine a histogram, boxplot, or Normal Probability Plot of the residuals (not the raw data) to ensure they are approximately Normal with no extreme outliers or strong skewness.",
+        "partLabel": "a",
+        "skill": "describe",
+        "keywords": [
+          "residuals",
+          "histogram/boxplot/npp",
+          "checking for skew/outliers",
+          "approximately normal",
+          "approximately",
+          "probability",
+          "histogram",
+          "boxplot"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "stats_u9_frq_010",
@@ -1660,8 +2394,22 @@ var APSTATS_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "A sample correlation r might be non-zero just by chance due to sampling variability. We perform a t-test to determine if the observed relationship is strong enough to conclude that a linear relationship exists in the entire population."
+        "description": "A sample correlation r might be non-zero just by chance due to sampling variability. We perform a t-test to determine if the observed relationship is strong enough to conclude that a linear relationship exists in the entire population.",
+        "partLabel": "a",
+        "skill": "explain",
+        "keywords": [
+          "sampling variability",
+          "goal is population inference",
+          "cites chance as a factor",
+          "correlation",
+          "variability",
+          "population",
+          "conclude",
+          "linear",
+          "sample"
+        ]
       }
-    ]
+    ],
+    "autoGraded": true
   }
 ];

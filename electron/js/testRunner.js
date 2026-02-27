@@ -2,16 +2,6 @@
 // Note: isLatexString, renderMath, mathSpan, renderFRQPromptText, initDesmos,
 // toggleDesmos are all global functions defined in app.js (loaded first).
 
-function buildTableHtml(tableData) {
-  if (!tableData || !tableData.headers) return '';
-  const ths = tableData.headers.map(h => `<th>${App.escapeHtml(h)}</th>`).join('');
-  const rows = (tableData.rows || []).map(row => {
-    const tds = row.map(cell => `<td>${App.escapeHtml(cell)}</td>`).join('');
-    return `<tr>${tds}</tr>`;
-  }).join('');
-  return `<div class="q-table-wrap"><table class="q-table"><thead><tr>${ths}</tr></thead><tbody>${rows}</tbody></table></div>`;
-}
-
 // ─── State ────────────────────────────────────────────────────────────────────
 let currentTest = null;
 let currentSection = 'intro';
@@ -395,10 +385,9 @@ function renderMCQQuestion(index) {
   if (!content) return;
   const sel = mcqAnswers[q.id];
 
-  // Build question text (LaTeX-aware)
-  const questionHtml = q.isLatex
-    ? `<div class="question-text math-display">${mathSpan(q.question, true)}</div>`
-    : `<div class="question-text">${App.escapeHtml(q.question)}</div>`;
+  // Build question text — renderFRQPromptText handles plain text, bare LaTeX,
+  // and $…$/$$…$$ delimiter syntax (Physics/Calc/Stats questions)
+  const questionHtml = `<div class="question-text">${renderFRQPromptText(q.question || '')}</div>`;
 
   // Table (for format:"table" questions — q.format preserves algebraic/table/graph)
   const tableHtml = q.format === 'table' && q.tableData ? buildTableHtml(q.tableData) : '';
@@ -411,21 +400,34 @@ function renderMCQQuestion(index) {
   // Code block (for CS A questions)
   const codeHtml = q.isCode && q.code ? App.renderCode(q.code) : '';
 
+  // Diagram (for Physics / STEM questions — renders before choices)
+  const diagramHtml = q.diagram
+    ? `<div class="physics-diagram-wrap">
+         <img class="physics-diagram-img" data-physics-diagram
+              src="${App.escapeHtml(q.diagram)}"
+              alt="Diagram" loading="lazy">
+         <span class="physics-diagram-hint">Click to expand</span>
+       </div>`
+    : '';
+
   content.innerHTML = `
     ${questionHtml}
     ${tableHtml}
     ${graphHtml}
     ${codeHtml}
+    ${diagramHtml}
     <div class="choices-list">
       ${(q.choices || []).map((c, ci) => `
         <div class="choice-item${sel === ci ? ' selected' : ''}" onclick="selectAnswer('${q.id}',${ci},${index})">
           <span class="choice-label">${String.fromCharCode(65+ci)})</span>
-          <span>${mathSpan(c, false)}</span>
+          <span>${renderFRQPromptText(c)}</span>
         </div>`).join('')}
     </div>`;
 
   // Render any KaTeX spans after setting innerHTML
   renderMath(content);
+  // Attach lightbox + dark-mode invert to any diagram images
+  if (window.PhysicsRenderer) PhysicsRenderer.upgradeDiagrams(content);
 
   const prevBtn = document.getElementById('prevMCQ');
   const nextBtn = document.getElementById('nextMCQ');
@@ -527,6 +529,14 @@ function renderFRQQuestion(index) {
              }[docType] || '';
              const typeBadge  = typeIcon ? '<span class="dbq-doc-type-badge">' + typeIcon + '</span>' : '';
              const contentCls = docType !== 'text' ? ' dbq-visual-desc' : '';
+             const imgUrl     = doc.imageUrl || '';
+             if (imgUrl) {
+               return '<div class="dbq-document-card">' +
+                 '<div class="dbq-document-source">Document ' + num + ' — ' + App.escapeHtml(source) + typeBadge + '</div>' +
+                 '<img class="dbq-visual-image" src="' + imgUrl + '" alt="' + App.escapeHtml(source) + '" loading="lazy" onclick="this.classList.toggle(\'zoomed\')">' +
+                 '<div class="dbq-visual-caption">' + App.escapeHtml(text) + '</div>' +
+                 '</div>';
+             }
              return '<div class="dbq-document-card">' +
                '<div class="dbq-document-source">Document ' + num + ' — ' + App.escapeHtml(source) + typeBadge + '</div>' +
                '<div class="dbq-document-content' + contentCls + '">' + App.escapeHtml(text) + '</div>' +

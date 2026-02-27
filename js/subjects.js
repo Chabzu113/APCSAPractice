@@ -93,7 +93,7 @@ const SUBJECTS = [
     examDate: new Date('2026-05-12T08:00:00'),
     description: 'Biochemistry, cells, genetics, evolution & ecology.',
     hasContent: true,
-    dataFiles: ['APBIO_MCQ', 'APBIO_FRQ'],
+    dataFiles: ['APBIO_MCQ', 'APBIO_FRQ', 'APBIO_FRQ_GRADED'],
     testFiles: ['APBIO_TESTS'],
     testDataFiles: ['APBIO_TEST_MCQ'],
     questionTypes: [
@@ -182,7 +182,7 @@ const SUBJECTS = [
     examDate: new Date('2026-05-13T08:00:00'),
     description: 'Limits, derivatives, integrals & the Fundamental Theorem.',
     hasContent: true,
-    dataFiles: ['APCALC_MCQ'],
+    dataFiles: ['APCALC_MCQ', 'APCALC_FRQ'],
     testFiles: [],
     questionTypes: [
       { value: 'all',          label: 'All' },
@@ -265,12 +265,60 @@ const SUBJECTS = [
     color: '#D97706',
     colorDark: '#FCD34D',
     examDate: new Date('2026-05-06T08:00:00'),
-    description: 'Mechanics, waves, circuits & rotational motion.',
-    hasContent: false,
-    dataFiles: [],
+    description: 'Algebra-based mechanics, waves, circuits & rotational motion.',
+    hasContent: true,
+    dataFiles: ['PHYSICS_MCQ', 'PHYSICS_FRQ'],
     testFiles: [],
-    questionTypes: [{ value: 'all', label: 'All' }, { value: 'MCQ', label: 'MCQ' }, { value: 'FRQ', label: 'FRQ' }],
-    units: []
+    questionTypes: [
+      { value: 'all', label: 'All' },
+      { value: 'MCQ', label: 'MCQ' },
+      { value: 'FRQ', label: 'FRQ' }
+    ],
+    units: [
+      { num: 1, title: 'Kinematics',                 weight: '12–18%', topics: [
+        { value: '1.1', label: '1.1 Position, Velocity & Acceleration' },
+        { value: '1.2', label: '1.2 Motion Graphs' },
+        { value: '1.3', label: '1.3 Projectile Motion' }
+      ]},
+      { num: 2, title: 'Forces & Newton\'s Laws',     weight: '16–20%', topics: [
+        { value: '2.1', label: '2.1 Newton\'s First & Second Law' },
+        { value: '2.2', label: '2.2 Newton\'s Third Law' },
+        { value: '2.3', label: '2.3 Friction & Normal Force' }
+      ]},
+      { num: 3, title: 'Work, Energy & Power',        weight: '20–28%', topics: [
+        { value: '3.1', label: '3.1 Work & Work-Energy Theorem' },
+        { value: '3.2', label: '3.2 Conservation of Energy' },
+        { value: '3.3', label: '3.3 Power' }
+      ]},
+      { num: 4, title: 'Systems & Center of Mass',    weight: '4–6%',   topics: [
+        { value: '4.1', label: '4.1 Center of Mass' },
+        { value: '4.2', label: '4.2 Linear Momentum' }
+      ]},
+      { num: 5, title: 'Momentum',                    weight: '12–18%', topics: [
+        { value: '5.1', label: '5.1 Impulse & Momentum' },
+        { value: '5.2', label: '5.2 Conservation of Momentum' },
+        { value: '5.3', label: '5.3 Collisions' }
+      ]},
+      { num: 6, title: 'Simple Harmonic Motion',      weight: '4–6%',   topics: [
+        { value: '6.1', label: '6.1 Springs & Pendulums' },
+        { value: '6.2', label: '6.2 Energy in SHM' }
+      ]},
+      { num: 7, title: 'Torque & Rotational Motion',  weight: '12–18%', topics: [
+        { value: '7.1', label: '7.1 Torque' },
+        { value: '7.2', label: '7.2 Rotational Kinematics' },
+        { value: '7.3', label: '7.3 Angular Momentum' }
+      ]},
+      { num: 8, title: 'Electric Charge & Circuits',  weight: '16–20%', topics: [
+        { value: '8.1', label: '8.1 Electric Charge & Coulomb\'s Law' },
+        { value: '8.2', label: '8.2 Current, Resistance & Ohm\'s Law' },
+        { value: '8.3', label: '8.3 Series & Parallel Circuits' }
+      ]},
+      { num: 9, title: 'Waves & Sound',               weight: '12–18%', topics: [
+        { value: '9.1', label: '9.1 Wave Properties' },
+        { value: '9.2', label: '9.2 Standing Waves' },
+        { value: '9.3', label: '9.3 The Doppler Effect' }
+      ]}
+    ]
   },
   {
     id: 'apphyscem',
@@ -281,11 +329,17 @@ const SUBJECTS = [
     colorDark: '#67E8F9',
     examDate: new Date('2026-05-14T08:00:00'),
     description: 'Electrostatics, circuits, magnetism & electromagnetic induction.',
-    hasContent: false,
-    dataFiles: [],
+    hasContent: true,
+    dataFiles: ['APPHYSCEM_FRQ'],
     testFiles: [],
-    questionTypes: [{ value: 'all', label: 'All' }, { value: 'MCQ', label: 'MCQ' }, { value: 'FRQ', label: 'FRQ' }],
-    units: []
+    questionTypes: [{ value: 'all', label: 'All' }, { value: 'FRQ', label: 'FRQ' }],
+    units: [
+      { value: 1, label: 'Unit 1: Electrostatics' },
+      { value: 2, label: 'Unit 2: Conductors, Capacitors & Dielectrics' },
+      { value: 3, label: 'Unit 3: Electric Circuits' },
+      { value: 4, label: 'Unit 4: Magnetic Fields' },
+      { value: 5, label: 'Unit 5: Electromagnetism' }
+    ]
   },
   {
     id: 'apgov',
@@ -574,11 +628,65 @@ const SUBJECTS = [
     colorDark: '#FDBA74',
     examDate: new Date('2026-05-09T08:00:00'),
     description: 'GDP, fiscal & monetary policy & international trade.',
-    hasContent: false,
-    dataFiles: [],
+    hasContent: true,
+    dataFiles: ['APMACRO_MCQ', 'APMACRO_FRQ'],
     testFiles: [],
-    questionTypes: [{ value: 'all', label: 'All' }, { value: 'MCQ', label: 'MCQ' }, { value: 'FRQ', label: 'FRQ' }],
-    units: []
+    questionTypes: [
+      { value: 'all',       label: 'All' },
+      { value: 'MCQ',       label: 'MCQ' },
+      { value: 'Short FRQ', label: 'Short FRQ' }
+    ],
+    units: [
+      { num: 1, title: 'Basic Economic Concepts', weight: '5–10%', topics: [
+        { value: '1.1', label: '1.1 Scarcity' },
+        { value: '1.2', label: '1.2 Opportunity Cost and the PPC' },
+        { value: '1.3', label: '1.3 Comparative Advantage and Trade' },
+        { value: '1.4', label: '1.4 Demand' },
+        { value: '1.5', label: '1.5 Supply' },
+        { value: '1.6', label: '1.6 Market Equilibrium' }
+      ]},
+      { num: 2, title: 'Economic Indicators and the Business Cycle', weight: '12–17%', topics: [
+        { value: '2.1', label: '2.1 The Circular Flow and GDP' },
+        { value: '2.2', label: '2.2 Limitations of GDP' },
+        { value: '2.3', label: '2.3 Unemployment' },
+        { value: '2.4', label: '2.4 Price Indices and Inflation' },
+        { value: '2.5', label: '2.5 Costs of Inflation' },
+        { value: '2.6', label: '2.6 Real vs. Nominal GDP' },
+        { value: '2.7', label: '2.7 Business Cycles' }
+      ]},
+      { num: 3, title: 'National Income and Price Determination', weight: '17–27%', topics: [
+        { value: '3.1', label: '3.1 Aggregate Demand' },
+        { value: '3.2', label: '3.2 Multipliers' },
+        { value: '3.3', label: '3.3 Short-Run Aggregate Supply' },
+        { value: '3.4', label: '3.4 Long-Run Aggregate Supply' },
+        { value: '3.5', label: '3.5 Equilibrium in the AD-AS Model' },
+        { value: '3.6', label: '3.6 Changes in the AD-AS Model' },
+        { value: '3.7', label: '3.7 Fiscal Policy' }
+      ]},
+      { num: 4, title: 'Financial Sector', weight: '18–23%', topics: [
+        { value: '4.1', label: '4.1 Financial Assets' },
+        { value: '4.2', label: '4.2 Definition, Measurement, and Functions of Money' },
+        { value: '4.3', label: '4.3 Banking and the Expansion of the Money Supply' },
+        { value: '4.4', label: '4.4 The Money Market' },
+        { value: '4.5', label: '4.5 Monetary Policy' },
+        { value: '4.6', label: '4.6 The Loanable Funds Market' }
+      ]},
+      { num: 5, title: 'Long-Run Consequences of Stabilization Policies', weight: '20–30%', topics: [
+        { value: '5.1', label: '5.1 Fiscal and Monetary Policy Actions in the Short Run' },
+        { value: '5.2', label: '5.2 The Phillips Curve' },
+        { value: '5.3', label: '5.3 Money Growth and Inflation' },
+        { value: '5.4', label: '5.4 Government Deficits and the National Debt' },
+        { value: '5.5', label: '5.5 Crowding Out' },
+        { value: '5.6', label: '5.6 Economic Growth' }
+      ]},
+      { num: 6, title: 'Open Economy—International Trade and Finance', weight: '10–13%', topics: [
+        { value: '6.1', label: '6.1 Balance of Payments Accounts' },
+        { value: '6.2', label: '6.2 Exchange Rates' },
+        { value: '6.3', label: '6.3 The Foreign Exchange Market' },
+        { value: '6.4', label: '6.4 Effect of Changes in Policies and Economic Conditions on the Foreign Exchange Market' },
+        { value: '6.5', label: '6.5 Real Interest Rates and International Capital Flows' }
+      ]}
+    ]
   }
 ];
 

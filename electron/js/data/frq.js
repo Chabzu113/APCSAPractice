@@ -2,13 +2,14 @@ var FRQ_BANK = [
   // ─── CB 2022 FRQs ──────────────────────────────────────────────────────────
 
   {
-    id: "frq_001",
+    id: 'frq_001',
     year: 2022,
-    type: "Methods & Control Structures",
-    title: "Game",
+    type: 'Methods & Control Structures',
+    title: 'Game',
     units: [1, 2],
-    difficulty: "medium",
-    source: "CB 2022 FRQ 1",
+    difficulty: 'medium',
+    source: 'CB 2022 FRQ 1',
+    autoGraded: true,
     prompt: `The Game class represents a simple game. The game involves shooting at targets, and
 each target has a point value. A partial declaration of the Game class is shown below.
 
@@ -56,25 +57,17 @@ public class Game {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Complete method scoreAbove(int min) that returns the sum of all target values greater than min.",
-        points: 4
-      },
-      {
-        label: "b",
-        instruction: "Complete method allAbove(int threshold) that returns true if every target value is greater than threshold, false otherwise.",
-        points: 3
-      }
+      { label: 'a', instruction: 'Complete method scoreAbove(int min) that returns the sum of all target values greater than min.', points: 4 },
+      { label: 'b', instruction: 'Complete method allAbove(int threshold) that returns true if every target value is greater than threshold, false otherwise.', points: 3 }
     ],
     rubric: [
-      { points: 1, description: "(a) Accesses each element of targets array" },
-      { points: 1, description: "(a) Correctly compares target value to min using >" },
-      { points: 1, description: "(a) Accumulates sum of qualifying elements" },
-      { points: 1, description: "(a) Returns correct sum" },
-      { points: 1, description: "(b) Accesses each element of targets array" },
-      { points: 1, description: "(b) Returns false when any element is NOT > threshold" },
-      { points: 1, description: "(b) Returns true only when ALL elements satisfy the condition" }
+      { points: 1, description: '(a) Accesses each element of targets array', index: 1, skill: 'code', partLabel: 'a', keywords: ['for', 'targets'] },
+      { points: 1, description: '(a) Correctly compares target value to min using >', index: 2, skill: 'code', partLabel: 'a', keywords: ['>', 'scoreAbove', 'min'] },
+      { points: 1, description: '(a) Accumulates sum of qualifying elements', index: 3, skill: 'code', partLabel: 'a', keywords: ['+=', 'scoreAbove', 'min'] },
+      { points: 1, description: '(a) Returns correct sum', index: 4, skill: 'code', partLabel: 'a', keywords: ['return', 'sum'] },
+      { points: 1, description: '(b) Accesses each element of targets array', index: 5, skill: 'code', partLabel: 'b', keywords: ['for', 'targets'] },
+      { points: 1, description: '(b) Returns false when any element is NOT > threshold', index: 6, skill: 'code', partLabel: 'b', keywords: ['return', 'false'] },
+      { points: 1, description: '(b) Returns true only when ALL elements satisfy the condition', index: 7, skill: 'code', partLabel: 'b', keywords: ['return', 'true'] }
     ],
     sampleSolution: `// Part (a)
 public int scoreAbove(int min) {
@@ -95,13 +88,14 @@ public boolean allAbove(int threshold) {
   },
 
   {
-    id: "frq_002",
+    id: 'frq_002',
     year: 2022,
-    type: "Class Design",
-    title: "Textbook",
+    type: 'Class Design',
+    title: 'Textbook',
     units: [3],
-    difficulty: "hard",
-    source: "CB 2022 FRQ 2",
+    difficulty: 'hard',
+    source: 'CB 2022 FRQ 2',
+    autoGraded: true,
     prompt: `A Textbook is a type of book used in a course. Write the Textbook class that
 satisfies the following specifications.
 
@@ -140,20 +134,16 @@ The Textbook class must:
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write the complete Textbook class including instance variables, constructor, getEdition(), canSubstituteFor(), and toString().",
-        points: 7
-      }
+      { label: 'a', instruction: 'Write the complete Textbook class including instance variables, constructor, getEdition(), canSubstituteFor(), and toString().', points: 7 }
     ],
     rubric: [
-      { points: 1, description: "Declares appropriate private instance variables" },
-      { points: 1, description: "Constructor correctly initializes all instance variables" },
-      { points: 1, description: "getEdition() returns the edition" },
-      { points: 1, description: "canSubstituteFor() compares titles using .equals()" },
-      { points: 1, description: "canSubstituteFor() compares authors using .equals()" },
-      { points: 1, description: "canSubstituteFor() checks this.edition >= other.getEdition()" },
-      { points: 1, description: "toString() returns correct format" }
+      { points: 1, description: 'Declares appropriate private instance variables', index: 1, skill: 'code', partLabel: 'a', keywords: ['private'] },
+      { points: 1, description: 'Constructor correctly initializes all instance variables', index: 2, skill: 'code', partLabel: 'a', keywords: ['this.title', 'this.author'] },
+      { points: 1, description: 'getEdition() returns the edition', index: 3, skill: 'code', partLabel: 'a', keywords: ['getEdition'] },
+      { points: 1, description: 'canSubstituteFor() compares titles using .equals()', index: 4, skill: 'code', partLabel: 'a', keywords: ['canSubstituteFor', '.equals('] },
+      { points: 1, description: 'canSubstituteFor() compares authors using .equals()', index: 5, skill: 'code', partLabel: 'a', keywords: ['canSubstituteFor', '.equals('] },
+      { points: 1, description: 'canSubstituteFor() checks this.edition >= other.getEdition()', index: 6, skill: 'code', partLabel: 'a', keywords: ['>=', 'getEdition'] },
+      { points: 1, description: 'toString() returns correct format', index: 7, skill: 'code', partLabel: 'a', keywords: ['toString', 'Edition:'] }
     ],
     sampleSolution: `public class Textbook {
     private String title;
@@ -183,13 +173,14 @@ The Textbook class must:
   },
 
   {
-    id: "frq_003",
+    id: 'frq_003',
     year: 2022,
-    type: "Array/ArrayList",
-    title: "ArrayResizer",
+    type: 'Array/ArrayList',
+    title: 'ArrayResizer',
     units: [4],
-    difficulty: "hard",
-    source: "CB 2022 FRQ 3",
+    difficulty: 'hard',
+    source: 'CB 2022 FRQ 3',
+    autoGraded: true,
     prompt: `This question involves the ArrayResizer class, which provides methods for
 working with 2D arrays.
 
@@ -223,25 +214,17 @@ public class ArrayResizer {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write isNonZeroRow(int[] arr) that returns true if every element in arr is greater than 0.",
-        points: 3
-      },
-      {
-        label: "b",
-        instruction: "Write resize(int[][] original) that returns a new 2D array containing only the rows where isNonZeroRow returns true.",
-        points: 4
-      }
+      { label: 'a', instruction: 'Write isNonZeroRow(int[] arr) that returns true if every element in arr is greater than 0.', points: 3 },
+      { label: 'b', instruction: 'Write resize(int[][] original) that returns a new 2D array containing only the rows where isNonZeroRow returns true.', points: 4 }
     ],
     rubric: [
-      { points: 1, description: "(a) Accesses each element of the 1D array" },
-      { points: 1, description: "(a) Correctly tests each element > 0" },
-      { points: 1, description: "(a) Returns false if any element is not > 0; returns true otherwise" },
-      { points: 1, description: "(b) Counts the number of valid rows using isNonZeroRow" },
-      { points: 1, description: "(b) Creates new 2D array of the correct size" },
-      { points: 1, description: "(b) Copies correct rows to new array" },
-      { points: 1, description: "(b) Returns the new array" }
+      { points: 1, description: '(a) Accesses each element of the 1D array', index: 1, skill: 'code', partLabel: 'a', keywords: ['for', 'isNonZeroRow', 'arr'] },
+      { points: 1, description: '(a) Correctly tests each element > 0', index: 2, skill: 'code', partLabel: 'a', keywords: ['>', 'isNonZeroRow', 'arr'] },
+      { points: 1, description: '(a) Returns false if any element is not > 0; returns true otherwise', index: 3, skill: 'code', partLabel: 'a', keywords: ['return', 'false', 'true', '>'] },
+      { points: 1, description: '(b) Counts the number of valid rows using isNonZeroRow', index: 4, skill: 'code', partLabel: 'b', keywords: ['isNonZeroRow', 'arr', 'count'], cpeSource: 'a' },
+      { points: 1, description: '(b) Creates new 2D array of the correct size', index: 5, skill: 'code', partLabel: 'b', keywords: ['new int[', 'isNonZeroRow', 'arr'], cpeSource: 'a' },
+      { points: 1, description: '(b) Copies correct rows to new array', index: 6, skill: 'code', partLabel: 'b', keywords: ['isNonZeroRow', 'arr', '[', '='], cpeSource: 'a' },
+      { points: 1, description: '(b) Returns the new array', index: 7, skill: 'code', partLabel: 'b', keywords: ['return', 'resize'], cpeSource: 'a' }
     ],
     sampleSolution: `public static boolean isNonZeroRow(int[] arr) {
     for (int val : arr) {
@@ -268,13 +251,14 @@ public static int[][] resize(int[][] original) {
   },
 
   {
-    id: "frq_004",
+    id: 'frq_004',
     year: 2022,
-    type: "2D Array",
-    title: "Position",
+    type: '2D Array',
+    title: 'Position',
     units: [4],
-    difficulty: "hard",
-    source: "CB 2022 FRQ 4",
+    difficulty: 'hard',
+    source: 'CB 2022 FRQ 4',
+    autoGraded: true,
     prompt: `A Position represents a location in a 2D grid using a row and column.
 
 public class Position {
@@ -316,25 +300,17 @@ public static boolean canMove(int[][] board, Position pos, int direction) {
     // YOUR CODE HERE
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write findMax(int[][] board) that returns a Position object representing the location of the largest value in the 2D array.",
-        points: 4
-      },
-      {
-        label: "b",
-        instruction: "Write canMove(int[][] board, Position pos, int direction) that returns true if moving one step from pos in the given direction stays within bounds.",
-        points: 3
-      }
+      { label: 'a', instruction: 'Write findMax(int[][] board) that returns a Position object representing the location of the largest value in the 2D array.', points: 4 },
+      { label: 'b', instruction: 'Write canMove(int[][] board, Position pos, int direction) that returns true if moving one step from pos in the given direction stays within bounds.', points: 3 }
     ],
     rubric: [
-      { points: 1, description: "(a) Traverses all elements of the 2D array" },
-      { points: 1, description: "(a) Correctly tracks the maximum value" },
-      { points: 1, description: "(a) Tracks the position of the maximum value" },
-      { points: 1, description: "(a) Returns correct Position object" },
-      { points: 1, description: "(b) Correctly handles up direction (row > 0)" },
-      { points: 1, description: "(b) Correctly handles down direction (row < rows-1)" },
-      { points: 1, description: "(b) Correctly handles left/right directions" }
+      { points: 1, description: '(a) Traverses all elements of the 2D array', index: 1, skill: 'code', partLabel: 'a', keywords: ['for', 'Position', 'findMax'] },
+      { points: 1, description: '(a) Correctly tracks the maximum value', index: 2, skill: 'code', partLabel: 'a', keywords: ['Position', 'findMax', '>'] },
+      { points: 1, description: '(a) Tracks the position of the maximum value', index: 3, skill: 'code', partLabel: 'a', keywords: ['Position', 'findMax', '>'] },
+      { points: 1, description: '(a) Returns correct Position object', index: 4, skill: 'code', partLabel: 'a', keywords: ['return', 'Position'] },
+      { points: 1, description: '(b) Correctly handles up direction (row > 0)', index: 5, skill: 'code', partLabel: 'b', keywords: ['>', 'Position', 'findMax', 'if', '> 0'], cpeSource: 'a' },
+      { points: 1, description: '(b) Correctly handles down direction (row < rows-1)', index: 6, skill: 'code', partLabel: 'b', keywords: ['<', 'Position', 'findMax', 'if', '< '], cpeSource: 'a' },
+      { points: 1, description: '(b) Correctly handles left/right directions', index: 7, skill: 'code', partLabel: 'b', keywords: ['Position', 'findMax', 'if'], cpeSource: 'a' }
     ],
     sampleSolution: `public static Position findMax(int[][] board) {
     int maxRow = 0, maxCol = 0;
@@ -357,18 +333,20 @@ public static boolean canMove(int[][] board, Position pos, int direction) {
     if (direction == 3) return c > 0;
     return false;
 }`
-  },
-
+  }
   // ─── CB 2023 FRQs ──────────────────────────────────────────────────────────
 
+,
+
   {
-    id: "frq_005",
+    id: 'frq_005',
     year: 2023,
-    type: "Methods & Control Structures",
-    title: "AppointmentBook",
+    type: 'Methods & Control Structures',
+    title: 'AppointmentBook',
     units: [1, 2],
-    difficulty: "medium",
-    source: "CB 2023 FRQ 1",
+    difficulty: 'medium',
+    source: 'CB 2023 FRQ 1',
+    autoGraded: true,
     prompt: `The AppointmentBook class maintains a schedule. Each hour (1–12) has a
 boolean indicating whether that hour is free (true) or busy (false).
 
@@ -418,25 +396,17 @@ public class AppointmentBook {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write findFreeBlock(int startHour, int numHours) that searches for the first block of numHours consecutive free hours starting from startHour.",
-        points: 5
-      },
-      {
-        label: "b",
-        instruction: "Write makeReservation(int startHour, int numHours) that calls findFreeBlock, marks those hours busy if found, and returns the start hour or -1.",
-        points: 2
-      }
+      { label: 'a', instruction: 'Write findFreeBlock(int startHour, int numHours) that searches for the first block of numHours consecutive free hours starting from startHour.', points: 5 },
+      { label: 'b', instruction: 'Write makeReservation(int startHour, int numHours) that calls findFreeBlock, marks those hours busy if found, and returns the start hour or -1.', points: 2 }
     ],
     rubric: [
-      { points: 1, description: "(a) Iterates through hours starting at startHour" },
-      { points: 1, description: "(a) Counts consecutive free hours correctly" },
-      { points: 1, description: "(a) Resets count when a busy hour is found" },
-      { points: 1, description: "(a) Correctly identifies block start when count reaches numHours" },
-      { points: 1, description: "(a) Returns -1 when no block found" },
-      { points: 1, description: "(b) Calls findFreeBlock with correct arguments" },
-      { points: 1, description: "(b) Marks hours busy and returns correct start or -1" }
+      { points: 1, description: '(a) Iterates through hours starting at startHour', index: 1, skill: 'code', partLabel: 'a', keywords: ['for', 'numHours'] },
+      { points: 1, description: '(a) Counts consecutive free hours correctly', index: 2, skill: 'code', partLabel: 'a', keywords: ['findFreeBlock', 'startHour', 'count'] },
+      { points: 1, description: '(a) Resets count when a busy hour is found', index: 3, skill: 'code', partLabel: 'a', keywords: ['findFreeBlock', 'startHour', '= 0'] },
+      { points: 1, description: '(a) Correctly identifies block start when count reaches numHours', index: 4, skill: 'code', partLabel: 'a', keywords: ['findFreeBlock', 'startHour'] },
+      { points: 1, description: '(a) Returns -1 when no block found', index: 5, skill: 'code', partLabel: 'a', keywords: ['return', '-1'] },
+      { points: 1, description: '(b) Calls findFreeBlock with correct arguments', index: 6, skill: 'code', partLabel: 'b', keywords: ['findfreeblock(', 'findFreeBlock', 'startHour'], cpeSource: 'a' },
+      { points: 1, description: '(b) Marks hours busy and returns correct start or -1', index: 7, skill: 'code', partLabel: 'b', keywords: ['return', '-1', 'numHours', 'true'], cpeSource: 'a' }
     ],
     sampleSolution: `public int findFreeBlock(int startHour, int numHours) {
     int count = 0;
@@ -462,13 +432,14 @@ public int makeReservation(int startHour, int numHours) {
   },
 
   {
-    id: "frq_006",
+    id: 'frq_006',
     year: 2023,
-    type: "Class Design",
-    title: "Sign",
+    type: 'Class Design',
+    title: 'Sign',
     units: [3],
-    difficulty: "medium",
-    source: "CB 2023 FRQ 2",
+    difficulty: 'medium',
+    source: 'CB 2023 FRQ 2',
+    autoGraded: true,
     prompt: `A Sign displays text on a set number of lines. Each line can display at most
 a fixed number of characters. Write the Sign class with the following:
 
@@ -502,20 +473,16 @@ a fixed number of characters. Write the Sign class with the following:
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write the complete Sign class including all specified fields, constructor, and methods.",
-        points: 7
-      }
+      { label: 'a', instruction: 'Write the complete Sign class including all specified fields, constructor, and methods.', points: 7 }
     ],
     rubric: [
-      { points: 1, description: "Declares appropriate private instance variables" },
-      { points: 1, description: "Constructor initializes fields correctly" },
-      { points: 1, description: "getArea() returns numberOfLines * lineWidth" },
-      { points: 1, description: "canDisplay() correctly checks message length vs area" },
-      { points: 1, description: "splitIntoLines() creates array of correct size" },
-      { points: 1, description: "splitIntoLines() correctly extracts substrings of lineWidth" },
-      { points: 1, description: "splitIntoLines() handles message shorter than area (empty strings)" }
+      { points: 1, description: 'Declares appropriate private instance variables', index: 1, skill: 'code', partLabel: 'a', keywords: ['private'] },
+      { points: 1, description: 'Constructor initializes fields correctly', index: 2, skill: 'code', partLabel: 'a', keywords: ['this.numberOfLines', 'this.lineWidth'] },
+      { points: 1, description: 'getArea() returns numberOfLines * lineWidth', index: 3, skill: 'code', partLabel: 'a', keywords: ['getArea', '*'] },
+      { points: 1, description: 'canDisplay() correctly checks message length vs area', index: 4, skill: 'code', partLabel: 'a', keywords: ['canDisplay', '.length()'] },
+      { points: 1, description: 'splitIntoLines() creates array of correct size', index: 5, skill: 'code', partLabel: 'a', keywords: ['new String[', 'splitIntoLines'] },
+      { points: 1, description: 'splitIntoLines() correctly extracts substrings of lineWidth', index: 6, skill: 'code', partLabel: 'a', keywords: ['splitIntoLines', '.substring('] },
+      { points: 1, description: 'splitIntoLines() handles message shorter than area (empty strings)', index: 7, skill: 'code', partLabel: 'a', keywords: ['splitIntoLines', '""'] }
     ],
     sampleSolution: `public class Sign {
     private int numberOfLines;
@@ -551,13 +518,14 @@ a fixed number of characters. Write the Sign class with the following:
   },
 
   {
-    id: "frq_007",
+    id: 'frq_007',
     year: 2023,
-    type: "Array/ArrayList",
-    title: "WeatherData",
+    type: 'Array/ArrayList',
+    title: 'WeatherData',
     units: [4],
-    difficulty: "hard",
-    source: "CB 2023 FRQ 3",
+    difficulty: 'hard',
+    source: 'CB 2023 FRQ 3',
+    autoGraded: true,
     prompt: `The WeatherData class stores temperature readings and provides analysis methods.
 
 public class WeatherData {
@@ -600,25 +568,25 @@ public class WeatherData {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write average() that returns the average (mean) of all temperature values in the list.",
-        points: 3
-      },
-      {
-        label: "b",
-        instruction: "Write removeExtremes(double threshold) that removes all temperatures that are more than threshold degrees above the average.",
-        points: 4
-      }
+      { label: 'a', instruction: 'Write average() that returns the average (mean) of all temperature values in the list.', points: 3 },
+      { label: 'b', instruction: 'Write removeExtremes(double threshold) that removes all temperatures that are more than threshold degrees above the average.', points: 4 }
     ],
     rubric: [
-      { points: 1, description: "(a) Sums all temperatures correctly" },
-      { points: 1, description: "(a) Divides by the correct count" },
-      { points: 1, description: "(a) Returns correct average as double" },
-      { points: 1, description: "(b) Calls average() to get the cutoff" },
-      { points: 1, description: "(b) Iterates through the list correctly" },
-      { points: 1, description: "(b) Correctly removes elements > average + threshold" },
-      { points: 1, description: "(b) Handles index shifting when removing (backward iteration or index adjustment)" }
+      { points: 1, description: '(a) Sums all temperatures correctly', index: 1, skill: 'code', partLabel: 'a', keywords: ['+=', 'average', 'temperatures'] },
+      { points: 1, description: '(a) Divides by the correct count', index: 2, skill: 'code', partLabel: 'a', keywords: ['average', 'temperatures', '/'] },
+      { points: 1, description: '(a) Returns correct average as double', index: 3, skill: 'code', partLabel: 'a', keywords: ['return', 'sum'] },
+      { points: 1, description: '(b) Calls average() to get the cutoff', index: 4, skill: 'code', partLabel: 'b', keywords: ['average(', 'average', 'temperatures'], cpeSource: 'a' },
+      { points: 1, description: '(b) Iterates through the list correctly', index: 5, skill: 'code', partLabel: 'b', keywords: ['for', 'average', 'temperatures'], cpeSource: 'a' },
+      { points: 1, description: '(b) Correctly removes elements > average + threshold', index: 6, skill: 'code', partLabel: 'b', keywords: ['average', 'temperatures'], cpeSource: 'a' },
+      {
+        points: 1,
+        description: '(b) Handles index shifting when removing (backward iteration or index adjustment)',
+        index: 7,
+        skill: 'code',
+        partLabel: 'b',
+        keywords: ['i--', 'average', 'temperatures'],
+        cpeSource: 'a'
+      }
     ],
     sampleSolution: `public double average() {
     double sum = 0;
@@ -637,13 +605,14 @@ public void removeExtremes(double threshold) {
   },
 
   {
-    id: "frq_008",
+    id: 'frq_008',
     year: 2023,
-    type: "2D Array",
-    title: "Climb",
+    type: '2D Array',
+    title: 'Climb',
     units: [4],
-    difficulty: "hard",
-    source: "CB 2023 FRQ 4",
+    difficulty: 'hard',
+    source: 'CB 2023 FRQ 4',
+    autoGraded: true,
     prompt: `The following methods are in a class that is not shown. They involve a
 2D int array called mountain that represents a grid of elevations.
 
@@ -673,25 +642,24 @@ public static int[] climbPath(int[][] mountain) {
     // YOUR CODE HERE
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write peakColumn(int[][] mountain, int row) that returns the column index of the highest value in that row (smallest index on tie).",
-        points: 4
-      },
-      {
-        label: "b",
-        instruction: "Write climbPath(int[][] mountain) that returns an array of column indices, one per row, each determined by peakColumn.",
-        points: 3
-      }
+      { label: 'a', instruction: 'Write peakColumn(int[][] mountain, int row) that returns the column index of the highest value in that row (smallest index on tie).', points: 4 },
+      { label: 'b', instruction: 'Write climbPath(int[][] mountain) that returns an array of column indices, one per row, each determined by peakColumn.', points: 3 }
     ],
     rubric: [
-      { points: 1, description: "(a) Initializes with first column as candidate maximum" },
-      { points: 1, description: "(a) Traverses each column in the row" },
-      { points: 1, description: "(a) Updates max correctly (strictly greater than, to prefer smaller index on ties)" },
-      { points: 1, description: "(a) Returns correct column index" },
-      { points: 1, description: "(b) Creates result array of correct length (mountain.length)" },
-      { points: 1, description: "(b) Calls peakColumn for each row" },
-      { points: 1, description: "(b) Returns the array of column indices" }
+      { points: 1, description: '(a) Initializes with first column as candidate maximum', index: 1, skill: 'code', partLabel: 'a', keywords: ['peakColumn', 'mountain', '>', 'maxCol'] },
+      { points: 1, description: '(a) Traverses each column in the row', index: 2, skill: 'code', partLabel: 'a', keywords: ['peakColumn', 'mountain'] },
+      {
+        points: 1,
+        description: '(a) Updates max correctly (strictly greater than, to prefer smaller index on ties)',
+        index: 3,
+        skill: 'code',
+        partLabel: 'a',
+        keywords: ['>', 'peakColumn', 'mountain', 'maxCol']
+      },
+      { points: 1, description: '(a) Returns correct column index', index: 4, skill: 'code', partLabel: 'a', keywords: ['return', 'maxCol'] },
+      { points: 1, description: '(b) Creates result array of correct length (mountain.length)', index: 5, skill: 'code', partLabel: 'b', keywords: ['new int[', '.length'], cpeSource: 'a' },
+      { points: 1, description: '(b) Calls peakColumn for each row', index: 6, skill: 'code', partLabel: 'b', keywords: ['peakcolumn(', 'peakColumn', 'mountain'], cpeSource: 'a' },
+      { points: 1, description: '(b) Returns the array of column indices', index: 7, skill: 'code', partLabel: 'b', keywords: ['return', 'path'], cpeSource: 'a' }
     ],
     sampleSolution: `public static int peakColumn(int[][] mountain, int row) {
     int maxCol = 0;
@@ -710,18 +678,20 @@ public static int[] climbPath(int[][] mountain) {
     }
     return path;
 }`
-  },
-
+  }
   // ─── CB 2024 FRQs ──────────────────────────────────────────────────────────
 
+,
+
   {
-    id: "frq_009",
+    id: 'frq_009',
     year: 2024,
-    type: "Methods & Control Structures",
-    title: "Feeder",
+    type: 'Methods & Control Structures',
+    title: 'Feeder',
     units: [1, 2],
-    difficulty: "medium",
-    source: "CB 2024 FRQ 1",
+    difficulty: 'medium',
+    source: 'CB 2024 FRQ 1',
+    autoGraded: true,
     prompt: `A Feeder object simulates a bird feeder that tracks the amount of birdseed.
 
 public class Feeder {
@@ -781,25 +751,25 @@ public class Feeder {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write simulateOneDay(double minAmt, double maxAmt) so each bird eats a random amount between minAmt and maxAmt, but seeds never goes below 0.",
-        points: 4
-      },
-      {
-        label: "b",
-        instruction: "Write simulateManyDays(int numDays) that simulates numDays days and returns the number of days at least one bird visited.",
-        points: 3
-      }
+      { label: 'a', instruction: 'Write simulateOneDay(double minAmt, double maxAmt) so each bird eats a random amount between minAmt and maxAmt, but seeds never goes below 0.', points: 4 },
+      { label: 'b', instruction: 'Write simulateManyDays(int numDays) that simulates numDays days and returns the number of days at least one bird visited.', points: 3 }
     ],
     rubric: [
-      { points: 1, description: "(a) Loops over each bird (numBirds iterations)" },
-      { points: 1, description: "(a) Generates random amount in [minAmt, maxAmt]" },
-      { points: 1, description: "(a) Subtracts eaten amount from seeds" },
-      { points: 1, description: "(a) Ensures seeds does not go below 0" },
-      { points: 1, description: "(b) Loops numDays times" },
-      { points: 1, description: "(b) Sets numBirds randomly, calls simulateOneDay, refills if needed" },
-      { points: 1, description: "(b) Counts and returns days with numBirds > 0" }
+      { points: 1, description: '(a) Loops over each bird (numBirds iterations)', index: 1, skill: 'code', partLabel: 'a', keywords: ['for', 'simulateOneDay', 'minAmt'] },
+      { points: 1, description: '(a) Generates random amount in [minAmt, maxAmt]', index: 2, skill: 'code', partLabel: 'a', keywords: ['Math.random', 'simulateOneDay', 'minAmt', '>', 'maxAmt'] },
+      { points: 1, description: '(a) Subtracts eaten amount from seeds', index: 3, skill: 'code', partLabel: 'a', keywords: ['simulateOneDay', 'minAmt', '-='] },
+      { points: 1, description: '(a) Ensures seeds does not go below 0', index: 4, skill: 'code', partLabel: 'a', keywords: ['simulateOneDay', 'minAmt', '= 0'] },
+      { points: 1, description: '(b) Loops numDays times', index: 5, skill: 'code', partLabel: 'b', keywords: ['for', 'simulateOneDay', 'minAmt'], cpeSource: 'a' },
+      {
+        points: 1,
+        description: '(b) Sets numBirds randomly, calls simulateOneDay, refills if needed',
+        index: 6,
+        skill: 'code',
+        partLabel: 'b',
+        keywords: ['simulateOneDay', 'minAmt', 'if'],
+        cpeSource: 'a'
+      },
+      { points: 1, description: '(b) Counts and returns days with numBirds > 0', index: 7, skill: 'code', partLabel: 'b', keywords: ['return', '>', 'count'], cpeSource: 'a' }
     ],
     sampleSolution: `public void simulateOneDay(double minAmt, double maxAmt) {
     for (int i = 0; i < numBirds; i++) {
@@ -825,13 +795,14 @@ public int simulateManyDays(int numDays) {
   },
 
   {
-    id: "frq_010",
+    id: 'frq_010',
     year: 2024,
-    type: "Class Design",
-    title: "Scoreboard",
+    type: 'Class Design',
+    title: 'Scoreboard',
     units: [3],
-    difficulty: "medium",
-    source: "CB 2024 FRQ 2",
+    difficulty: 'medium',
+    source: 'CB 2024 FRQ 2',
+    autoGraded: true,
     prompt: `A Scoreboard tracks the scores of two teams, A and B, during a game.
 
 Write the Scoreboard class that satisfies these requirements:
@@ -861,20 +832,16 @@ Write the Scoreboard class that satisfies these requirements:
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write the complete Scoreboard class satisfying all specifications above.",
-        points: 7
-      }
+      { label: 'a', instruction: 'Write the complete Scoreboard class satisfying all specifications above.', points: 7 }
     ],
     rubric: [
-      { points: 1, description: "Declares appropriate private instance variables" },
-      { points: 1, description: "Constructor initializes team names and scores to 0" },
-      { points: 1, description: "recordPlay() correctly identifies which team to update" },
-      { points: 1, description: "recordPlay() adds points to correct team" },
-      { points: 1, description: "getScore() returns correct format with team names and scores" },
-      { points: 1, description: "isLeading() compares scores using strict inequality" },
-      { points: 1, description: "isLeading() returns false if tied or if team name doesn't match" }
+      { points: 1, description: 'Declares appropriate private instance variables', index: 1, skill: 'code', partLabel: 'a', keywords: ['private'] },
+      { points: 1, description: 'Constructor initializes team names and scores to 0', index: 2, skill: 'code', partLabel: 'a', keywords: ['this.teamA', 'this.teamB'] },
+      { points: 1, description: 'recordPlay() correctly identifies which team to update', index: 3, skill: 'code', partLabel: 'a', keywords: ['recordPlay', '.equals('] },
+      { points: 1, description: 'recordPlay() adds points to correct team', index: 4, skill: 'code', partLabel: 'a', keywords: ['recordPlay', '+='] },
+      { points: 1, description: 'getScore() returns correct format with team names and scores', index: 5, skill: 'code', partLabel: 'a', keywords: ['getScore'] },
+      { points: 1, description: 'isLeading() compares scores using strict inequality', index: 6, skill: 'code', partLabel: 'a', keywords: ['isLeading', '>'] },
+      { points: 1, description: 'isLeading() returns false if tied or if team name doesn\'t match', index: 7, skill: 'code', partLabel: 'a', keywords: ['isLeading', 'false'] }
     ],
     sampleSolution: `public class Scoreboard {
     private String teamA, teamB;
@@ -905,13 +872,14 @@ Write the Scoreboard class that satisfies these requirements:
   },
 
   {
-    id: "frq_011",
+    id: 'frq_011',
     year: 2024,
-    type: "Array/ArrayList",
-    title: "WordChecker",
+    type: 'Array/ArrayList',
+    title: 'WordChecker',
     units: [2, 4],
-    difficulty: "hard",
-    source: "CB 2024 FRQ 3",
+    difficulty: 'hard',
+    source: 'CB 2024 FRQ 3',
+    autoGraded: true,
     prompt: `The WordChecker class checks properties of a list of words.
 
 public class WordChecker {
@@ -955,25 +923,17 @@ public class WordChecker {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write countStartsWith(char letter) that counts how many words start with the given letter, case-insensitively.",
-        points: 3
-      },
-      {
-        label: "b",
-        instruction: "Write removeShort(int minLength) that removes all words from wordList with length strictly less than minLength.",
-        points: 4
-      }
+      { label: 'a', instruction: 'Write countStartsWith(char letter) that counts how many words start with the given letter, case-insensitively.', points: 3 },
+      { label: 'b', instruction: 'Write removeShort(int minLength) that removes all words from wordList with length strictly less than minLength.', points: 4 }
     ],
     rubric: [
-      { points: 1, description: "(a) Iterates through wordList" },
-      { points: 1, description: "(a) Correctly compares first character case-insensitively" },
-      { points: 1, description: "(a) Returns correct count" },
-      { points: 1, description: "(b) Iterates through list (correctly handling shifting)" },
-      { points: 1, description: "(b) Checks word.length() < minLength" },
-      { points: 1, description: "(b) Removes qualifying words without skipping elements" },
-      { points: 1, description: "(b) Handles index correctly after removal" }
+      { points: 1, description: '(a) Iterates through wordList', index: 1, skill: 'code', partLabel: 'a', keywords: ['for', 'wordList'] },
+      { points: 1, description: '(a) Correctly compares first character case-insensitively', index: 2, skill: 'code', partLabel: 'a', keywords: ['.charAt(', 'toLowerCase'] },
+      { points: 1, description: '(a) Returns correct count', index: 3, skill: 'code', partLabel: 'a', keywords: ['return', 'count'] },
+      { points: 1, description: '(b) Iterates through list (correctly handling shifting)', index: 4, skill: 'code', partLabel: 'b', keywords: ['for', 'wordList'], cpeSource: 'a' },
+      { points: 1, description: '(b) Checks word.length() < minLength', index: 5, skill: 'code', partLabel: 'b', keywords: ['<', '.length', '.length()'], cpeSource: 'a' },
+      { points: 1, description: '(b) Removes qualifying words without skipping elements', index: 6, skill: 'code', partLabel: 'b', keywords: ['.remove(', 'i--'], cpeSource: 'a' },
+      { points: 1, description: '(b) Handles index correctly after removal', index: 7, skill: 'code', partLabel: 'b', keywords: ['i--', 'countStartsWith', 'letter'], cpeSource: 'a' }
     ],
     sampleSolution: `public int countStartsWith(char letter) {
     int count = 0;
@@ -993,13 +953,14 @@ public void removeShort(int minLength) {
   },
 
   {
-    id: "frq_012",
+    id: 'frq_012',
     year: 2024,
-    type: "2D Array",
-    title: "LightBoard",
+    type: '2D Array',
+    title: 'LightBoard',
     units: [4],
-    difficulty: "hard",
-    source: "CB 2024 FRQ 4",
+    difficulty: 'hard',
+    source: 'CB 2024 FRQ 4',
+    autoGraded: true,
     prompt: `A LightBoard is a 2D grid of lights, each either on (true) or off (false).
 
 public class LightBoard {
@@ -1037,25 +998,25 @@ public class LightBoard {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write the LightBoard constructor that initializes a 2D boolean array where each light is independently turned on with 30% probability.",
-        points: 3
-      },
-      {
-        label: "b",
-        instruction: "Write evaluateLight(int r, int c) using the specified rules about on/off lights and even/odd column counts.",
-        points: 4
-      }
+      { label: 'a', instruction: 'Write the LightBoard constructor that initializes a 2D boolean array where each light is independently turned on with 30% probability.', points: 3 },
+      { label: 'b', instruction: 'Write evaluateLight(int r, int c) using the specified rules about on/off lights and even/odd column counts.', points: 4 }
     ],
     rubric: [
-      { points: 1, description: "(a) Creates 2D boolean array of correct dimensions" },
-      { points: 1, description: "(a) Loops through all positions" },
-      { points: 1, description: "(a) Assigns true with 30% probability using Math.random()" },
-      { points: 1, description: "(b) Counts number of 'on' lights in column c" },
-      { points: 1, description: "(b) Correctly checks if count is even or odd" },
-      { points: 1, description: "(b) Applies correct rule based on whether lights[r][c] is on or off" },
-      { points: 1, description: "(b) Returns correct boolean value" }
+      { points: 1, description: '(a) Creates 2D boolean array of correct dimensions', index: 1, skill: 'code', partLabel: 'a', keywords: ['new boolean[', 'LightBoard', 'numRows'] },
+      { points: 1, description: '(a) Loops through all positions', index: 2, skill: 'code', partLabel: 'a', keywords: ['for', 'LightBoard', 'numRows'] },
+      { points: 1, description: '(a) Assigns true with 30% probability using Math.random()', index: 3, skill: 'code', partLabel: 'a', keywords: ['Math.random', '%'] },
+      { points: 1, description: '(b) Counts number of \'on\' lights in column c', index: 4, skill: 'code', partLabel: 'b', keywords: ['LightBoard', 'numRows', 'count'], cpeSource: 'a' },
+      { points: 1, description: '(b) Correctly checks if count is even or odd', index: 5, skill: 'code', partLabel: 'b', keywords: ['LightBoard', 'numRows', '% 2'], cpeSource: 'a' },
+      {
+        points: 1,
+        description: '(b) Applies correct rule based on whether lights[r][c] is on or off',
+        index: 6,
+        skill: 'code',
+        partLabel: 'b',
+        keywords: ['LightBoard', 'numRows', 'if', '% 2'],
+        cpeSource: 'a'
+      },
+      { points: 1, description: '(b) Returns correct boolean value', index: 7, skill: 'code', partLabel: 'b', keywords: ['return', 'onCount'], cpeSource: 'a' }
     ],
     sampleSolution: `public LightBoard(int numRows, int numCols) {
     lights = new boolean[numRows][numCols];
@@ -1077,18 +1038,20 @@ public boolean evaluateLight(int r, int c) {
         return onCount % 2 == 1;
     }
 }`
-  },
+  }
+  // ─── CB 2025 FRQs ──────────────────────────────────────────────────────────
 
-  // ─── Original FRQs ─────────────────────────────────────────────────────────
+,
 
   {
-    id: "frq_013",
+    id: 'frq_013',
     year: 2025,
-    type: "Methods & Control Structures",
-    title: "StringAnalyzer",
+    type: 'Methods & Control Structures',
+    title: 'StringAnalyzer',
     units: [1, 2],
-    difficulty: "medium",
-    source: "original",
+    difficulty: 'medium',
+    source: 'original',
+    autoGraded: true,
     prompt: `The StringAnalyzer class provides utility methods for analyzing strings.
 
 public class StringAnalyzer {
@@ -1121,25 +1084,17 @@ public class StringAnalyzer {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write countUppercase(String s) that returns the number of uppercase letters in the string s.",
-        points: 3
-      },
-      {
-        label: "b",
-        instruction: "Write isPalindrome(String s) that returns true if s is a palindrome, ignoring case differences.",
-        points: 4
-      }
+      { label: 'a', instruction: 'Write countUppercase(String s) that returns the number of uppercase letters in the string s.', points: 3 },
+      { label: 'b', instruction: 'Write isPalindrome(String s) that returns true if s is a palindrome, ignoring case differences.', points: 4 }
     ],
     rubric: [
-      { points: 1, description: "(a) Iterates through each character of s" },
-      { points: 1, description: "(a) Correctly identifies uppercase characters" },
-      { points: 1, description: "(a) Returns correct count" },
-      { points: 1, description: "(b) Compares characters from both ends" },
-      { points: 1, description: "(b) Handles case-insensitive comparison" },
-      { points: 1, description: "(b) Returns false when mismatch found" },
-      { points: 1, description: "(b) Returns true when no mismatch found" }
+      { points: 1, description: '(a) Iterates through each character of s', index: 1, skill: 'code', partLabel: 'a', keywords: ['for', 'countUppercase', 'count'] },
+      { points: 1, description: '(a) Correctly identifies uppercase characters', index: 2, skill: 'code', partLabel: 'a', keywords: ['isUpperCase', 'countUppercase', 'count'] },
+      { points: 1, description: '(a) Returns correct count', index: 3, skill: 'code', partLabel: 'a', keywords: ['return', 'count'] },
+      { points: 1, description: '(b) Compares characters from both ends', index: 4, skill: 'code', partLabel: 'b', keywords: ['countUppercase', 'count', 'left', 'right'], cpeSource: 'a' },
+      { points: 1, description: '(b) Handles case-insensitive comparison', index: 5, skill: 'code', partLabel: 'b', keywords: ['toLowerCase', 'countUppercase', 'count'], cpeSource: 'a' },
+      { points: 1, description: '(b) Returns false when mismatch found', index: 6, skill: 'code', partLabel: 'b', keywords: ['return', 'false'], cpeSource: 'a' },
+      { points: 1, description: '(b) Returns true when no mismatch found', index: 7, skill: 'code', partLabel: 'b', keywords: ['return', 'true'], cpeSource: 'a' }
     ],
     sampleSolution: `public static int countUppercase(String s) {
     int count = 0;
@@ -1162,13 +1117,14 @@ public static boolean isPalindrome(String s) {
   },
 
   {
-    id: "frq_014",
+    id: 'frq_014',
     year: 2025,
-    type: "Methods & Control Structures",
-    title: "NumberUtils",
+    type: 'Methods & Control Structures',
+    title: 'NumberUtils',
     units: [1, 2],
-    difficulty: "hard",
-    source: "original",
+    difficulty: 'hard',
+    source: 'original',
+    autoGraded: true,
     prompt: `The NumberUtils class provides utility methods for working with integers.
 
 public class NumberUtils {
@@ -1201,25 +1157,17 @@ public class NumberUtils {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write isPrime(int n) that returns true if n is a prime number (divisible only by 1 and itself, and n > 1).",
-        points: 4
-      },
-      {
-        label: "b",
-        instruction: "Write sumOfPrimes(int max) that uses isPrime() to compute and return the sum of all prime numbers from 1 to max inclusive.",
-        points: 3
-      }
+      { label: 'a', instruction: 'Write isPrime(int n) that returns true if n is a prime number (divisible only by 1 and itself, and n > 1).', points: 4 },
+      { label: 'b', instruction: 'Write sumOfPrimes(int max) that uses isPrime() to compute and return the sum of all prime numbers from 1 to max inclusive.', points: 3 }
     ],
     rubric: [
-      { points: 1, description: "(a) Returns false for n <= 1" },
-      { points: 1, description: "(a) Checks divisibility from 2 up to sqrt(n) or n-1" },
-      { points: 1, description: "(a) Returns false if any divisor found" },
-      { points: 1, description: "(a) Returns true if no divisors found" },
-      { points: 1, description: "(b) Iterates from 1 (or 2) to max" },
-      { points: 1, description: "(b) Calls isPrime() for each number" },
-      { points: 1, description: "(b) Sums and returns primes correctly" }
+      { points: 1, description: '(a) Returns false for n <= 1', index: 1, skill: 'code', partLabel: 'a', keywords: ['return', 'false', '<= 1'] },
+      { points: 1, description: '(a) Checks divisibility from 2 up to sqrt(n) or n-1', index: 2, skill: 'code', partLabel: 'a', keywords: ['Math.sqrt', '%', '% ', '== 0'] },
+      { points: 1, description: '(a) Returns false if any divisor found', index: 3, skill: 'code', partLabel: 'a', keywords: ['return', 'false', '%'] },
+      { points: 1, description: '(a) Returns true if no divisors found', index: 4, skill: 'code', partLabel: 'a', keywords: ['return', 'true', '%'] },
+      { points: 1, description: '(b) Iterates from 1 (or 2) to max', index: 5, skill: 'code', partLabel: 'b', keywords: ['isPrime', 'Math', '>', 'max'], cpeSource: 'a' },
+      { points: 1, description: '(b) Calls isPrime() for each number', index: 6, skill: 'code', partLabel: 'b', keywords: ['isprime(', 'isPrime', 'Math'], cpeSource: 'a' },
+      { points: 1, description: '(b) Sums and returns primes correctly', index: 7, skill: 'code', partLabel: 'b', keywords: ['return', 'isPrime', 'Math'], cpeSource: 'a' }
     ],
     sampleSolution: `public static boolean isPrime(int n) {
     if (n <= 1) return false;
@@ -1239,13 +1187,14 @@ public static int sumOfPrimes(int max) {
   },
 
   {
-    id: "frq_015",
+    id: 'frq_015',
     year: 2025,
-    type: "Class Design",
-    title: "Library",
+    type: 'Class Design',
+    title: 'Library',
     units: [3, 4],
-    difficulty: "hard",
-    source: "original",
+    difficulty: 'hard',
+    source: 'original',
+    autoGraded: true,
     prompt: `Write a Library class that manages a collection of books. A library has:
 - A name (String)
 - An ArrayList<String> of book titles (initially empty)
@@ -1287,20 +1236,16 @@ public class Library {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write the complete Library class satisfying all specifications.",
-        points: 7
-      }
+      { label: 'a', instruction: 'Write the complete Library class satisfying all specifications.', points: 7 }
     ],
     rubric: [
-      { points: 1, description: "Declares appropriate private instance variables (name, ArrayList)" },
-      { points: 1, description: "Constructor initializes name and empty ArrayList" },
-      { points: 1, description: "addBook() adds title to the ArrayList" },
-      { points: 1, description: "removeBook() removes first occurrence (using remove(Object))" },
-      { points: 1, description: "hasBook() returns correct boolean using contains()" },
-      { points: 1, description: "getCount() returns list size" },
-      { points: 1, description: "toString() returns correct format" }
+      { points: 1, description: 'Declares appropriate private instance variables (name, ArrayList)', index: 1, skill: 'code', partLabel: 'a', keywords: ['private'] },
+      { points: 1, description: 'Constructor initializes name and empty ArrayList', index: 2, skill: 'code', partLabel: 'a', keywords: ['this.name', 'new ArrayList'] },
+      { points: 1, description: 'addBook() adds title to the ArrayList', index: 3, skill: 'code', partLabel: 'a', keywords: ['addBook', '.add('] },
+      { points: 1, description: 'removeBook() removes first occurrence (using remove(Object))', index: 4, skill: 'code', partLabel: 'a', keywords: ['removeBook', '.remove('] },
+      { points: 1, description: 'hasBook() returns correct boolean using contains()', index: 5, skill: 'code', partLabel: 'a', keywords: ['hasBook', '.contains('] },
+      { points: 1, description: 'getCount() returns list size', index: 6, skill: 'code', partLabel: 'a', keywords: ['getCount', '.size()'] },
+      { points: 1, description: 'toString() returns correct format', index: 7, skill: 'code', partLabel: 'a', keywords: ['toString', 'Library:'] }
     ],
     sampleSolution: `import java.util.ArrayList;
 
@@ -1336,13 +1281,14 @@ public class Library {
   },
 
   {
-    id: "frq_016",
+    id: 'frq_016',
     year: 2025,
-    type: "Class Design",
-    title: "StudentRecord",
+    type: 'Class Design',
+    title: 'StudentRecord',
     units: [3, 4],
-    difficulty: "medium",
-    source: "original",
+    difficulty: 'medium',
+    source: 'original',
+    autoGraded: true,
     prompt: `Write a StudentRecord class that stores a student's name and test scores.
 
 Requirements:
@@ -1380,20 +1326,16 @@ Requirements:
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write the complete StudentRecord class satisfying all specifications.",
-        points: 7
-      }
+      { label: 'a', instruction: 'Write the complete StudentRecord class satisfying all specifications.', points: 7 }
     ],
     rubric: [
-      { points: 1, description: "Declares appropriate private instance variables" },
-      { points: 1, description: "Constructor initializes all fields correctly" },
-      { points: 1, description: "addScore() adds to next slot and does nothing when full" },
-      { points: 1, description: "getAverage() returns 0.0 when count==0; correct average otherwise" },
-      { points: 1, description: "getBestScore() correctly finds maximum (or 0 if none)" },
-      { points: 1, description: "toString() formats average to 1 decimal place" },
-      { points: 1, description: "toString() returns correct overall format" }
+      { points: 1, description: 'Declares appropriate private instance variables', index: 1, skill: 'code', partLabel: 'a', keywords: ['private'] },
+      { points: 1, description: 'Constructor initializes all fields correctly', index: 2, skill: 'code', partLabel: 'a', keywords: ['this.name', 'new int['] },
+      { points: 1, description: 'addScore() adds to next slot and does nothing when full', index: 3, skill: 'code', partLabel: 'a', keywords: ['addScore', 'scores['] },
+      { points: 1, description: 'getAverage() returns 0.0 when count==0; correct average otherwise', index: 4, skill: 'code', partLabel: 'a', keywords: ['getAverage', '/'] },
+      { points: 1, description: 'getBestScore() correctly finds maximum (or 0 if none)', index: 5, skill: 'code', partLabel: 'a', keywords: ['getBestScore', '>'] },
+      { points: 1, description: 'toString() formats average to 1 decimal place', index: 6, skill: 'code', partLabel: 'a', keywords: ['toString', 'format'] },
+      { points: 1, description: 'toString() returns correct overall format', index: 7, skill: 'code', partLabel: 'a', keywords: ['toString', 'avg='] }
     ],
     sampleSolution: `public class StudentRecord {
     private String name;
@@ -1433,13 +1375,14 @@ Requirements:
   },
 
   {
-    id: "frq_017",
+    id: 'frq_017',
     year: 2025,
-    type: "Array/ArrayList",
-    title: "ListFilter",
+    type: 'Array/ArrayList',
+    title: 'ListFilter',
     units: [4],
-    difficulty: "medium",
-    source: "original",
+    difficulty: 'medium',
+    source: 'original',
+    autoGraded: true,
     prompt: `The ListFilter class provides methods for processing ArrayList data.
 
 public class ListFilter {
@@ -1474,25 +1417,17 @@ public class ListFilter {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write filterDivisible that returns a new ArrayList of elements from data that are evenly divisible by divisor.",
-        points: 3
-      },
-      {
-        label: "b",
-        instruction: "Write absoluteValue that modifies data in place, replacing each negative value with its absolute value.",
-        points: 4
-      }
+      { label: 'a', instruction: 'Write filterDivisible that returns a new ArrayList of elements from data that are evenly divisible by divisor.', points: 3 },
+      { label: 'b', instruction: 'Write absoluteValue that modifies data in place, replacing each negative value with its absolute value.', points: 4 }
     ],
     rubric: [
-      { points: 1, description: "(a) Creates a new ArrayList to store results" },
-      { points: 1, description: "(a) Correctly checks divisibility (val % divisor == 0)" },
-      { points: 1, description: "(a) Returns new list with correct elements" },
-      { points: 1, description: "(b) Iterates through all elements of data" },
-      { points: 1, description: "(b) Correctly identifies negative values" },
-      { points: 1, description: "(b) Replaces negative value using set()" },
-      { points: 1, description: "(b) Uses correct index and set() syntax" }
+      { points: 1, description: '(a) Creates a new ArrayList to store results', index: 1, skill: 'code', partLabel: 'a', keywords: ['new', 'new ArrayList'] },
+      { points: 1, description: '(a) Correctly checks divisibility (val % divisor == 0)', index: 2, skill: 'code', partLabel: 'a', keywords: ['%', 'ArrayList', 'Integer', '% ', '== 0'] },
+      { points: 1, description: '(a) Returns new list with correct elements', index: 3, skill: 'code', partLabel: 'a', keywords: ['return', 'ArrayList', 'Integer'] },
+      { points: 1, description: '(b) Iterates through all elements of data', index: 4, skill: 'code', partLabel: 'b', keywords: ['for', 'ArrayList', 'Integer'], cpeSource: 'a' },
+      { points: 1, description: '(b) Correctly identifies negative values', index: 5, skill: 'code', partLabel: 'b', keywords: ['ArrayList', 'Integer', '< 0'], cpeSource: 'a' },
+      { points: 1, description: '(b) Replaces negative value using set()', index: 6, skill: 'code', partLabel: 'b', keywords: ['.set(', 'ArrayList', 'Integer', '< 0'], cpeSource: 'a' },
+      { points: 1, description: '(b) Uses correct index and set() syntax', index: 7, skill: 'code', partLabel: 'b', keywords: ['ArrayList', 'Integer'], cpeSource: 'a' }
     ],
     sampleSolution: `public static ArrayList<Integer> filterDivisible(ArrayList<Integer> data, int divisor) {
     ArrayList<Integer> result = new ArrayList<>();
@@ -1512,13 +1447,14 @@ public static void absoluteValue(ArrayList<Integer> data) {
   },
 
   {
-    id: "frq_018",
+    id: 'frq_018',
     year: 2025,
-    type: "Array/ArrayList",
-    title: "ArrayStatistics",
+    type: 'Array/ArrayList',
+    title: 'ArrayStatistics',
     units: [4],
-    difficulty: "hard",
-    source: "original",
+    difficulty: 'hard',
+    source: 'original',
+    autoGraded: true,
     prompt: `The ArrayStatistics class provides statistical methods for int arrays.
 
 public class ArrayStatistics {
@@ -1552,25 +1488,17 @@ public class ArrayStatistics {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write runningTotal(int[] arr) that returns a new array where each element is the cumulative sum of arr up to that index.",
-        points: 4
-      },
-      {
-        label: "b",
-        instruction: "Write isSorted(int[] arr) that returns true if the array is in non-decreasing order (each element <= the next).",
-        points: 3
-      }
+      { label: 'a', instruction: 'Write runningTotal(int[] arr) that returns a new array where each element is the cumulative sum of arr up to that index.', points: 4 },
+      { label: 'b', instruction: 'Write isSorted(int[] arr) that returns true if the array is in non-decreasing order (each element <= the next).', points: 3 }
     ],
     rubric: [
-      { points: 1, description: "(a) Creates new array of same length" },
-      { points: 1, description: "(a) Sets result[0] = arr[0]" },
-      { points: 1, description: "(a) Correctly computes each subsequent element as previous total + arr[i]" },
-      { points: 1, description: "(a) Returns correct array" },
-      { points: 1, description: "(b) Handles arrays of length 0 or 1" },
-      { points: 1, description: "(b) Compares adjacent elements correctly" },
-      { points: 1, description: "(b) Returns correct boolean result" }
+      { points: 1, description: '(a) Creates new array of same length', index: 1, skill: 'code', partLabel: 'a', keywords: ['new int[', 'runningTotal', 'arr'] },
+      { points: 1, description: '(a) Sets result[0] = arr[0]', index: 2, skill: 'code', partLabel: 'a', keywords: ['runningTotal', 'arr', '[0]'] },
+      { points: 1, description: '(a) Correctly computes each subsequent element as previous total + arr[i]', index: 3, skill: 'code', partLabel: 'a', keywords: ['runningTotal', 'arr', 'result[', '+'] },
+      { points: 1, description: '(a) Returns correct array', index: 4, skill: 'code', partLabel: 'a', keywords: ['return', 'result'] },
+      { points: 1, description: '(b) Handles arrays of length 0 or 1', index: 5, skill: 'code', partLabel: 'b', keywords: ['runningTotal', 'arr'], cpeSource: 'a' },
+      { points: 1, description: '(b) Compares adjacent elements correctly', index: 6, skill: 'code', partLabel: 'b', keywords: ['runningTotal', 'arr', '[i]', '[i+1]'], cpeSource: 'a' },
+      { points: 1, description: '(b) Returns correct boolean result', index: 7, skill: 'code', partLabel: 'b', keywords: ['return', 'result'], cpeSource: 'a' }
     ],
     sampleSolution: `public static int[] runningTotal(int[] arr) {
     int[] result = new int[arr.length];
@@ -1590,13 +1518,14 @@ public static boolean isSorted(int[] arr) {
   },
 
   {
-    id: "frq_019",
+    id: 'frq_019',
     year: 2025,
-    type: "2D Array",
-    title: "MatrixOps",
+    type: '2D Array',
+    title: 'MatrixOps',
     units: [4],
-    difficulty: "hard",
-    source: "original",
+    difficulty: 'hard',
+    source: 'original',
+    autoGraded: true,
     prompt: `The MatrixOps class performs operations on 2D integer arrays (matrices).
 
 public class MatrixOps {
@@ -1631,25 +1560,17 @@ public class MatrixOps {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write transpose(int[][] matrix) that returns a new 2D array where rows and columns are swapped.",
-        points: 4
-      },
-      {
-        label: "b",
-        instruction: "Write isSymmetric(int[][] matrix) that returns true if matrix[r][c] == matrix[c][r] for all valid indices in this square matrix.",
-        points: 3
-      }
+      { label: 'a', instruction: 'Write transpose(int[][] matrix) that returns a new 2D array where rows and columns are swapped.', points: 4 },
+      { label: 'b', instruction: 'Write isSymmetric(int[][] matrix) that returns true if matrix[r][c] == matrix[c][r] for all valid indices in this square matrix.', points: 3 }
     ],
     rubric: [
-      { points: 1, description: "(a) Creates result array with swapped dimensions" },
-      { points: 1, description: "(a) Traverses all elements of matrix" },
-      { points: 1, description: "(a) Assigns result[c][r] = matrix[r][c]" },
-      { points: 1, description: "(a) Returns correct transposed matrix" },
-      { points: 1, description: "(b) Traverses relevant portion of matrix (upper or lower triangle)" },
-      { points: 1, description: "(b) Correctly compares matrix[r][c] with matrix[c][r]" },
-      { points: 1, description: "(b) Returns false if any mismatch; true if all match" }
+      { points: 1, description: '(a) Creates result array with swapped dimensions', index: 1, skill: 'code', partLabel: 'a', keywords: ['new int[', 'transpose', 'matrix'] },
+      { points: 1, description: '(a) Traverses all elements of matrix', index: 2, skill: 'code', partLabel: 'a', keywords: ['for', 'matrix'] },
+      { points: 1, description: '(a) Assigns result[c][r] = matrix[r][c]', index: 3, skill: 'code', partLabel: 'a', keywords: ['transpose', 'matrix', '[c][r]', '[r][c]'] },
+      { points: 1, description: '(a) Returns correct transposed matrix', index: 4, skill: 'code', partLabel: 'a', keywords: ['return', 'result', '[c][r]', '[r][c]'] },
+      { points: 1, description: '(b) Traverses relevant portion of matrix (upper or lower triangle)', index: 5, skill: 'code', partLabel: 'b', keywords: ['transpose', 'matrix'], cpeSource: 'a' },
+      { points: 1, description: '(b) Correctly compares matrix[r][c] with matrix[c][r]', index: 6, skill: 'code', partLabel: 'b', keywords: ['transpose', 'matrix', '[r][c]', '[c][r]'], cpeSource: 'a' },
+      { points: 1, description: '(b) Returns false if any mismatch; true if all match', index: 7, skill: 'code', partLabel: 'b', keywords: ['return', 'false'], cpeSource: 'a' }
     ],
     sampleSolution: `public static int[][] transpose(int[][] matrix) {
     int rows = matrix.length;
@@ -1674,13 +1595,14 @@ public static boolean isSymmetric(int[][] matrix) {
   },
 
   {
-    id: "frq_020",
+    id: 'frq_020',
     year: 2025,
-    type: "2D Array",
-    title: "GridGame",
+    type: '2D Array',
+    title: 'GridGame',
     units: [4],
-    difficulty: "hard",
-    source: "original",
+    difficulty: 'hard',
+    source: 'original',
+    autoGraded: true,
     prompt: `GridGame uses a 2D grid of integers. You will write methods to analyze the grid.
 
 public class GridGame {
@@ -1719,25 +1641,17 @@ public class GridGame {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write columnSum(int col) that returns the sum of all elements in the given column of grid.",
-        points: 3
-      },
-      {
-        label: "b",
-        instruction: "Write richestColumn() that returns the index of the column with the largest sum, using columnSum(). On ties, return the smaller index.",
-        points: 4
-      }
+      { label: 'a', instruction: 'Write columnSum(int col) that returns the sum of all elements in the given column of grid.', points: 3 },
+      { label: 'b', instruction: 'Write richestColumn() that returns the index of the column with the largest sum, using columnSum(). On ties, return the smaller index.', points: 4 }
     ],
     rubric: [
-      { points: 1, description: "(a) Iterates over all rows for the given column" },
-      { points: 1, description: "(a) Correctly accumulates sum" },
-      { points: 1, description: "(a) Returns correct column sum" },
-      { points: 1, description: "(b) Calls columnSum() for each column" },
-      { points: 1, description: "(b) Tracks column with maximum sum" },
-      { points: 1, description: "(b) Prefers smaller index on ties (uses strictly greater than)" },
-      { points: 1, description: "(b) Returns correct column index" }
+      { points: 1, description: '(a) Iterates over all rows for the given column', index: 1, skill: 'code', partLabel: 'a', keywords: ['for', 'columnSum', 'grid'] },
+      { points: 1, description: '(a) Correctly accumulates sum', index: 2, skill: 'code', partLabel: 'a', keywords: ['+=', 'columnSum', 'grid'] },
+      { points: 1, description: '(a) Returns correct column sum', index: 3, skill: 'code', partLabel: 'a', keywords: ['return', 'sum'] },
+      { points: 1, description: '(b) Calls columnSum() for each column', index: 4, skill: 'code', partLabel: 'b', keywords: ['columnsum(', 'columnSum', 'grid'], cpeSource: 'a' },
+      { points: 1, description: '(b) Tracks column with maximum sum', index: 5, skill: 'code', partLabel: 'b', keywords: ['columnSum', 'grid', '>', 'bestCol'], cpeSource: 'a' },
+      { points: 1, description: '(b) Prefers smaller index on ties (uses strictly greater than)', index: 6, skill: 'code', partLabel: 'b', keywords: ['>', 'columnSum', 'grid'], cpeSource: 'a' },
+      { points: 1, description: '(b) Returns correct column index', index: 7, skill: 'code', partLabel: 'b', keywords: ['return', 'sum'], cpeSource: 'a' }
     ],
     sampleSolution: `public int columnSum(int col) {
     int sum = 0;
@@ -1759,18 +1673,20 @@ public int richestColumn() {
     }
     return bestCol;
 }`
-  },
+  }
+  // ─── CB 2010 FRQs ──────────────────────────────────────────────────────────
 
-  // ─── Additional Practice FRQs ────────────────────────────────────────────────
+,
 
   {
-    id: "frq_021",
+    id: 'frq_021',
     year: 2010,
-    type: "Class Design",
-    title: "Horse",
+    type: 'Class Design',
+    title: 'Horse',
     units: [3],
-    difficulty: "easy",
-    source: "Practice (2010-era style)",
+    difficulty: 'easy',
+    source: 'Practice (2010-era style)',
+    autoGraded: true,
     prompt: `Write a Horse class that represents a horse with a name and weight.
 
 Requirements:
@@ -1803,17 +1719,13 @@ Example:
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write the complete Horse class with instance variables, constructor, getName(), getWeight(), and toString().",
-        points: 4
-      }
+      { label: 'a', instruction: 'Write the complete Horse class with instance variables, constructor, getName(), getWeight(), and toString().', points: 4 }
     ],
     rubric: [
-      { points: 1, description: "Declares appropriate private instance variables (name, weight)" },
-      { points: 1, description: "Constructor correctly initializes both fields" },
-      { points: 1, description: "Getter methods return correct values" },
-      { points: 1, description: "toString() returns correct format: \"Horse: name (weight lbs)\"" }
+      { points: 1, description: 'Declares appropriate private instance variables (name, weight)', index: 1, skill: 'code', partLabel: 'a', keywords: ['private'] },
+      { points: 1, description: 'Constructor correctly initializes both fields', index: 2, skill: 'code', partLabel: 'a', keywords: ['this.name', 'this.weight'] },
+      { points: 1, description: 'Getter methods return correct values', index: 3, skill: 'code', partLabel: 'a', keywords: ['getName', 'getWeight'] },
+      { points: 1, description: 'toString() returns correct format: "Horse: name (weight lbs)"', index: 4, skill: 'code', partLabel: 'a', keywords: ['toString', 'Horse:'] }
     ],
     sampleSolution: `public class Horse {
     private String name;
@@ -1839,13 +1751,14 @@ Example:
   },
 
   {
-    id: "frq_022",
+    id: 'frq_022',
     year: 2010,
-    type: "Methods & Control Structures",
-    title: "GradeCalculator",
+    type: 'Methods & Control Structures',
+    title: 'GradeCalculator',
     units: [2],
-    difficulty: "easy",
-    source: "Practice (2010-era style)",
+    difficulty: 'easy',
+    source: 'Practice (2010-era style)',
+    autoGraded: true,
     prompt: `The GradeCalculator class provides methods for working with grades.
 
 public class GradeCalculator {
@@ -1878,23 +1791,15 @@ public class GradeCalculator {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write letterGrade(int score) that returns \"A\", \"B\", \"C\", \"D\", or \"F\" based on the score ranges.",
-        points: 3
-      },
-      {
-        label: "b",
-        instruction: "Write countPassing(int[] scores) that returns the number of scores that are 60 or above.",
-        points: 2
-      }
+      { label: 'a', instruction: 'Write letterGrade(int score) that returns "A", "B", "C", "D", or "F" based on the score ranges.', points: 3 },
+      { label: 'b', instruction: 'Write countPassing(int[] scores) that returns the number of scores that are 60 or above.', points: 2 }
     ],
     rubric: [
-      { points: 1, description: "(a) Correctly returns \"A\" for 90-100 and \"B\" for 80-89" },
-      { points: 1, description: "(a) Correctly returns \"C\" for 70-79, \"D\" for 60-69, and \"F\" for below 60" },
-      { points: 1, description: "(a) Uses proper if/else if structure or equivalent" },
-      { points: 1, description: "(b) Iterates through all elements of scores array" },
-      { points: 1, description: "(b) Correctly counts and returns number of passing scores (>= 60)" }
+      { points: 1, description: '(a) Correctly returns "A" for 90-100 and "B" for 80-89', index: 1, skill: 'code', partLabel: 'a', keywords: ['return', 'letterGrade', 'score'] },
+      { points: 1, description: '(a) Correctly returns "C" for 70-79, "D" for 60-69, and "F" for below 60', index: 2, skill: 'code', partLabel: 'a', keywords: ['return', 'letterGrade', 'score'] },
+      { points: 1, description: '(a) Uses proper if/else if structure or equivalent', index: 3, skill: 'code', partLabel: 'a', keywords: ['if', 'else'] },
+      { points: 1, description: '(b) Iterates through all elements of scores array', index: 4, skill: 'code', partLabel: 'b', keywords: ['for', 'letterGrade', 'score'], cpeSource: 'a' },
+      { points: 1, description: '(b) Correctly counts and returns number of passing scores (>= 60)', index: 5, skill: 'code', partLabel: 'b', keywords: ['return', '>=', 'count', '>= 60'], cpeSource: 'a' }
     ],
     sampleSolution: `public static String letterGrade(int score) {
     if (score >= 90) return "A";
@@ -1911,16 +1816,20 @@ public static int countPassing(int[] scores) {
     }
     return count;
 }`
-  },
+  }
+  // ─── CB 2011 FRQs ──────────────────────────────────────────────────────────
+
+,
 
   {
-    id: "frq_023",
+    id: 'frq_023',
     year: 2011,
-    type: "Array/ArrayList",
-    title: "ArrayHelper",
+    type: 'Array/ArrayList',
+    title: 'ArrayHelper',
     units: [4],
-    difficulty: "easy",
-    source: "Practice (2011-era style)",
+    difficulty: 'easy',
+    source: 'Practice (2011-era style)',
+    autoGraded: true,
     prompt: `The ArrayHelper class provides utility methods for working with int arrays.
 
 public class ArrayHelper {
@@ -1953,23 +1862,15 @@ public class ArrayHelper {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write reverseArray(int[] arr) that returns a new array containing the elements of arr in reverse order.",
-        points: 3
-      },
-      {
-        label: "b",
-        instruction: "Write findIndex(int[] arr, int target) that returns the index of the first occurrence of target, or -1 if not found.",
-        points: 2
-      }
+      { label: 'a', instruction: 'Write reverseArray(int[] arr) that returns a new array containing the elements of arr in reverse order.', points: 3 },
+      { label: 'b', instruction: 'Write findIndex(int[] arr, int target) that returns the index of the first occurrence of target, or -1 if not found.', points: 2 }
     ],
     rubric: [
-      { points: 1, description: "(a) Creates a new array of the same length as arr" },
-      { points: 1, description: "(a) Correctly copies elements in reverse order" },
-      { points: 1, description: "(a) Returns the new reversed array" },
-      { points: 1, description: "(b) Iterates through arr and compares each element to target" },
-      { points: 1, description: "(b) Returns correct index on match or -1 if not found" }
+      { points: 1, description: '(a) Creates a new array of the same length as arr', index: 1, skill: 'code', partLabel: 'a', keywords: ['new int[', 'reverseArray', 'arr'] },
+      { points: 1, description: '(a) Correctly copies elements in reverse order', index: 2, skill: 'code', partLabel: 'a', keywords: ['reverseArray', 'arr', '[', '=', '.length', '- 1'] },
+      { points: 1, description: '(a) Returns the new reversed array', index: 3, skill: 'code', partLabel: 'a', keywords: ['return', 'result', '.length', '- 1'] },
+      { points: 1, description: '(b) Iterates through arr and compares each element to target', index: 4, skill: 'code', partLabel: 'b', keywords: ['for', 'reverseArray'], cpeSource: 'a' },
+      { points: 1, description: '(b) Returns correct index on match or -1 if not found', index: 5, skill: 'code', partLabel: 'b', keywords: ['return', '-1', 'result'], cpeSource: 'a' }
     ],
     sampleSolution: `public static int[] reverseArray(int[] arr) {
     int[] result = new int[arr.length];
@@ -1985,16 +1886,20 @@ public static int findIndex(int[] arr, int target) {
     }
     return -1;
 }`
-  },
+  }
+  // ─── CB 2012 FRQs ──────────────────────────────────────────────────────────
+
+,
 
   {
-    id: "frq_024",
+    id: 'frq_024',
     year: 2012,
-    type: "Methods & Control Structures",
-    title: "Calculator",
+    type: 'Methods & Control Structures',
+    title: 'Calculator',
     units: [1],
-    difficulty: "easy",
-    source: "Practice (2012-era style)",
+    difficulty: 'easy',
+    source: 'Practice (2012-era style)',
+    autoGraded: true,
     prompt: `The Calculator class provides basic math utility methods.
 
 public class Calculator {
@@ -2027,23 +1932,15 @@ public class Calculator {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write power(int base, int exp) that returns base raised to the power of exp, computed using a loop.",
-        points: 3
-      },
-      {
-        label: "b",
-        instruction: "Write factorial(int n) that returns n factorial (n!). Remember that 0! = 1.",
-        points: 2
-      }
+      { label: 'a', instruction: 'Write power(int base, int exp) that returns base raised to the power of exp, computed using a loop.', points: 3 },
+      { label: 'b', instruction: 'Write factorial(int n) that returns n factorial (n!). Remember that 0! = 1.', points: 2 }
     ],
     rubric: [
-      { points: 1, description: "(a) Initializes result to 1" },
-      { points: 1, description: "(a) Loops exp times, multiplying result by base each iteration" },
-      { points: 1, description: "(a) Returns correct result (including base case exp==0 returning 1)" },
-      { points: 1, description: "(b) Handles base case (0! = 1 or 1! = 1)" },
-      { points: 1, description: "(b) Correctly computes factorial using a loop and returns result" }
+      { points: 1, description: '(a) Initializes result to 1', index: 1, skill: 'code', partLabel: 'a', keywords: ['power', 'base', '= 1'] },
+      { points: 1, description: '(a) Loops exp times, multiplying result by base each iteration', index: 2, skill: 'code', partLabel: 'a', keywords: ['for', '*'] },
+      { points: 1, description: '(a) Returns correct result (including base case exp==0 returning 1)', index: 3, skill: 'code', partLabel: 'a', keywords: ['return', 'result'] },
+      { points: 1, description: '(b) Handles base case (0! = 1 or 1! = 1)', index: 4, skill: 'code', partLabel: 'b', keywords: ['power', 'base', 'return', '1'], cpeSource: 'a' },
+      { points: 1, description: '(b) Correctly computes factorial using a loop and returns result', index: 5, skill: 'code', partLabel: 'b', keywords: ['for', 'return', '*='], cpeSource: 'a' }
     ],
     sampleSolution: `public static int power(int base, int exp) {
     int result = 1;
@@ -2060,16 +1957,20 @@ public static int factorial(int n) {
     }
     return result;
 }`
-  },
+  }
+  // ─── CB 2010 FRQs ──────────────────────────────────────────────────────────
+
+,
 
   {
-    id: "frq_025",
+    id: 'frq_025',
     year: 2010,
-    type: "Class Design",
-    title: "CookieOrder",
+    type: 'Class Design',
+    title: 'CookieOrder',
     units: [2, 3],
-    difficulty: "medium",
-    source: "Practice (CB 2010 style)",
+    difficulty: 'medium',
+    source: 'Practice (CB 2010 style)',
+    autoGraded: true,
     prompt: `A CookieOrder object represents an order for a certain number of boxes of a
 particular variety of cookie. The following CookieOrder class is used along
 with a MasterOrder class.
@@ -2137,24 +2038,16 @@ public class CookieOrder {
 //     }
 // }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write the CookieOrder class with private instance variables, a constructor, getVariety(), and getNumBoxes().",
-        points: 3
-      },
-      {
-        label: "b",
-        instruction: "Write the getTotalBoxes() method for MasterOrder that iterates through the orders list and returns the sum of all numBoxes.",
-        points: 3
-      }
+      { label: 'a', instruction: 'Write the CookieOrder class with private instance variables, a constructor, getVariety(), and getNumBoxes().', points: 3 },
+      { label: 'b', instruction: 'Write the getTotalBoxes() method for MasterOrder that iterates through the orders list and returns the sum of all numBoxes.', points: 3 }
     ],
     rubric: [
-      { points: 1, description: "(a) Declares private instance variables for variety and numBoxes" },
-      { points: 1, description: "(a) Constructor correctly initializes both fields" },
-      { points: 1, description: "(a) Getter methods return correct values" },
-      { points: 1, description: "(b) Iterates through all CookieOrder objects in orders" },
-      { points: 1, description: "(b) Calls getNumBoxes() on each order" },
-      { points: 1, description: "(b) Accumulates and returns the correct total" }
+      { points: 1, description: '(a) Declares private instance variables for variety and numBoxes', index: 1, skill: 'code', partLabel: 'a', keywords: ['private', 'variety', 'numBoxes'] },
+      { points: 1, description: '(a) Constructor correctly initializes both fields', index: 2, skill: 'code', partLabel: 'a', keywords: ['this.', 'CookieOrder', 'variety'] },
+      { points: 1, description: '(a) Getter methods return correct values', index: 3, skill: 'code', partLabel: 'a', keywords: ['CookieOrder', 'variety', 'return', 'get'] },
+      { points: 1, description: '(b) Iterates through all CookieOrder objects in orders', index: 4, skill: 'code', partLabel: 'b', keywords: ['for', 'CookieOrder'], cpeSource: 'a' },
+      { points: 1, description: '(b) Calls getNumBoxes() on each order', index: 5, skill: 'code', partLabel: 'b', keywords: ['getnumboxes(', 'CookieOrder', 'variety'], cpeSource: 'a' },
+      { points: 1, description: '(b) Accumulates and returns the correct total', index: 6, skill: 'code', partLabel: 'b', keywords: ['return', '+='], cpeSource: 'a' }
     ],
     sampleSolution: `public class CookieOrder {
     private String variety;
@@ -2182,16 +2075,20 @@ public int getTotalBoxes() {
     }
     return total;
 }`
-  },
+  }
+  // ─── CB 2015 FRQs ──────────────────────────────────────────────────────────
+
+,
 
   {
-    id: "frq_026",
+    id: 'frq_026',
     year: 2015,
-    type: "Methods & Control Structures",
-    title: "NumberGroup",
+    type: 'Methods & Control Structures',
+    title: 'NumberGroup',
     units: [4],
-    difficulty: "medium",
-    source: "Practice (CB 2015 style)",
+    difficulty: 'medium',
+    source: 'Practice (CB 2015 style)',
+    autoGraded: true,
     prompt: `This question involves the concept of a number group, which is a group of
 numbers that may or may not contain a given number. A Range represents a
 number group containing all integers between a minimum and maximum value,
@@ -2253,23 +2150,23 @@ public class Range implements NumberGroup {
 //     // YOUR CODE HERE
 // }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write the Range class that implements NumberGroup. Include private fields, a constructor, and the hasNumber method that checks if num is in [min, max].",
-        points: 3
-      },
-      {
-        label: "b",
-        instruction: "Write isInAnyGroup(ArrayList<NumberGroup> groupList, int num) that returns true if num is contained in any of the NumberGroup objects.",
-        points: 2
-      }
+      { label: 'a', instruction: 'Write the Range class that implements NumberGroup. Include private fields, a constructor, and the hasNumber method that checks if num is in [min, max].', points: 3 },
+      { label: 'b', instruction: 'Write isInAnyGroup(ArrayList<NumberGroup> groupList, int num) that returns true if num is contained in any of the NumberGroup objects.', points: 2 }
     ],
     rubric: [
-      { points: 1, description: "(a) Declares private min and max fields; constructor initializes them" },
-      { points: 1, description: "(a) hasNumber correctly checks num >= min && num <= max" },
-      { points: 1, description: "(a) Class properly implements NumberGroup interface" },
-      { points: 1, description: "(b) Iterates through all NumberGroup objects in groupList" },
-      { points: 1, description: "(b) Calls hasNumber and returns true if any group contains num; false otherwise" }
+      { points: 1, description: '(a) Declares private min and max fields; constructor initializes them', index: 1, skill: 'code', partLabel: 'a', keywords: ['private', 'min', 'max', 'this.', '>'] },
+      { points: 1, description: '(a) hasNumber correctly checks num >= min && num <= max', index: 2, skill: 'code', partLabel: 'a', keywords: ['>=', 'Range', 'NumberGroup', '>', 'max', '<='] },
+      { points: 1, description: '(a) Class properly implements NumberGroup interface', index: 3, skill: 'code', partLabel: 'a', keywords: ['implements', 'Range', 'NumberGroup'] },
+      { points: 1, description: '(b) Iterates through all NumberGroup objects in groupList', index: 4, skill: 'code', partLabel: 'b', keywords: ['for', 'NumberGroup'], cpeSource: 'a' },
+      {
+        points: 1,
+        description: '(b) Calls hasNumber and returns true if any group contains num; false otherwise',
+        index: 5,
+        skill: 'code',
+        partLabel: 'b',
+        keywords: ['return', 'true', 'hasnumber(', '>=', '<='],
+        cpeSource: 'a'
+      }
     ],
     sampleSolution: `public class Range implements NumberGroup {
     private int min;
@@ -2291,16 +2188,20 @@ public static boolean isInAnyGroup(ArrayList<NumberGroup> groupList, int num) {
     }
     return false;
 }`
-  },
+  }
+  // ─── CB 2011 FRQs ──────────────────────────────────────────────────────────
+
+,
 
   {
-    id: "frq_027",
+    id: 'frq_027',
     year: 2011,
-    type: "Class Design",
-    title: "Dog",
+    type: 'Class Design',
+    title: 'Dog',
     units: [3],
-    difficulty: "easy",
-    source: "Practice (2011-era style)",
+    difficulty: 'easy',
+    source: 'Practice (2011-era style)',
+    autoGraded: true,
     prompt: `Write a Dog class that represents a dog with a name, breed, and age.
 
 Requirements:
@@ -2345,18 +2246,14 @@ Example:
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write the complete Dog class with instance variables, constructor, getters, isOlderThan, and toString.",
-        points: 5
-      }
+      { label: 'a', instruction: 'Write the complete Dog class with instance variables, constructor, getters, isOlderThan, and toString.', points: 5 }
     ],
     rubric: [
-      { points: 1, description: "Declares appropriate private instance variables (name, breed, age)" },
-      { points: 1, description: "Constructor correctly initializes all three fields" },
-      { points: 1, description: "Getter methods return correct values" },
-      { points: 1, description: "isOlderThan correctly compares this.age > other.getAge()" },
-      { points: 1, description: "toString() returns correct format: \"name (breed, age years old)\"" }
+      { points: 1, description: 'Declares appropriate private instance variables (name, breed, age)', index: 1, skill: 'code', partLabel: 'a', keywords: ['private'] },
+      { points: 1, description: 'Constructor correctly initializes all three fields', index: 2, skill: 'code', partLabel: 'a', keywords: ['this.name', 'this.breed', 'this.age'] },
+      { points: 1, description: 'Getter methods return correct values', index: 3, skill: 'code', partLabel: 'a', keywords: ['getName', 'getBreed', 'getAge'] },
+      { points: 1, description: 'isOlderThan correctly compares this.age > other.getAge()', index: 4, skill: 'code', partLabel: 'a', keywords: ['isOlderThan', '>', 'getAge'] },
+      { points: 1, description: 'toString() returns correct format: "name (breed, age years old)"', index: 5, skill: 'code', partLabel: 'a', keywords: ['toString', 'years'] }
     ],
     sampleSolution: `public class Dog {
     private String name;
@@ -2389,16 +2286,20 @@ Example:
         return name + " (" + breed + ", " + age + " years old)";
     }
 }`
-  },
+  }
+  // ─── CB 2012 FRQs ──────────────────────────────────────────────────────────
+
+,
 
   {
-    id: "frq_028",
+    id: 'frq_028',
     year: 2012,
-    type: "Methods & Control Structures",
-    title: "TemperatureConverter",
+    type: 'Methods & Control Structures',
+    title: 'TemperatureConverter',
     units: [2],
-    difficulty: "easy",
-    source: "Practice (2012-era style)",
+    difficulty: 'easy',
+    source: 'Practice (2012-era style)',
+    autoGraded: true,
     prompt: `The TemperatureConverter class provides methods for converting and classifying
 temperatures.
 
@@ -2446,23 +2347,23 @@ public class TemperatureConverter {
     }
 }`,
     parts: [
-      {
-        label: "a",
-        instruction: "Write toFahrenheit(double celsius) and toCelsius(double fahrenheit) using the standard conversion formulas.",
-        points: 2
-      },
-      {
-        label: "b",
-        instruction: "Write classify(double tempF) that returns \"Freezing\", \"Cold\", \"Warm\", or \"Hot\" based on the given ranges.",
-        points: 3
-      }
+      { label: 'a', instruction: 'Write toFahrenheit(double celsius) and toCelsius(double fahrenheit) using the standard conversion formulas.', points: 2 },
+      { label: 'b', instruction: 'Write classify(double tempF) that returns "Freezing", "Cold", "Warm", or "Hot" based on the given ranges.', points: 3 }
     ],
     rubric: [
-      { points: 1, description: "(a) toFahrenheit correctly computes celsius * 9.0/5.0 + 32" },
-      { points: 1, description: "(a) toCelsius correctly computes (fahrenheit - 32) * 5.0/9.0" },
-      { points: 1, description: "(b) Correctly returns \"Freezing\" for tempF <= 32" },
-      { points: 1, description: "(b) Correctly returns \"Cold\" for 32 < tempF <= 59 and \"Warm\" for 59 < tempF <= 85" },
-      { points: 1, description: "(b) Correctly returns \"Hot\" for tempF > 85" }
+      { points: 1, description: '(a) toFahrenheit correctly computes celsius * 9.0/5.0 + 32', index: 1, skill: 'code', partLabel: 'a', keywords: ['*', '9.0', '5.0'] },
+      { points: 1, description: '(a) toCelsius correctly computes (fahrenheit - 32) * 5.0/9.0', index: 2, skill: 'code', partLabel: 'a', keywords: ['*', '32', '5.0'] },
+      { points: 1, description: '(b) Correctly returns "Freezing" for tempF <= 32', index: 3, skill: 'code', partLabel: 'b', keywords: ['return', '"freezing"', '32', '<='], cpeSource: 'a' },
+      {
+        points: 1,
+        description: '(b) Correctly returns "Cold" for 32 < tempF <= 59 and "Warm" for 59 < tempF <= 85',
+        index: 4,
+        skill: 'code',
+        partLabel: 'b',
+        keywords: ['return', '<', '"cold"', '"warm"', '59', '85'],
+        cpeSource: 'a'
+      },
+      { points: 1, description: '(b) Correctly returns "Hot" for tempF > 85', index: 5, skill: 'code', partLabel: 'b', keywords: ['return', '"hot"', '85'], cpeSource: 'a' }
     ],
     sampleSolution: `public static double toFahrenheit(double celsius) {
     return celsius * 9.0 / 5.0 + 32;

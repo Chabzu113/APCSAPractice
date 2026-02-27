@@ -5,6 +5,7 @@
 var FRQ_CONFIGS = {
 
   apush: {
+    autoGradeAll: true,  // every apush FRQ question is auto-graded
 
     // ─── Shorthand Resolution ────────────────────────────────────────────────
     // All keys must be UPPERCASE for case-insensitive lookup
@@ -755,8 +756,162 @@ var FRQ_CONFIGS = {
 
   } // end apush
 
-  // Future subjects can be added here:
-  // apbio: { ... },
-  // apstats: { ... },
-  // aplang: { ... }
+  ,apphys1: {
+    autoGradeAll: true,  // every apphys1 FRQ question is auto-graded
+    principles: [
+      "newton's second law", "newton's 2nd law",
+      "f_net = ma", "f = ma", "fnet = ma",
+      "net force equals mass times acceleration",
+      "sum of forces", "second law of motion",
+      "conservation of energy",
+      "work-energy theorem", "work energy theorem",
+      "w_net = delta ke", "net work equals change in kinetic",
+      "conservation of momentum",
+      "impulse-momentum theorem",
+      "newton's third law", "action-reaction",
+      "kinematic", "kinematics equation",
+      "free fall", "y = 1/2 g t", "v = v0 + at"
+    ]
+  }
+
+  ,apphyscem: {
+    principles: [
+      "coulomb's law", "coulomb's force law",
+      "gauss's law", "electric flux",
+      "faraday's law", "faraday's law of induction",
+      "ampere's law",
+      "kirchhoff's voltage law", "kirchhoff's current law",
+      "kirchhoff's loop rule", "kirchhoff's junction rule",
+      "conservation of charge", "conservation of energy",
+      "electric potential energy",
+      "capacitance", "c = q/v",
+      "ohm's law", "v = ir",
+      "biot-savart law",
+      "lenz's law",
+      "superposition principle"
+    ]
+  }
+
+  ,apbio: {
+    principles: [
+      "cell theory",
+      "natural selection",
+      "law of conservation of energy",
+      "homeostasis",
+      "central dogma",
+      "mendelian genetics", "mendel's laws",
+      "law of segregation", "law of independent assortment",
+      "hardy-weinberg equilibrium",
+      "enzyme-substrate specificity",
+      "fluid mosaic model",
+      "chemiosmosis",
+      "positive feedback", "negative feedback",
+      "evolution by natural selection",
+      "endosymbiotic theory",
+      "competitive exclusion principle"
+    ]
+  }
+
+  ,apstats: {
+    principles: [
+      "law of large numbers",
+      "central limit theorem",
+      "significance level", "alpha level",
+      "null hypothesis", "alternative hypothesis",
+      "p-value",
+      "normal distribution",
+      "standard deviation",
+      "confidence interval",
+      "sampling distribution",
+      "independence", "random sampling",
+      "regression to the mean",
+      "correlation does not imply causation",
+      "expected value",
+      "probability"
+    ]
+  }
+
+  ,apmicro: {
+    principles: [
+      "law of demand",
+      "law of supply",
+      "supply and demand",
+      "marginal analysis",
+      "law of diminishing marginal returns",
+      "diminishing marginal utility",
+      "opportunity cost",
+      "comparative advantage",
+      "price mechanism",
+      "profit maximization",
+      "mr = mc",
+      "marginal revenue equals marginal cost",
+      "consumer surplus",
+      "producer surplus",
+      "allocative efficiency",
+      "productive efficiency"
+    ]
+  }
+
+  ,apmacro: {
+    principles: [
+      "law of demand",
+      "law of supply",
+      "aggregate demand",
+      "aggregate supply",
+      "fiscal policy",
+      "monetary policy",
+      "money multiplier",
+      "spending multiplier",
+      "phillips curve",
+      "loanable funds",
+      "quantity theory of money",
+      "comparative advantage",
+      "opportunity cost",
+      "crowding out",
+      "liquidity preference"
+    ]
+  }
+
+  ,apcalcab: {
+    principles: [
+      "fundamental theorem of calculus",
+      "ftc",
+      "chain rule",
+      "product rule",
+      "quotient rule",
+      "mean value theorem",
+      "mvt",
+      "intermediate value theorem",
+      "ivt",
+      "l'hopital's rule",
+      "squeeze theorem",
+      "riemann sum",
+      "definition of the derivative",
+      "limit definition",
+      "power rule",
+      "derivative",
+      "antiderivative",
+      "integration by substitution"
+    ]
+  }
+
+  ,apcsa: {
+    principles: [
+      "method signature",
+      "return statement",
+      "loop invariant",
+      "array traversal",
+      "base case",
+      "recursive case",
+      "encapsulation",
+      "inheritance",
+      "polymorphism",
+      "interface",
+      "boolean expression",
+      "scope",
+      "null check",
+      "off-by-one"
+    ]
+  }
+
 };

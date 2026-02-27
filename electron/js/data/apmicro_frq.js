@@ -16,25 +16,60 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Correct labels for axes (Tablets and Corn) and a concave/bowed-out curve."
+        "description": "1pt: Correct labels for axes (Tablets and Corn) and a concave/bowed-out curve.",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       },
       {
         "points": 1,
-        "description": "1pt: Point U located anywhere inside the PPC boundary."
+        "description": "1pt: Point U located anywhere inside the PPC boundary.",
+        "skill": "explain",
+        "keywords": [
+          "inside the ppc",
+          "point u",
+          "ppc"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: An outward rotation of the PPC along the 'Corn' axis only."
+        "description": "1pt: An outward rotation of the PPC along the 'Corn' axis only.",
+        "skill": "explain",
+        "keywords": [
+          "corn",
+          "outward rotation",
+          "ppc"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: State that the opportunity cost increases."
+        "description": "1pt: State that the opportunity cost increases.",
+        "skill": "describe",
+        "keywords": [
+          "the opportunity cost increases",
+          "opportunity cost"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that resources are not perfectly adaptable to the production of both goods (Law of Increasing Opportunity Costs)."
+        "description": "1pt: Explain that resources are not perfectly adaptable to the production of both goods (Law of Increasing Opportunity Costs).",
+        "skill": "explain",
+        "keywords": [
+          "law of increasing opportunity costs",
+          "increasing opportunity costs",
+          "not perfectly adaptable",
+          "perfectly adaptable",
+          "resources"
+        ],
+        "partLabel": "d"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u1-frq002",
@@ -53,25 +88,43 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Identify Alex (10 > 6)."
+        "description": "1pt: Identify Alex (10 > 6).",
+        "skill": "explain",
+        "keywords": [],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Calculate 1 fish (6 fish / 6 coconuts)."
+        "description": "1pt: Calculate 1 fish (6 fish / 6 coconuts).",
+        "skill": "calculate",
+        "keywords": [],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Identify Sam."
+        "description": "1pt: Identify Sam.",
+        "skill": "explain",
+        "keywords": [],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that Sam’s cost of 1 coconut (1 fish) is lower than Alex’s cost of 1 coconut (2 fish)."
+        "description": "1pt: Explain that Sam’s cost of 1 coconut (1 fish) is lower than Alex’s cost of 1 coconut (2 fish).",
+        "skill": "explain",
+        "keywords": [
+          "sam’s cost of 1 coconut"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: State 2 fish (the buyer, Sam, will pay anything less than Alex's cost of producing it themselves)."
+        "description": "1pt: State 2 fish (the buyer, Sam, will pay anything less than Alex's cost of producing it themselves).",
+        "skill": "explain",
+        "keywords": [],
+        "partLabel": "e"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u1-frq003",
@@ -90,21 +143,40 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: State MUx/Px = MUy/Py."
+        "description": "1pt: State MUx/Px = MUy/Py.",
+        "skill": "explain",
+        "keywords": [
+          "mux/px"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Calculate 40 utils (20/$1 = X/$2)."
+        "description": "1pt: Calculate 40 utils (20/$1 = X/$2).",
+        "skill": "calculate",
+        "keywords": [],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: State that Janine will consume fewer apples."
+        "description": "1pt: State that Janine will consume fewer apples.",
+        "skill": "describe",
+        "keywords": [
+          "janine will consume fewer apples"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that as the price of apples rises, the marginal utility per dollar spent on apples decreases, making bananas a relatively more attractive alternative."
+        "description": "1pt: Explain that as the price of apples rises, the marginal utility per dollar spent on apples decreases, making bananas a relatively more attractive alternative.",
+        "skill": "explain",
+        "keywords": [
+          "marginal utility"
+        ],
+        "partLabel": "d"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u1-frq004",
@@ -123,25 +195,61 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Axes labeled (Capital Goods and Consumer Goods) with any curve."
+        "description": "1pt: Axes labeled (Capital Goods and Consumer Goods) with any curve.",
+        "skill": "explain",
+        "keywords": [
+          "capital goods",
+          "consumer goods",
+          "axes labeled",
+          "capital",
+          "capital goods and consumer goods"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Point E placed on the curve."
+        "description": "1pt: Point E placed on the curve.",
+        "skill": "explain",
+        "keywords": [
+          "placed on the curve",
+          "on the curve",
+          "point e"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Movement along the curve toward the 'Capital Goods' axis."
+        "description": "1pt: Movement along the curve toward the 'Capital Goods' axis.",
+        "skill": "explain",
+        "keywords": [
+          "capital goods",
+          "capital"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: State that the PPC will shift outward (economic growth)."
+        "description": "1pt: State that the PPC will shift outward (economic growth).",
+        "skill": "describe",
+        "keywords": [
+          "the ppc will shift outward",
+          "economic growth",
+          "ppc"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that capital goods are used to produce other goods, increasing future production capacity."
+        "description": "1pt: Explain that capital goods are used to produce other goods, increasing future production capacity.",
+        "skill": "explain",
+        "keywords": [
+          "capital goods",
+          "capital"
+        ],
+        "partLabel": "e"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u1-frq005",
@@ -160,17 +268,27 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Identify Pat."
+        "description": "1pt: Identify Pat.",
+        "skill": "explain",
+        "keywords": [],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that for this input problem, Pat's cost of painting a room is 1 lawn (40/40), while Chris's cost is 2 lawns (60/30)."
+        "description": "1pt: Explain that for this input problem, Pat's cost of painting a room is 1 lawn (40/40), while Chris's cost is 2 lawns (60/30).",
+        "skill": "explain",
+        "keywords": [],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: State any value between 1 and 2 mowed lawns (e.g., 1.5 lawns)."
+        "description": "1pt: State any value between 1 and 2 mowed lawns (e.g., 1.5 lawns).",
+        "skill": "explain",
+        "keywords": [],
+        "partLabel": "c"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u2-frq001",
@@ -189,25 +307,58 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Correct axes (P, Q), downward Demand, upward Supply, and labels (Pe, Qe)."
+        "description": "1pt: Correct axes (P, Q), downward Demand, upward Supply, and labels (Pe, Qe).",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       },
       {
         "points": 1,
-        "description": "1pt: Leftward shift of Supply (input cost) and Rightward shift of Demand (substitute price)."
+        "description": "1pt: Leftward shift of Supply (input cost) and Rightward shift of Demand (substitute price).",
+        "skill": "explain",
+        "keywords": [
+          "leftward shift",
+          "rightward shift",
+          "substitute",
+          "input cost"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: State that Price increases and Quantity is indeterminate."
+        "description": "1pt: State that Price increases and Quantity is indeterminate.",
+        "skill": "describe",
+        "keywords": [
+          "price increases and quantity is indeterminate",
+          "price increases",
+          "indeterminate"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: State that Total Revenue will decrease."
+        "description": "1pt: State that Total Revenue will decrease.",
+        "skill": "describe",
+        "keywords": [
+          "total revenue will decrease",
+          "total revenue"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that when demand is elastic, the percentage decrease in quantity demanded is greater than the percentage increase in price, causing total revenue to fall."
+        "description": "1pt: Explain that when demand is elastic, the percentage decrease in quantity demanded is greater than the percentage increase in price, causing total revenue to fall.",
+        "skill": "explain",
+        "keywords": [
+          "quantity demanded",
+          "total revenue"
+        ],
+        "partLabel": "d"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u2-frq002",
@@ -226,29 +377,63 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Supply shifts left (up) by the vertical distance of the tax."
+        "description": "1pt: Supply shifts left (up) by the vertical distance of the tax.",
+        "skill": "explain",
+        "keywords": [
+          "shifts left",
+          "vertical"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Pc, Ps, and Qt correctly labeled on the Y and X axes."
+        "description": "1pt: Pc, Ps, and Qt correctly labeled on the Y and X axes.",
+        "skill": "explain",
+        "keywords": [
+          "correctly labeled"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Triangle area between Demand, Supply, and Qt shaded."
+        "description": "1pt: Triangle area between Demand, Supply, and Qt shaded.",
+        "skill": "explain",
+        "keywords": [
+          "triangle",
+          "area"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: Rectangle area between Pc, Ps, and Qt shaded."
+        "description": "1pt: Rectangle area between Pc, Ps, and Qt shaded.",
+        "skill": "explain",
+        "keywords": [
+          "rectangle",
+          "area"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: State that consumers bear the full burden."
+        "description": "1pt: State that consumers bear the full burden.",
+        "skill": "describe",
+        "keywords": [
+          "consumers bear the full burden"
+        ],
+        "partLabel": "e"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that because consumers will buy the same quantity regardless of price, the seller can pass the entire tax increase onto the consumer without losing sales."
+        "description": "1pt: Explain that because consumers will buy the same quantity regardless of price, the seller can pass the entire tax increase onto the consumer without losing sales.",
+        "skill": "explain",
+        "keywords": [
+          "regardless of price"
+        ],
+        "partLabel": "f"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u2-frq003",
@@ -267,25 +452,59 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Correct S&D graph."
+        "description": "1pt: Correct S&D graph.",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       },
       {
         "points": 1,
-        "description": "1pt: Horizontal line Pc drawn below the equilibrium intersection."
+        "description": "1pt: Horizontal line Pc drawn below the equilibrium intersection.",
+        "skill": "explain",
+        "keywords": [
+          "intersection",
+          "equilibrium",
+          "horizontal"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: State 'Shortage' and label Qd (on Demand curve) and Qs (on Supply curve) at Pc."
+        "description": "1pt: State 'Shortage' and label Qd (on Demand curve) and Qs (on Supply curve) at Pc.",
+        "skill": "describe",
+        "keywords": [
+          "shortage",
+          "demand curve",
+          "supply curve"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: State that total surplus decreases."
+        "description": "1pt: State that total surplus decreases.",
+        "skill": "describe",
+        "keywords": [
+          "total surplus decreases",
+          "total surplus",
+          "surplus"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that the ceiling prevents mutually beneficial transactions from occurring (where MB > MC), resulting in deadweight loss."
+        "description": "1pt: Explain that the ceiling prevents mutually beneficial transactions from occurring (where MB > MC), resulting in deadweight loss.",
+        "skill": "explain",
+        "keywords": [
+          "the ceiling prevents mutually beneficial transactions from occurring",
+          "mc",
+          "deadweight loss"
+        ],
+        "partLabel": "d"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u3-frq001",
@@ -304,29 +523,67 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Side-by-side graphs with Pf = MR = Demand horizontal line for the firm."
+        "description": "1pt: Side-by-side graphs with Pf = MR = Demand horizontal line for the firm.",
+        "skill": "explain",
+        "keywords": [
+          "horizontal",
+          "mr"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Market Demand shifts right; Pm and Qm increase."
+        "description": "1pt: Market Demand shifts right; Pm and Qm increase.",
+        "skill": "explain",
+        "keywords": [
+          "shifts right",
+          "qm",
+          "pm"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Pf/MR line shifts up for the firm; Qf increases where new MR = MC."
+        "description": "1pt: Pf/MR line shifts up for the firm; Qf increases where new MR = MC.",
+        "skill": "explain",
+        "keywords": [
+          "shifts up",
+          "mr = mc",
+          "mc",
+          "mr"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: Shade the rectangle from Pf down to the ATC curve at quantity Qf."
+        "description": "1pt: Shade the rectangle from Pf down to the ATC curve at quantity Qf.",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       },
       {
         "points": 1,
-        "description": "1pt: State that the number of firms will increase."
+        "description": "1pt: State that the number of firms will increase.",
+        "skill": "describe",
+        "keywords": [
+          "the number of firms will increase"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that the short-run economic profits attract new firms to enter the market until profits are driven back to zero."
+        "description": "1pt: Explain that the short-run economic profits attract new firms to enter the market until profits are driven back to zero.",
+        "skill": "explain",
+        "keywords": [
+          "economic profits attract",
+          "short-run"
+        ],
+        "partLabel": "e"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u3-frq002",
@@ -345,29 +602,62 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Calculate $250 loss ($10 - $15 = -$5; -$5 * 50 = -$250)."
+        "description": "1pt: Calculate $250 loss ($10 - $15 = -$5; -$5 * 50 = -$250).",
+        "skill": "calculate",
+        "keywords": [],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: State 'Stay Open'."
+        "description": "1pt: State 'Stay Open'.",
+        "skill": "describe",
+        "keywords": [
+          "stay open"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that since P ($10) > AVC ($8), the firm covers all variable costs and contributes $2 per unit to its fixed costs."
+        "description": "1pt: Explain that since P ($10) > AVC ($8), the firm covers all variable costs and contributes $2 per unit to its fixed costs.",
+        "skill": "explain",
+        "keywords": [
+          "since p",
+          "avc"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: State Produce where MR (or P) = MC."
+        "description": "1pt: State Produce where MR (or P) = MC.",
+        "skill": "explain",
+        "keywords": [
+          "mc",
+          "mr"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: State $15 (or the original minimum ATC)."
+        "description": "1pt: State $15 (or the original minimum ATC).",
+        "skill": "explain",
+        "keywords": [
+          "minimum atc",
+          "atc"
+        ],
+        "partLabel": "e"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that firms will exit the market until the price rises back to the break-even point (min ATC)."
+        "description": "1pt: Explain that firms will exit the market until the price rises back to the break-even point (min ATC).",
+        "skill": "explain",
+        "keywords": [
+          "break-even",
+          "atc"
+        ],
+        "partLabel": "f"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u4-frq001",
@@ -386,33 +676,85 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Correct axes (P, Q), downward Demand, steeper MR curve, and upward MC."
+        "description": "1pt: Correct axes (P, Q), downward Demand, steeper MR curve, and upward MC.",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       },
       {
         "points": 1,
-        "description": "1pt: Qm at MR=MC, Pm on the demand curve, Qso at P=MC."
+        "description": "1pt: Qm at MR=MC, Pm on the demand curve, Qso at P=MC.",
+        "skill": "explain",
+        "keywords": [
+          "mr=mc",
+          "demand curve",
+          "qso",
+          "qm",
+          "mc",
+          "mr",
+          "pm"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Triangle area shaded between Qm and Qso, under Demand and above MC."
+        "description": "1pt: Triangle area shaded between Qm and Qso, under Demand and above MC.",
+        "skill": "explain",
+        "keywords": [
+          "triangle",
+          "qso",
+          "mc",
+          "area",
+          "qm"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: State that Q and P remain unchanged."
+        "description": "1pt: State that Q and P remain unchanged.",
+        "skill": "describe",
+        "keywords": [
+          "q and p remain unchanged"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that a lump-sum tax is a fixed cost and does not affect Marginal Cost (MC), which determines the profit-maximizing level of output."
+        "description": "1pt: Explain that a lump-sum tax is a fixed cost and does not affect Marginal Cost (MC), which determines the profit-maximizing level of output.",
+        "skill": "explain",
+        "keywords": [
+          "lump-sum tax",
+          "does not affect marginal cost",
+          "profit-maximizing",
+          "marginal cost",
+          "fixed cost",
+          "mc"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: State that deadweight loss is eliminated/becomes zero."
+        "description": "1pt: State that deadweight loss is eliminated/becomes zero.",
+        "skill": "describe",
+        "keywords": [
+          "deadweight loss is eliminated/becomes zero",
+          "deadweight loss"
+        ],
+        "partLabel": "e"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that the firm produces every unit where the consumer's value (P) is greater than or equal to the cost (MC)."
+        "description": "1pt: Explain that the firm produces every unit where the consumer's value (P) is greater than or equal to the cost (MC).",
+        "skill": "explain",
+        "keywords": [
+          "mc"
+        ],
+        "partLabel": "f"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u4-frq002",
@@ -431,25 +773,47 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: State 'Yes, Low Price'."
+        "description": "1pt: State 'Yes, Low Price'.",
+        "skill": "describe",
+        "keywords": [
+          "yes, low price"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that if FlyFar chooses Low, SkyHigh earns 10 vs 5. If FlyFar chooses High, SkyHigh earns 50 vs 30. Low is always better."
+        "description": "1pt: Explain that if FlyFar chooses Low, SkyHigh earns 10 vs 5. If FlyFar chooses High, SkyHigh earns 50 vs 30. Low is always better.",
+        "skill": "explain",
+        "keywords": [],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Identify (Low, Low)."
+        "description": "1pt: Identify (Low, Low).",
+        "skill": "explain",
+        "keywords": [
+          "low, low"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: State (30, 30)."
+        "description": "1pt: State (30, 30).",
+        "skill": "explain",
+        "keywords": [],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that both firms have an incentive to cheat by secretly lowering their price to capture the entire market (increasing profit from 30 to 50)."
+        "description": "1pt: Explain that both firms have an incentive to cheat by secretly lowering their price to capture the entire market (increasing profit from 30 to 50).",
+        "skill": "explain",
+        "keywords": [
+          "incentive to cheat"
+        ],
+        "partLabel": "e"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u4-frq003",
@@ -468,25 +832,57 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: ATC must be downward sloping over the relevant range; MC must be below ATC."
+        "description": "1pt: ATC must be downward sloping over the relevant range; MC must be below ATC.",
+        "skill": "explain",
+        "keywords": [
+          "downward sloping",
+          "atc",
+          "mc"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that economies of scale are so large that one firm can provide the good at a lower per-unit cost than multiple firms could."
+        "description": "1pt: Explain that economies of scale are so large that one firm can provide the good at a lower per-unit cost than multiple firms could.",
+        "skill": "explain",
+        "keywords": [
+          "economies of scale"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Pf at P=ATC intersection; Ps at P=MC intersection."
+        "description": "1pt: Pf at P=ATC intersection; Ps at P=MC intersection.",
+        "skill": "explain",
+        "keywords": [
+          "intersection",
+          "atc",
+          "mc"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: State 'Economic Loss'."
+        "description": "1pt: State 'Economic Loss'.",
+        "skill": "describe",
+        "keywords": [
+          "economic loss"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that at the socially optimal quantity, ATC is greater than the price (since MC < ATC), resulting in a loss."
+        "description": "1pt: Explain that at the socially optimal quantity, ATC is greater than the price (since MC < ATC), resulting in a loss.",
+        "skill": "explain",
+        "keywords": [
+          "socially optimal",
+          "atc",
+          "mc"
+        ],
+        "partLabel": "e"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u4-frq004",
@@ -505,29 +901,67 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Demand tangent to ATC at the profit-maximizing quantity (MR=MC)."
+        "description": "1pt: Demand tangent to ATC at the profit-maximizing quantity (MR=MC).",
+        "skill": "explain",
+        "keywords": [
+          "profit-maximizing",
+          "mr=mc",
+          "atc",
+          "mc",
+          "mr"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: State 'No economic profit / Zero economic profit'."
+        "description": "1pt: State 'No economic profit / Zero economic profit'.",
+        "skill": "describe",
+        "keywords": [
+          "no economic profit / zero economic profit",
+          "zero economic profit",
+          "economic profit"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that in the long run, entry of new firms shifts demand left until P = ATC."
+        "description": "1pt: Explain that in the long run, entry of new firms shifts demand left until P = ATC.",
+        "skill": "explain",
+        "keywords": [
+          "long run",
+          "atc"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: State 'No'."
+        "description": "1pt: State 'No'.",
+        "skill": "describe",
+        "keywords": [
+          "no"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that the firm produces at a quantity where ATC is not at its minimum."
+        "description": "1pt: Explain that the firm produces at a quantity where ATC is not at its minimum.",
+        "skill": "explain",
+        "keywords": [
+          "atc"
+        ],
+        "partLabel": "e"
       },
       {
         "points": 1,
-        "description": "1pt: Correctly label the horizontal distance between the firm's output and the minimum point of the ATC."
+        "description": "1pt: Correctly label the horizontal distance between the firm's output and the minimum point of the ATC.",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u4-frq005",
@@ -546,21 +980,48 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Price Discrimination."
+        "description": "1pt: Price Discrimination.",
+        "skill": "explain",
+        "keywords": [
+          "price discrimination"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Market power, ability to segregate based on elasticity, prevent resale."
+        "description": "1pt: Market power, ability to segregate based on elasticity, prevent resale.",
+        "skill": "explain",
+        "keywords": [
+          "market power",
+          "elasticity",
+          "prevent resale",
+          "segregate",
+          "resale"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Shade the entire area between the Demand curve and the MC curve up to the quantity where P=MC."
+        "description": "1pt: Shade the entire area between the Demand curve and the MC curve up to the quantity where P=MC.",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       },
       {
         "points": 1,
-        "description": "1pt: State that consumer surplus is eliminated (becomes zero)."
+        "description": "1pt: State that consumer surplus is eliminated (becomes zero).",
+        "skill": "describe",
+        "keywords": [
+          "consumer surplus is eliminated",
+          "consumer surplus",
+          "surplus"
+        ],
+        "partLabel": "c"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u5-frq001",
@@ -579,21 +1040,43 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Market graph (X-S&D) and Firm graph with a horizontal Supply/MRC line."
+        "description": "1pt: Market graph (X-S&D) and Firm graph with a horizontal Supply/MRC line.",
+        "skill": "explain",
+        "keywords": [
+          "horizontal",
+          "mrc",
+          "x-s&d"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Calculate $60 (6 additional units * $10)."
+        "description": "1pt: Calculate $60 (6 additional units * $10).",
+        "skill": "calculate",
+        "keywords": [],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Horizontal Supply line shifts up; Qf decreases."
+        "description": "1pt: Horizontal Supply line shifts up; Qf decreases.",
+        "skill": "explain",
+        "keywords": [
+          "horizontal",
+          "shifts up"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: Explain the Law of Diminishing Marginal Returns: as more workers are hired, the additional output (MP) of each worker falls, reducing their MRP."
+        "description": "1pt: Explain the Law of Diminishing Marginal Returns: as more workers are hired, the additional output (MP) of each worker falls, reducing their MRP.",
+        "skill": "explain",
+        "keywords": [
+          "mrp"
+        ],
+        "partLabel": "d"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u5-frq002",
@@ -612,29 +1095,68 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: MRC curve is steeper and above the Sl curve."
+        "description": "1pt: MRC curve is steeper and above the Sl curve.",
+        "skill": "explain",
+        "keywords": [
+          "mrc"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Qm at MRC=MRP; Wm found by going down from that intersection to the Sl curve."
+        "description": "1pt: Qm at MRC=MRP; Wm found by going down from that intersection to the Sl curve.",
+        "skill": "explain",
+        "keywords": [
+          "intersection",
+          "mrp",
+          "mrc",
+          "qm"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: State 'No'."
+        "description": "1pt: State 'No'.",
+        "skill": "describe",
+        "keywords": [
+          "no"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that the hospital hires where MRP > Wage, meaning the social benefit of the last nurse exceeds the cost of hiring them."
+        "description": "1pt: Explain that the hospital hires where MRP > Wage, meaning the social benefit of the last nurse exceeds the cost of hiring them.",
+        "skill": "explain",
+        "keywords": [
+          "wage",
+          "mrp"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: State 'Increase'."
+        "description": "1pt: State 'Increase'.",
+        "skill": "describe",
+        "keywords": [
+          "increase"
+        ],
+        "partLabel": "e"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that in a monopsony, a higher wage (up to a point) makes the MRC horizontal, removing the firm's incentive to restrict hiring."
+        "description": "1pt: Explain that in a monopsony, a higher wage (up to a point) makes the MRC horizontal, removing the firm's incentive to restrict hiring.",
+        "skill": "explain",
+        "keywords": [
+          "in a monopsony, a higher wage",
+          "monopsony",
+          "horizontal",
+          "wage",
+          "mrc"
+        ],
+        "partLabel": "f"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u5-frq003",
@@ -653,25 +1175,52 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: State 'No'."
+        "description": "1pt: State 'No'.",
+        "skill": "describe",
+        "keywords": [
+          "no"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that MP/P for labor (40/20 = 2) is less than MP/P for robots (300/100 = 3)."
+        "description": "1pt: Explain that MP/P for labor (40/20 = 2) is less than MP/P for robots (300/100 = 3).",
+        "skill": "explain",
+        "keywords": [
+          "mp/p for labor"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: State 'More robots (and less labor)'."
+        "description": "1pt: State 'More robots (and less labor)'.",
+        "skill": "describe",
+        "keywords": [
+          "more robots",
+          "more robots (and less labor)"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: State 'Decrease'."
+        "description": "1pt: State 'Decrease'.",
+        "skill": "describe",
+        "keywords": [
+          "decrease"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: Explain the substitution effect: the firm will replace the relatively more expensive labor with the now cheaper robots."
+        "description": "1pt: Explain the substitution effect: the firm will replace the relatively more expensive labor with the now cheaper robots.",
+        "skill": "explain",
+        "keywords": [
+          "substitution effect"
+        ],
+        "partLabel": "e"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u5-frq004",
@@ -690,21 +1239,47 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Correct S&D labor graph."
+        "description": "1pt: Correct S&D labor graph.",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       },
       {
         "points": 1,
-        "description": "1pt: Shift Demand for labor to the right."
+        "description": "1pt: Shift Demand for labor to the right.",
+        "skill": "explain",
+        "keywords": [
+          "shift demand for labor",
+          "demand for labor"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Equilibrium wage (W) and quantity (L) both increase."
+        "description": "1pt: Equilibrium wage (W) and quantity (L) both increase.",
+        "skill": "explain",
+        "keywords": [
+          "equilibrium wage",
+          "equilibrium",
+          "wage"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Shift Demand for labor further to the right; wage increases."
+        "description": "1pt: Shift Demand for labor further to the right; wage increases.",
+        "skill": "explain",
+        "keywords": [
+          "shift demand for labor",
+          "demand for labor",
+          "wage"
+        ],
+        "partLabel": "c"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u5-frq005",
@@ -723,25 +1298,58 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Vertical Supply curve; downward sloping Demand curve."
+        "description": "1pt: Vertical Supply curve; downward sloping Demand curve.",
+        "skill": "explain",
+        "keywords": [
+          "downward sloping demand",
+          "downward sloping",
+          "demand curve",
+          "supply curve",
+          "vertical"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Rent labeled on the Y-axis."
+        "description": "1pt: Rent labeled on the Y-axis.",
+        "skill": "explain",
+        "keywords": [
+          "rent"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Shift Demand right; Rent increases."
+        "description": "1pt: Shift Demand right; Rent increases.",
+        "skill": "explain",
+        "keywords": [
+          "rent"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: State 'No change'."
+        "description": "1pt: State 'No change'.",
+        "skill": "describe",
+        "keywords": [
+          "no change"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that economic rent is the payment to a factor of production in excess of its opportunity cost. Since land has no alternative use (supply is vertical), the entire payment is considered rent."
+        "description": "1pt: Explain that economic rent is the payment to a factor of production in excess of its opportunity cost. Since land has no alternative use (supply is vertical), the entire payment is considered rent.",
+        "skill": "explain",
+        "keywords": [
+          "opportunity cost",
+          "rent",
+          "economic rent",
+          "vertical"
+        ],
+        "partLabel": "e"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u6-frq001",
@@ -760,25 +1368,59 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Correct labels; MSC curve must be above/to the left of the MPC curve."
+        "description": "1pt: Correct labels; MSC curve must be above/to the left of the MPC curve.",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       },
       {
         "points": 1,
-        "description": "1pt: Qm at MPC=MSB; Qso at MSC=MSB. Pm on the Y-axis corresponding to Qm."
+        "description": "1pt: Qm at MPC=MSB; Qso at MSC=MSB. Pm on the Y-axis corresponding to Qm.",
+        "skill": "explain",
+        "keywords": [
+          "mpc",
+          "msb",
+          "msc",
+          "qso",
+          "qm",
+          "pm"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Shade the triangle pointing toward Qso, bounded by MSB and MSC."
+        "description": "1pt: Shade the triangle pointing toward Qso, bounded by MSB and MSC.",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       },
       {
         "points": 1,
-        "description": "1pt: State 'Marginal External Cost (MEC)'."
+        "description": "1pt: State 'Marginal External Cost (MEC)'.",
+        "skill": "describe",
+        "keywords": [
+          "marginal external cost",
+          "marginal external cost (mec)",
+          "external cost",
+          "mec"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Show MPC shifting upward to coincide with MSC; Pt labeled at the intersection of MSC and MSB."
+        "description": "1pt: Show MPC shifting upward to coincide with MSC; Pt labeled at the intersection of MSC and MSB.",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u6-frq002",
@@ -797,29 +1439,70 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Correct labels; MSB curve must be above/to the right of the MPB curve."
+        "description": "1pt: Correct labels; MSB curve must be above/to the right of the MPB curve.",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       },
       {
         "points": 1,
-        "description": "1pt: Qm at MPB=MSC; Qso at MSB=MSC."
+        "description": "1pt: Qm at MPB=MSC; Qso at MSB=MSC.",
+        "skill": "explain",
+        "keywords": [
+          "mpb",
+          "msb",
+          "msc",
+          "qso",
+          "qm"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Shade the triangle pointing toward Qso, bounded by MSC and MSB."
+        "description": "1pt: Shade the triangle pointing toward Qso, bounded by MSC and MSB.",
+        "skill": "graph",
+        "keywords": [
+          "yes"
+        ],
+        "partLabel": "graph"
       },
       {
         "points": 1,
-        "description": "1pt: State 'Per-unit subsidy' or 'Voucher'."
+        "description": "1pt: State 'Per-unit subsidy' or 'Voucher'.",
+        "skill": "describe",
+        "keywords": [
+          "per-unit subsidy",
+          "voucher",
+          "subsidy"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: State 'Consumer surplus increases'."
+        "description": "1pt: State 'Consumer surplus increases'.",
+        "skill": "describe",
+        "keywords": [
+          "consumer surplus increases",
+          "consumer surplus",
+          "surplus"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that the subsidy lowers the effective price paid by consumers and increases the quantity consumed, expanding the area of surplus."
+        "description": "1pt: Explain that the subsidy lowers the effective price paid by consumers and increases the quantity consumed, expanding the area of surplus.",
+        "skill": "explain",
+        "keywords": [
+          "subsidy",
+          "surplus",
+          "area"
+        ],
+        "partLabel": "d"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u6-frq003",
@@ -838,25 +1521,59 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Non-excludable and Non-rivalrous."
+        "description": "1pt: Non-excludable and Non-rivalrous.",
+        "skill": "explain",
+        "keywords": [
+          "non-excludable",
+          "non-rivalrous"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that because people cannot be excluded from using the park, firms cannot charge a price to cover costs and earn a profit."
+        "description": "1pt: Explain that because people cannot be excluded from using the park, firms cannot charge a price to cover costs and earn a profit.",
+        "skill": "explain",
+        "keywords": [
+          "cannot be excluded"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that individuals have an incentive to understate their true value of the park, hoping others will pay for it while they enjoy it for free."
+        "description": "1pt: Explain that individuals have an incentive to understate their true value of the park, hoping others will pay for it while they enjoy it for free.",
+        "skill": "explain",
+        "keywords": [
+          "understate"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: State 'Where Marginal Social Benefit equals Marginal Social Cost (MSB=MSC)'."
+        "description": "1pt: State 'Where Marginal Social Benefit equals Marginal Social Cost (MSB=MSC)'.",
+        "skill": "describe",
+        "keywords": [
+          "where marginal social benefit equals marginal social cost",
+          "where marginal social benefit equals marginal social cost (msb=msc)",
+          "marginal social benefit",
+          "marginal social cost",
+          "msb",
+          "msc",
+          "msb=msc"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that the town should expand the park as long as the additional benefit to all residents is greater than or equal to the additional cost of the expansion."
+        "description": "1pt: Explain that the town should expand the park as long as the additional benefit to all residents is greater than or equal to the additional cost of the expansion.",
+        "skill": "explain",
+        "keywords": [
+          "additional benefit",
+          "additional cost"
+        ],
+        "partLabel": "e"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u6-frq004",
@@ -875,25 +1592,51 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: State 'Country A'."
+        "description": "1pt: State 'Country A'.",
+        "skill": "describe",
+        "keywords": [
+          "country a"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that Country A's Lorenz curve is closer to the 45-degree line of perfect equality."
+        "description": "1pt: Explain that Country A's Lorenz curve is closer to the 45-degree line of perfect equality.",
+        "skill": "explain",
+        "keywords": [
+          "lorenz curve"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: State 'Country B'."
+        "description": "1pt: State 'Country B'.",
+        "skill": "describe",
+        "keywords": [
+          "country b"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: State 'The curve shifts closer to the 45-degree line'."
+        "description": "1pt: State 'The curve shifts closer to the 45-degree line'.",
+        "skill": "describe",
+        "keywords": [
+          "the curve shifts closer to the 45-degree line"
+        ],
+        "partLabel": "d"
       },
       {
         "points": 1,
-        "description": "1pt: State 'Welfare, Social Security, or Unemployment Compensation'."
+        "description": "1pt: State 'Welfare, Social Security, or Unemployment Compensation'.",
+        "skill": "describe",
+        "keywords": [
+          "welfare, social security, or unemployment compensation"
+        ],
+        "partLabel": "e"
       }
-    ]
+    ],
+    "autoGraded": true
   },
   {
     "id": "micro-u6-frq005",
@@ -912,20 +1655,42 @@ var APMICRO_FRQ = [
     "rubric": [
       {
         "points": 1,
-        "description": "1pt: Explain that because the lake is non-excludable but rivalrous, individuals ignore the external cost their fishing imposes on others (fewer fish for everyone else)."
+        "description": "1pt: Explain that because the lake is non-excludable but rivalrous, individuals ignore the external cost their fishing imposes on others (fewer fish for everyone else).",
+        "skill": "explain",
+        "keywords": [
+          "non-excludable",
+          "external cost"
+        ],
+        "partLabel": "a"
       },
       {
         "points": 1,
-        "description": "1pt: Tragedy of the Commons."
+        "description": "1pt: Tragedy of the Commons.",
+        "skill": "explain",
+        "keywords": [
+          "tragedy of the commons"
+        ],
+        "partLabel": "b"
       },
       {
         "points": 1,
-        "description": "1pt: State 'Fishing licenses, quotas, or tradable permits'."
+        "description": "1pt: State 'Fishing licenses, quotas, or tradable permits'.",
+        "skill": "describe",
+        "keywords": [
+          "fishing licenses, quotas, or tradable permits"
+        ],
+        "partLabel": "c"
       },
       {
         "points": 1,
-        "description": "1pt: Explain that the policy limits consumption to the socially optimal level or internalizes the cost of using the resource."
+        "description": "1pt: Explain that the policy limits consumption to the socially optimal level or internalizes the cost of using the resource.",
+        "skill": "explain",
+        "keywords": [
+          "socially optimal"
+        ],
+        "partLabel": "d"
       }
-    ]
+    ],
+    "autoGraded": true
   }
 ];

@@ -217,7 +217,8 @@ function renderFrqGrading(containerId, frqQuestions, frqAnswers, onGradeChange) 
   const grades = {};
   el.innerHTML = frqQuestions.map((frq, idx) => {
     grades[frq.id] = 0;
-    const isAutoGraded = frq.subject && typeof FRQ_CONFIGS !== 'undefined' && FRQ_CONFIGS[frq.subject];
+    const isAutoGraded = frq.autoGraded === true
+      || (frq.subject && typeof FRQ_CONFIGS !== 'undefined' && FRQ_CONFIGS[frq.subject] && FRQ_CONFIGS[frq.subject].autoGradeAll);
     const studentAnswer = frqAnswers[frq.id] || {};
     const partsHtml = (frq.parts || []).map(part => {
       const ans = studentAnswer[part.label] || '(no answer)';
@@ -247,6 +248,14 @@ function renderFrqGrading(containerId, frqQuestions, frqAnswers, onGradeChange) 
                }[docType] || '';
                const typeBadge  = typeIcon ? '<span class="dbq-doc-type-badge">' + typeIcon + '</span>' : '';
                const contentCls = docType !== 'text' ? ' dbq-visual-desc' : '';
+               const imgUrl     = doc.imageUrl || '';
+               if (imgUrl) {
+                 return '<div class="dbq-document-card">' +
+                   '<div class="dbq-document-source">Document ' + num + ' — ' + escapeHtml(source) + typeBadge + '</div>' +
+                   '<img class="dbq-visual-image" src="' + imgUrl + '" alt="' + escapeHtml(source) + '" loading="lazy" onclick="this.classList.toggle(\'zoomed\')">' +
+                   '<div class="dbq-visual-caption">' + escapeHtml(text) + '</div>' +
+                   '</div>';
+               }
                return '<div class="dbq-document-card">' +
                  '<div class="dbq-document-source">Document ' + num + ' — ' + escapeHtml(source) + typeBadge + '</div>' +
                  '<div class="dbq-document-content' + contentCls + '">' + escapeHtml(text) + '</div>' +
@@ -333,11 +342,20 @@ function renderFrqGrading(containerId, frqQuestions, frqAnswers, onGradeChange) 
 
     try {
       const unitNum = (frq.units && frq.units[0]) || 1;
-      const result  = APUSHGrader.grade(studentAnswer, frq.frqType, unitNum, 'apush', frq);
-      renderAnalysisPanel(panel, result, fullText);
+      let result;
+      if (frq.subject === 'apush' && typeof APUSHGrader !== 'undefined') {
+        result = APUSHGrader.grade(studentAnswer, frq.frqType, unitNum, frq.subject || 'apush', frq);
+        renderAnalysisPanel(panel, result, fullText);
+      } else if (typeof GenericFRQGrader !== 'undefined') {
+        const subjectCfg = (typeof FRQ_CONFIGS !== 'undefined' && FRQ_CONFIGS[frq.subject]) || {};
+        result = GenericFRQGrader.grade(studentAnswer, frq.frqType, unitNum, frq, subjectCfg);
+        renderAutoFRQPanel(panel, result, fullText);
+      }
       // Feed automated score into grades and notify
-      grades[frq.id] = result.score.total;
-      if (onGradeChange) onGradeChange({ ...grades });
+      if (result) {
+        grades[frq.id] = result.score.total;
+        if (onGradeChange) onGradeChange({ ...grades });
+      }
     } catch (e) {
       panel.innerHTML = '<p class="frq-analysis-empty text-muted">Analysis unavailable.</p>';
     }
@@ -471,16 +489,16 @@ function renderAnalysisPanel(el, gradeResult, rawAnswer) {
     const sourcingExs  = (details.sourcingExamples || []);
     const uniqueHAPP   = [...new Set(sourcingExs.map(e => e.docNum))];
     const outsideTerm  = details.outsideTerm || null;
-    const docsIcon     = docsCited.length >= 4 ? '✓' : docsCited.length >= 3 ? '½' : '✗';
+    const docsIcon     = docsCited.length >= 4 ? '✓' : docsCited.length >= 2 ? '½' : '✗';
     const happIcon     = uniqueHAPP.length  >= 2 ? '✓' : uniqueHAPP.length >= 1 ? '½' : '✗';
     const outsideIcon  = outsideTerm ? '✓' : '✗';
 
     scoringLogicHtml = `
       <div class="scoring-logic-row">
-        <span class="sl-icon ${docsCited.length >= 4 ? 'full' : docsCited.length >= 3 ? 'partial' : 'zero'}">${docsIcon}</span>
+        <span class="sl-icon ${docsCited.length >= 4 ? 'full' : docsCited.length >= 2 ? 'partial' : 'zero'}">${docsIcon}</span>
         <span class="sl-label">Docs Found:</span>
         <span class="sl-value">${docsCited.length > 0 ? docsCited.map(n => 'Doc ' + n).join(', ') : 'none'}</span>
-        <span class="sl-req">(need 3 for 1pt, 4 for 2pts)</span>
+        <span class="sl-req">(need 2 for 1pt, 4 for 2pts)</span>
       </div>
       <div class="scoring-logic-row">
         <span class="sl-icon ${uniqueHAPP.length >= 2 ? 'full' : uniqueHAPP.length >= 1 ? 'partial' : 'zero'}">${happIcon}</span>
@@ -584,10 +602,115 @@ function renderAnalysisPanel(el, gradeResult, rawAnswer) {
     </div>`;
 }
 
+// ─── Generic FRQ Analysis Panel Renderer (all auto-graded subjects) ──────────
+function renderAutoFRQPanel(el, gradeResult, rawAnswer) {
+  if (!el || !gradeResult) return;
+
+  var pts   = gradeResult.points_earned  || [];
+  var prox  = gradeResult.proximity_hits || [];
+  var miss  = gradeResult.missing_logic  || [];
+  var parts = (gradeResult.total_score || '0/0').split('/');
+  var earned = parseInt(parts[0], 10) || 0;
+  var max    = parseInt(parts[1], 10) || 0;
+  var pct    = max > 0 ? Math.round((earned / max) * 100) : 0;
+  var cpe    = gradeResult.cpe_triggered;
+
+  // ── Score chips (one per rubric item) ──
+  var chipsHtml = pts.map(function(p, i) {
+    var cls   = p.awarded ? 'earned' : 'missing';
+    var icon  = p.awarded ? '✓' : '✗';
+    var label = (p.index !== undefined && p.index !== null) ? p.index : (i + 1);
+    return '<span class="analysis-chip ' + cls + '" title="' + escapeHtml(p.reason || '') + '">' +
+             label + '. ' + icon +
+           '</span>';
+  }).join('');
+
+  // ── Breakdown table rows ──
+  var rowsHtml = pts.map(function(p) {
+    var cls  = p.awarded ? 'full' : 'zero';
+    var icon = p.awarded ? '✓' : '✗';
+    return '<tr class="breakdown-row ' + cls + '">' +
+             '<td class="breakdown-icon">' + icon + '</td>' +
+             '<td class="breakdown-label">' + renderFRQPromptText(p.description) + '</td>' +
+             '<td class="breakdown-pts" style="font-size:0.8rem;color:var(--text-muted);min-width:180px">' + escapeHtml(p.reason || '') + '</td>' +
+           '</tr>';
+  }).join('');
+
+  // ── Proximity hits ──
+  var proxHtml = prox.length
+    ? '<div class="frq-analysis-section" style="margin-top:12px">' +
+        '<h5>⚡ Proximity Links Found</h5>' +
+        '<ul>' + prox.map(function(h) {
+          return '<li class="feedback-found">⚡ ' + renderFRQPromptText(h) + '</li>';
+        }).join('') + '</ul>' +
+      '</div>'
+    : '';
+
+  // ── Missing logic ──
+  var missHtml = miss.length
+    ? '<div class="frq-analysis-section" style="margin-top:12px">' +
+        '<h5>⚠ Logic Gaps</h5>' +
+        '<ul>' + miss.map(function(m) {
+          return '<li class="feedback-missing">⚠ ' + renderFRQPromptText(m) + '</li>';
+        }).join('') + '</ul>' +
+      '</div>'
+    : '';
+
+  // ── CPE banner ──
+  var cpeBanner = cpe
+    ? '<div class="scoring-logic-row" style="background:var(--badge-bg);margin-bottom:8px;border-radius:6px;padding:6px 10px">' +
+        '<span class="sl-icon partial" style="margin-right:6px">ℹ</span>' +
+        '<span class="sl-label">CPE Protection applied — consistent carry-forward error credited</span>' +
+      '</div>'
+    : '';
+
+  // ── Ideal response (KaTeX rendered via data-latex span) ──
+  var idealHtml = gradeResult.ideal_response_latex
+    ? '<div style="margin-top:16px">' +
+        '<p style="font-weight:700;margin-bottom:6px">Ideal Response</p>' +
+        '<div class="frq-highlighted-answer" style="padding:12px;overflow-x:auto">' +
+          '<span data-latex="' + escapeHtml(gradeResult.ideal_response_latex) + '" data-display="true"></span>' +
+          (gradeResult.ideal_response_prose
+            ? '<p style="margin-top:8px;font-size:0.9rem;color:var(--text-secondary)">' + escapeHtml(gradeResult.ideal_response_prose) + '</p>'
+            : '') +
+        '</div>' +
+      '</div>'
+    : '';
+
+  el.innerHTML =
+    '<div class="frq-analysis-panel">' +
+      '<div class="analysis-score-header">' +
+        '<span class="analysis-total">' + earned + '/' + max + '</span>' +
+        '<span class="analysis-pct" style="margin-left:10px">' + pct + '%</span>' +
+        '<div class="analysis-chips" style="margin-top:8px">' + chipsHtml + '</div>' +
+      '</div>' +
+      cpeBanner +
+      '<div style="margin-top:12px;overflow-x:auto">' +
+        '<table class="breakdown-table" style="width:100%">' +
+          '<thead><tr>' +
+            '<th style="width:28px"></th>' +
+            '<th>Rubric Criterion</th>' +
+            '<th style="min-width:180px">Reason</th>' +
+          '</tr></thead>' +
+          '<tbody>' + rowsHtml + '</tbody>' +
+        '</table>' +
+      '</div>' +
+      proxHtml +
+      missHtml +
+      idealHtml +
+    '</div>';
+
+  // Render any KaTeX spans (ideal response)
+  if (typeof renderMath !== 'undefined') renderMath(el);
+}
+
 // ─── Exports ─────────────────────────────────────────────────────────────────
 window.Scoring = {
   calculateTestScore, calculateUnitBreakdown, calculateDifficultyBreakdown,
   getWeakestTopics, renderScoreSummary, renderUnitBreakdown,
   renderDifficultyBreakdown, renderWeakTopics, renderTestHistory,
-  renderFrqGrading, renderAnalysisPanel, UNIT_TITLES
+  renderFrqGrading, renderAnalysisPanel, renderAutoFRQPanel,
+  // Backward-compat alias
+  renderPhysicsPanel: renderAutoFRQPanel,
+  UNIT_TITLES
 };

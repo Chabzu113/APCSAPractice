@@ -1,6 +1,6 @@
 {
   "name": "ap-csa-practice",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "AP Test Prep — Multi-Subject Practice Platform",
   "main": "main.js",
   "author": "Abhijay Ramaka",
@@ -22,8 +22,18 @@
     "mac": {
       "category": "public.app-category.education",
       "target": [
-        { "target": "dmg", "arch": ["arm64"] },
-        { "target": "dir", "arch": ["arm64"] }
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        },
+        {
+          "target": "dir",
+          "arch": [
+            "arm64"
+          ]
+        }
       ],
       "icon": "icon.png"
     },
@@ -31,10 +41,21 @@
       "title": "AP Test Prep",
       "icon": "icon.png",
       "contents": [
-        { "x": 130, "y": 220 },
-        { "x": 410, "y": 220, "type": "link", "path": "/Applications" }
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
       ],
-      "window": { "width": 540, "height": 380 }
+      "window": {
+        "width": 540,
+        "height": 380
+      }
     },
     "win": {
       "target": "nsis",

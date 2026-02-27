@@ -26,4 +26,8 @@ zip -r ~/Desktop/APTestPrep-Mac.zip "AP Test Prep.app" "Open AP Test Prep.comman
 # Clean up the temp launcher from dist (keep dist clean)
 rm "Open AP Test Prep.command"
 
+# Generate checksums.txt so the in-app updater integrity check passes
+shasum -a 256 ~/Desktop/APTestPrep-Mac.zip | awk '{print $1 "  APTestPrep-Mac.zip"}' > ~/Desktop/checksums.txt
+echo "🔐 checksums.txt written to Desktop."
+
 echo "✅ Done! APTestPrep-Mac.zip is on your Desktop."
